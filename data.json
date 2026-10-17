@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-17T12:19:50+00:00",
+ "generatedAt": "2026-10-17T12:22:57+00:00",
  "items": [
   {
    "name": "Turvakaukalo",
@@ -21,6 +21,20 @@
        "url": "https://www.wauva.com/tuotteemme/cybex-cloud-t-i-size-turvakaukalo-starttipaketti-base-t-jalustalla-plus-coconut-brown/p/526001650-P/",
        "checked": "2026-10-17",
        "note": "Cloud T i-Size starttipaketti Base T -jalustalla, PLUS Coconut Brown"
+      },
+      {
+       "shop": "A-T Lastenturva",
+       "price": 550,
+       "url": "https://www.lastenturva.fi/lapselle/cybex-cloud-t-i-size-turvakaukalo-ja-telakka/p/406384640223/",
+       "checked": "2026-10-17",
+       "note": "Kaukalo + telakka -paketti, hintaseuranta.fi:n mukaan 520–550 € värin/Plus-version mukaan; väri ei selvinnyt"
+      },
+      {
+       "shop": "Crocoliini",
+       "price": 549.9,
+       "url": "https://www.crocoliini.fi/product/3588/cybex-cloud-t-i-size-plus",
+       "checked": "2026-10-17",
+       "note": "Cloud T Plus 289,95 € + Base T 259,95 € erikseen; ei Coconut Brown -väriä, toimitus n. 21 pv"
       }
      ],
      "history": [
@@ -28,7 +42,25 @@
        "date": "2026-10-17",
        "price": 549.9
       }
-     ]
+     ],
+     "tori": {
+      "checked": "2026-10-17",
+      "range": {
+       "max": 340,
+       "min": 280,
+       "n": 2
+      },
+      "warning": "Käytettyä turvakaukaloa ei suositella, koska kolarihistoriaa ei voi tietää.",
+      "pick": {
+       "title": "Cybex Cloud T i-size turvakaukalo & Base T jalusta",
+       "price": 280,
+       "location": "Nihtisilta, Espoo",
+       "date": "2026-10-16",
+       "condition": "Myyjän mukaan kuin uusi, ei kolaroitu, päälliset juuri pestyt; Plus-versio ja ikä eivät selviä.",
+       "url": "https://www.tori.fi/recommerce/forsale/item/48581515",
+       "why": "Koko paketti (kaukalo + Base T) noin puoleen hintaan uudesta ja myyjä vakuuttaa kolarittomuuden. Toinen vaihtoehto 48348264 (340 €, Lauttasaari) sisältää lisäksi aurinko- ja kesäsuojuksen."
+      }
+     }
     }
    ],
    "favorite": 0
@@ -46,7 +78,7 @@
      "price": 560,
      "shop": "Mon Lit Cabane",
      "url": "https://monlitcabane.com/fi/vauvansanky/9478-muunneltava-7-in-1-suorakulmainen-kehto-patjalla-vintage.html",
-     "caveat": "Sivun mukaan patja kuuluu toimitukseen, mutta patja näkyy myös 160 €:n lisävarusteena. Tarkista, sisältyykö se hintaan.",
+     "caveat": "Hintaan sisältyy kolmiosainen patja; 160 €:n patja on erillinen paksumpi lisäpatja. Toimituskulut eivät selviä sivulta.",
      "offers": [
       {
        "shop": "Mon Lit Cabane",
@@ -61,7 +93,14 @@
        "date": "2026-10-17",
        "price": 560
       }
-     ]
+     ],
+     "tori": {
+      "checked": "2026-10-17",
+      "range": {
+       "n": 0
+      },
+      "warning": "Uudellamaalla ei ollut viimeisen 7 päivän aikana yhtään Mon Lit Cabane 7-in-1 -ilmoitusta. Tuotetta myy Suomessa vain valmistaja."
+     }
     },
     {
      "model": "Stokke Sleepi Bed V3",
@@ -76,6 +115,20 @@
        "url": "https://www.lastentarvike.fi/tuotteet/stokke-sleepi-bed-pinnasanky-v3.html",
        "checked": "2026-10-17",
        "note": "Stokke Sleepi Bed V3"
+      },
+      {
+       "shop": "Crocoliini",
+       "price": 669,
+       "url": "https://www.crocoliini.fi/product/3717/stokke-sleepi-v3-pinnasanky",
+       "checked": "2026-10-17",
+       "note": "Valkoinen, Natural tai Warm Brown; patja erikseen, toimitus n. 21 pv"
+      },
+      {
+       "shop": "A-T Lastenturva",
+       "price": 669,
+       "url": "https://www.lastenturva.fi/kotiin/stokke-sleepi-bed-pinnasanky-120-cm-patjalla/p/954587451/",
+       "checked": "2026-10-17",
+       "note": "Warm Brown; osoitteessa lukee 'patjalla', mutta vertailusivujen mukaan patja ostetaan erikseen"
       }
      ],
      "history": [
@@ -83,7 +136,25 @@
        "date": "2026-10-17",
        "price": 669
       }
-     ]
+     ],
+     "tori": {
+      "checked": "2026-10-17",
+      "range": {
+       "max": 650,
+       "min": 350,
+       "n": 8
+      },
+      "warning": "Yksikään ilmoitus ei kerro sukupolvea (V1/V2/V3), ja V3:n patjat ja lakanat eivät sovi vanhempiin malleihin. Käytetyn patjan hygienia kannattaa varmistaa, uusi patja on turvallisin valinta.",
+      "pick": {
+       "title": "Stokke Sleepi, patja ja junior jatkopalat",
+       "price": 350,
+       "location": "Jätkäsaari, Helsinki",
+       "date": "2026-10-14",
+       "condition": "Patja ostettu viime kesänä ja käytetty muutaman kerran; sängyn ikä ja sukupolvi eivät selviä.",
+       "url": "https://www.tori.fi/recommerce/forsale/item/48495155",
+       "why": "Halvin kokonaisuus: sänky, lähes käyttämätön patja ja junior-jatkopalat noin puoleen hintaan uudesta V3:sta. Varmista myyjältä, onko kyseessä V3."
+      }
+     }
     }
    ],
    "favorite": 0
@@ -107,6 +178,13 @@
        "url": "https://www.wauva.com/tuotteemme/cybex-priam-style-lastenvaunut-chrome-brown-coconut-brown/p/526000201-PYCBR/",
        "checked": "2026-10-17",
        "note": "Priam Style, Chrome-Brown / Coconut Brown"
+      },
+      {
+       "shop": "Cybex (oma verkkokauppa)",
+       "price": 1619.85,
+       "url": "https://www.cybex-online.com/fi/fi/p/set-st-pl-priam-5-style.html",
+       "checked": "2026-10-17",
+       "note": "Priam Style -setti (runko + Fold Lux -koppa + Style-istuinpaketti); oletusväri Rosegold / Sepia Black, Chrome Brown / Coconut Brown -hintaa ei vahvistettu"
       }
      ],
      "history": [
@@ -120,7 +198,7 @@
       "range": {
        "n": 0
       },
-      "warning": "Uudellamaalla ei tällä viikolla ollut yhtään Priam Style -ilmoitusta. Style on uusi mallisto, joten käytettyjä on vielä vähän."
+      "warning": "Uudellamaalla ei viimeisen 7 päivän aikana ollut yhtään Priam Style -ilmoitusta; 19 Priam-ilmoitusta hylättiin, koska ne olivat tavallisia Priameja, e-Priameja tai pelkkiä osia."
      }
     }
    ],
@@ -404,7 +482,7 @@
   }
  ],
  "meta": {
-  "lastRun": "2026-10-17T11:30:00+03:00",
+  "lastRun": "2026-10-17T15:22:09+03:00",
   "campaigns": [
    {
     "end": "2026-11-30",
