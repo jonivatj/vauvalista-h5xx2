@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-17T12:22:57+00:00",
+ "generatedAt": "2026-10-17T12:52:47+00:00",
  "items": [
   {
    "name": "Turvakaukalo",
@@ -203,16 +203,42 @@
     }
    ],
    "favorite": 0
+  },
+  {
+   "name": "Kantoliina tai kantoreppu",
+   "status": "harkinnassa",
+   "method": "ostetaan",
+   "timing": "0-3",
+   "kela": false,
+   "alts": [
+    {
+     "model": "Ergobaby Omni Deluxe Cotton kantoreppu",
+     "variant": "Midnight Blue",
+     "price": 199.99,
+     "shop": "Verkkokauppa.com",
+     "url": "https://www.verkkokauppa.com/fi/product/999208/Ergobaby-Omni-Deluxe-Cotton-kantoreppu-Midnight-Blue",
+     "caveat": "Käyttäjäarvion mukaan voi olla väljä aivan pienelle (n. 4 kg) vastasyntyneelle.",
+     "offers": [
+      {
+       "shop": "Verkkokauppa.com",
+       "price": 199.99,
+       "url": "https://www.verkkokauppa.com/fi/product/999208/Ergobaby-Omni-Deluxe-Cotton-kantoreppu-Midnight-Blue",
+       "checked": "2026-10-17",
+       "note": "Ergobaby Omni Deluxe Cotton, Midnight Blue"
+      }
+     ],
+     "history": [
+      {
+       "date": "2026-10-17",
+       "price": 199.99
+      }
+     ]
+    }
+   ],
+   "favorite": 0
   }
  ],
  "suggestions": [
-  {
-   "name": "Kantoliina tai kantoreppu",
-   "category": "Liikkuminen",
-   "timing": "0-3",
-   "kela": false,
-   "order": 1
-  },
   {
    "name": "Vaunupussi tai lämpöpussi",
    "category": "Liikkuminen",
