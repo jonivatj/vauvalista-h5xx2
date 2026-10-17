@@ -1,16 +1,34 @@
 {
- "generatedAt": "2026-10-17T11:45:06+00:00",
+ "generatedAt": "2026-10-17T12:19:50+00:00",
  "items": [
   {
    "name": "Turvakaukalo",
-   "status": "harkinnassa",
+   "status": "paatetty",
    "method": "ostetaan",
    "timing": "ennen",
    "kela": false,
    "alts": [
     {
-     "offers": [],
-     "history": []
+     "model": "Cybex Cloud T i-Size + Base T -jalusta",
+     "variant": "PLUS Coconut Brown",
+     "price": 549.9,
+     "shop": "Wauva",
+     "url": "https://www.wauva.com/tuotteemme/cybex-cloud-t-i-size-turvakaukalo-starttipaketti-base-t-jalustalla-plus-coconut-brown/p/526001650-P/",
+     "offers": [
+      {
+       "shop": "Wauva",
+       "price": 549.9,
+       "url": "https://www.wauva.com/tuotteemme/cybex-cloud-t-i-size-turvakaukalo-starttipaketti-base-t-jalustalla-plus-coconut-brown/p/526001650-P/",
+       "checked": "2026-10-17",
+       "note": "Cloud T i-Size starttipaketti Base T -jalustalla, PLUS Coconut Brown"
+      }
+     ],
+     "history": [
+      {
+       "date": "2026-10-17",
+       "price": 549.9
+      }
+     ]
     }
    ],
    "favorite": 0
@@ -23,7 +41,7 @@
    "kela": true,
    "alts": [
     {
-     "model": "Muunneltava 7-in-1 suorakulmainen vauvansänky patjalla",
+     "model": "Mon Lit Cabane 7-in-1",
      "variant": "Vintage",
      "price": 560,
      "shop": "Mon Lit Cabane",
