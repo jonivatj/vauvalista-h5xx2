@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-17T09:24:36+00:00",
+ "generatedAt": "2026-10-17T10:11:54+00:00",
  "items": [
   {
    "name": "Turvakaukalo",
@@ -28,63 +28,20 @@
      "url": "https://www.wauva.com/tuotteemme/cybex-priam-style-lastenvaunut-chrome-brown-coconut-brown/p/526000201-PYCBR/",
      "checked": "2026-10-17",
      "note": "Priam Style, Chrome-Brown / Coconut Brown"
-    },
-    {
-     "shop": "Lastentarvike",
-     "price": 1399,
-     "url": "https://www.lastentarvike.fi/tuotteet/cybex-priam-yhdistelmavaunut-matt-black-rungolla---sepia-black.html",
-     "checked": "2026-08-29",
-     "note": "tavallinen Priam, ei Style"
-    },
-    {
-     "shop": "Wauva",
-     "price": 1399.95,
-     "url": "https://www.wauva.com/tuotteemme/cybex-priam-comfort-lastenvaunut-matt-black-cozy-beige/p/526000021/",
-     "checked": "2026-08-29",
-     "note": "tavallinen Priam Comfort, ei Style"
-    },
-    {
-     "shop": "Stockmann",
-     "price": 1399.95,
-     "url": "https://www.stockmann.com/cybex-cybex-priam-yhdistelmavaunut/2035577568.html",
-     "checked": "2026-08-29",
-     "note": "tavallinen Priam, ei Style"
-    },
-    {
-     "shop": "A-T Lastenturva",
-     "price": 1400,
-     "url": "https://hintaseuranta.fi/muut-lastenhoitotuotteet/cybex-priam-yhdistelmavaunut/16679959",
-     "checked": "2026-10-17",
-     "note": "tavallinen Priam, hintaseurannan kautta"
     }
    ],
    "history": [
     {
-     "date": "2026-08-29",
-     "price": 1399
-    },
-    {
      "date": "2026-10-17",
-     "price": 1399
+     "price": 1569.65
     }
    ],
    "tori": {
     "checked": "2026-10-17",
     "range": {
-     "max": 1000,
-     "min": 280,
-     "n": 10
+     "n": 0
     },
-    "warning": "Varmista myyjältä, kuuluuko vaunukoppa ja kaukaloadapterit kauppaan. Tarkista runko ja pyörät paikan päällä.",
-    "pick": {
-     "title": "Cybex Priam V4 Matte Black Leaf Green vm.2025",
-     "price": 850,
-     "location": "Masala, Kirkkonummi",
-     "date": "16.10.",
-     "condition": "myyjän mukaan huippusiisti",
-     "url": "https://www.tori.fi/recommerce/forsale/item/48409238",
-     "why": "Uusinta sukupolvea (V4) ja vain vuoden vanha, myyjä kuvaa kunnon erinomaiseksi. Hinta on noin 550 € alle uuden. Halvempia löytyy, mutta ne ovat vanhempia V3-malleja tai kahden lapsen käytössä olleita."
-    }
+    "warning": "Uudellamaalla ei tällä viikolla ollut yhtään Priam Style -ilmoitusta. Style on uusi mallisto, joten käytettyjä on vielä vähän."
    }
   }
  ],
