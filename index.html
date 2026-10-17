@@ -164,7 +164,7 @@ function render(d){
   for(const c of d.meta?.campaigns||[]){const e=new Date(c.end||c.date);if(!isNaN(e)&&e<today)continue;n.push(`<div class="notice"><b>${esc(c.name)}</b> · ${esc(c.note||"")}</div>`)}
   $("notices").innerHTML=n.join("");
   $("list").innerHTML=items.length?Object.keys(TIMING).map(k=>{
-    const g=items.filter(it=>(TIMING[it.timing]?it.timing:"ennen")===k).sort((a,b)=>a.name.localeCompare(b.name,"fi"));
+    const SR={ostettu:0,paatetty:1,harkinnassa:2};const g=items.filter(it=>(TIMING[it.timing]?it.timing:"ennen")===k).sort((a,b)=>(SR[a.status]??9)-(SR[b.status]??9)||a.name.localeCompare(b.name,"fi"));
     if(!g.length)return"";
     return `<div class="group"><div class="ghead"><div><h2>${TIMING[k]}</h2><div class="when">${WHEN[k]}</div></div><div class="gsum">${eur(g.reduce((s,it)=>s+(amount(it)||0),0))}</div></div>${g.map(item).join("")}</div>`;
   }).join(""):`<div class="empty">Listalla ei ole vielä tuotteita.</div>`;
