@@ -23,7 +23,7 @@ def pick(d, keys):
     return {k: d[k] for k in keys if isinstance(d, dict) and d.get(k) not in (None, "", [])}
 
 def alt_out(a):
-    x = pick(a, ["model", "variant", "price", "shop", "url", "info"])
+    x = pick(a, ["model", "variant", "price", "shop", "url", "caveat"])
     x["offers"] = [pick(o, ["shop", "price", "url", "checked", "note"]) for o in a.get("offers") or []]
     x["history"] = [pick(h, ["date", "price"]) for h in (a.get("history") or [])][-40:]
     t = a.get("tori")

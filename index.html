@@ -127,7 +127,7 @@ const deal=it=>altDeal(it.alts[pidx(it)]);
 function altBody(it,a,head){
   const offers=(a.offers||[]).slice().sort((x,y)=>(x.price??1e9)-(y.price??1e9)),b=best(a),t=a.tori,p=t?.pick;
   let h=head||"";
-  if(a.info)h+=`<div><div class="sec">Perustiedot</div><div>${esc(a.info)}</div></div>`;
+  if(a.caveat)h+=`<div class="notice"><b>Huomio</b> · ${esc(a.caveat)}</div>`;
   if(offers.length)h+=`<div><div class="sec">Hinnat kaupoissa</div><table>${offers.map(o=>`<tr class="${o===b?"best":""}"><td>${link(o.url,o.shop)} <span class="note">${o.checked?"· "+fdate(o.checked):""}${o.note?" · "+esc(o.note):""}</span></td><td>${eur2(o.price)}</td></tr>`).join("")}</table></div>`;
   if(p)h+=`<div><div class="sec">Viikon Tori-löytö · Uusimaa</div><div class="toricard"><b>${link(p.url,p.title)}</b><div class="muted" style="font-size:13px">${eur(p.price)} · ${esc(p.location||"")}${p.condition?" · "+esc(p.condition):""}</div>${p.why?`<div style="margin-top:4px">${esc(p.why)}</div>`:""}</div></div>`;
   if(t?.warning)h+=`<div class="muted" style="font-size:13px">${esc(t.warning)}</div>`;
