@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-17T11:35:03+00:00",
+ "generatedAt": "2026-10-17T11:45:06+00:00",
  "items": [
   {
    "name": "Turvakaukalo",
@@ -28,14 +28,14 @@
      "price": 560,
      "shop": "Mon Lit Cabane",
      "url": "https://monlitcabane.com/fi/vauvansanky/9478-muunneltava-7-in-1-suorakulmainen-kehto-patjalla-vintage.html",
-     "info": "Pyökkipuinen, vesiohenteisella maalilla viimeistelty 7-in-1-sänky, joka muuntuu pienestä kehdosta (77,5 × 77,5 cm) isoksi sängyksi (127,5 cm), leikkikehäksi, hoitopöydäksi ja myöhemmin pöydäksi ja tuoleiksi. Pohjan korkeus säätyy viiteen tasoon, sängyn voi kiinnittää vanhempien sängyn viereen ja pyörät ovat irrotettavat. Sivun mukaan toimitetaan patjan kanssa (kolmiosainen, päällinen pestävissä 30 °C:ssa), mutta patja näkyy myös 160 €:n lisävarusteena, joten tarkista sisältyykö se hintaan.",
+     "caveat": "Sivun mukaan patja kuuluu toimitukseen, mutta patja näkyy myös 160 €:n lisävarusteena. Tarkista, sisältyykö se hintaan.",
      "offers": [
       {
        "shop": "Mon Lit Cabane",
        "price": 560,
        "url": "https://monlitcabane.com/fi/vauvansanky/9478-muunneltava-7-in-1-suorakulmainen-kehto-patjalla-vintage.html",
        "checked": "2026-10-17",
-       "note": "Muunneltava 7-in-1 suorakulmainen vauvansänky patjalla, Vintage"
+       "note": "7-in-1 vauvansänky patjalla, Vintage"
       }
      ],
      "history": [
@@ -46,9 +46,26 @@
      ]
     },
     {
-     "url": "https://www.wauva.com/tuotteemme/stokke-sleepi-v3-pinnasanky-natural/p/591401/",
-     "offers": [],
-     "history": []
+     "model": "Stokke Sleepi Bed V3",
+     "price": 669,
+     "shop": "Lastentarvike",
+     "url": "https://www.lastentarvike.fi/tuotteet/stokke-sleepi-bed-pinnasanky-v3.html",
+     "caveat": "Patja, pyörät ja lakanat myydään erikseen, ja niiden pitää olla V3-mallin kokoisia.",
+     "offers": [
+      {
+       "shop": "Lastentarvike",
+       "price": 669,
+       "url": "https://www.lastentarvike.fi/tuotteet/stokke-sleepi-bed-pinnasanky-v3.html",
+       "checked": "2026-10-17",
+       "note": "Stokke Sleepi Bed V3"
+      }
+     ],
+     "history": [
+      {
+       "date": "2026-10-17",
+       "price": 669
+      }
+     ]
     }
    ],
    "favorite": 0
@@ -65,7 +82,6 @@
      "price": 1569.65,
      "shop": "Wauva",
      "url": "https://www.wauva.com/tuotteemme/cybex-priam-style-lastenvaunut-chrome-brown-coconut-brown/p/526000201-PYCBR/",
-     "info": "Priam Style -yhdistelmävaunut: kokoon taittuva vaunukoppa, jousitettu runko ja ergonominen ratasistuin. Kasautuu kompaktisti ja toimii travel system -ratkaisuna turvakaukalon kanssa. Wauvan mukaan tilattavissa, lähetysaika noin 2–19 arkipäivää, takuu 2 vuotta.",
      "offers": [
       {
        "shop": "Wauva",
