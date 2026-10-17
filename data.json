@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-17T11:25:35+00:00",
+ "generatedAt": "2026-10-17T11:35:03+00:00",
  "items": [
   {
    "name": "Turvakaukalo",
@@ -9,6 +9,44 @@
    "kela": false,
    "alts": [
     {
+     "offers": [],
+     "history": []
+    }
+   ],
+   "favorite": 0
+  },
+  {
+   "name": "Pinnasänky tai vauvan sänky",
+   "status": "harkinnassa",
+   "method": "ostetaan",
+   "timing": "ennen",
+   "kela": true,
+   "alts": [
+    {
+     "model": "Muunneltava 7-in-1 suorakulmainen vauvansänky patjalla",
+     "variant": "Vintage",
+     "price": 560,
+     "shop": "Mon Lit Cabane",
+     "url": "https://monlitcabane.com/fi/vauvansanky/9478-muunneltava-7-in-1-suorakulmainen-kehto-patjalla-vintage.html",
+     "info": "Pyökkipuinen, vesiohenteisella maalilla viimeistelty 7-in-1-sänky, joka muuntuu pienestä kehdosta (77,5 × 77,5 cm) isoksi sängyksi (127,5 cm), leikkikehäksi, hoitopöydäksi ja myöhemmin pöydäksi ja tuoleiksi. Pohjan korkeus säätyy viiteen tasoon, sängyn voi kiinnittää vanhempien sängyn viereen ja pyörät ovat irrotettavat. Sivun mukaan toimitetaan patjan kanssa (kolmiosainen, päällinen pestävissä 30 °C:ssa), mutta patja näkyy myös 160 €:n lisävarusteena, joten tarkista sisältyykö se hintaan.",
+     "offers": [
+      {
+       "shop": "Mon Lit Cabane",
+       "price": 560,
+       "url": "https://monlitcabane.com/fi/vauvansanky/9478-muunneltava-7-in-1-suorakulmainen-kehto-patjalla-vintage.html",
+       "checked": "2026-10-17",
+       "note": "Muunneltava 7-in-1 suorakulmainen vauvansänky patjalla, Vintage"
+      }
+     ],
+     "history": [
+      {
+       "date": "2026-10-17",
+       "price": 560
+      }
+     ]
+    },
+    {
+     "url": "https://www.wauva.com/tuotteemme/stokke-sleepi-v3-pinnasanky-natural/p/591401/",
      "offers": [],
      "history": []
     }
@@ -93,14 +131,6 @@
    "timing": "3-6",
    "kela": false,
    "order": 5
-  },
-  {
-   "name": "Pinnasänky tai vauvan sänky",
-   "category": "Nukkuminen",
-   "timing": "ennen",
-   "kela": true,
-   "note": "Paketin laatikkoa voi käyttää ensimmäisinä kuukausina",
-   "order": 6
   },
   {
    "name": "Patja",
