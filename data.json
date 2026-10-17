@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-17T12:52:47+00:00",
+ "generatedAt": "2026-10-17T16:29:45+00:00",
  "items": [
   {
    "name": "Turvakaukalo",
@@ -205,6 +205,20 @@
    "favorite": 0
   },
   {
+   "name": "Itkuhälytin",
+   "status": "harkinnassa",
+   "method": "ostetaan",
+   "timing": "0-3",
+   "kela": false,
+   "alts": [
+    {
+     "offers": [],
+     "history": []
+    }
+   ],
+   "favorite": 0
+  },
+  {
    "name": "Kantoliina tai kantoreppu",
    "status": "harkinnassa",
    "method": "ostetaan",
@@ -212,25 +226,82 @@
    "kela": false,
    "alts": [
     {
-     "model": "Ergobaby Omni Deluxe Cotton kantoreppu",
-     "variant": "Midnight Blue",
-     "price": 199.99,
+     "model": "BabyBjörn Harmony 3D Mesh kantoreppu",
+     "variant": "Black",
+     "price": 185.99,
      "shop": "Verkkokauppa.com",
-     "url": "https://www.verkkokauppa.com/fi/product/999208/Ergobaby-Omni-Deluxe-Cotton-kantoreppu-Midnight-Blue",
-     "caveat": "Käyttäjäarvion mukaan voi olla väljä aivan pienelle (n. 4 kg) vastasyntyneelle.",
+     "url": "https://www.verkkokauppa.com/fi/product/985273/BabyBjorn-Harmony-3D-Mesh-kantoreppu-Black",
      "offers": [
       {
        "shop": "Verkkokauppa.com",
-       "price": 199.99,
-       "url": "https://www.verkkokauppa.com/fi/product/999208/Ergobaby-Omni-Deluxe-Cotton-kantoreppu-Midnight-Blue",
+       "price": 185.99,
+       "url": "https://www.verkkokauppa.com/fi/product/985273/BabyBjorn-Harmony-3D-Mesh-kantoreppu-Black",
        "checked": "2026-10-17",
-       "note": "Ergobaby Omni Deluxe Cotton, Midnight Blue"
+       "note": "BabyBjörn Harmony 3D Mesh, Black"
       }
      ],
      "history": [
       {
        "date": "2026-10-17",
-       "price": 199.99
+       "price": 185.99
+      }
+     ]
+    },
+    {
+     "model": "Cybex Amya kantoreppu 3,2–15 kg",
+     "variant": "Chocolate Brown",
+     "url": "https://www.wauva.com/tuotteemme/cybex-amya-kantoreppu-3-2-15-kg-chocolate-brown/p/526001748/",
+     "offers": [],
+     "history": []
+    }
+   ],
+   "favorite": 0
+  },
+  {
+   "name": "Unipesä",
+   "status": "harkinnassa",
+   "method": "ostetaan",
+   "timing": "ennen",
+   "alts": [
+    {
+     "model": "Najell SleepCarrier vol. 5",
+     "variant": "Mocha Brown",
+     "price": 169,
+     "shop": "Najell",
+     "url": "https://najell.com/fi-fi/p/sleepcarrier-volume-5-mocha-brown",
+     "caveat": "Tuote on loppuunmyyty Najellin verkkokaupassa.",
+     "offers": [],
+     "history": []
+    }
+   ],
+   "favorite": 0
+  },
+  {
+   "name": "Sivuvaunusänky",
+   "status": "harkinnassa",
+   "method": "ostetaan",
+   "timing": "ennen",
+   "alts": [
+    {
+     "model": "Ensisänky",
+     "variant": "musta tai valkoinen",
+     "price": 85,
+     "shop": "Ensipeti",
+     "url": "http://ensipeti.fi/product/55/ensisanky",
+     "caveat": "Hinta on 4 kk vuokra, ei ostohinta, eikä patja sisälly (patja +8 €).",
+     "offers": [
+      {
+       "shop": "Ensipeti",
+       "price": 85,
+       "url": "http://ensipeti.fi/product/55/ensisanky",
+       "checked": "2026-10-17",
+       "note": "Ensisänky, musta tai valkoinen, vuokra 4 kk"
+      }
+     ],
+     "history": [
+      {
+       "date": "2026-10-17",
+       "price": 85
       }
      ]
     }
@@ -290,13 +361,6 @@
    "timing": "0-3",
    "kela": false,
    "order": 9
-  },
-  {
-   "name": "Itkuhälytin",
-   "category": "Nukkuminen",
-   "timing": "ennen",
-   "kela": false,
-   "order": 10
   },
   {
    "name": "Yövalo",
