@@ -168,7 +168,8 @@ function render(d){
     if(!g.length)return"";
     return `<div class="group"><div class="ghead"><div><h2>${TIMING[k]}</h2><div class="when">${WHEN[k]}</div></div><div class="gsum">${eur(g.reduce((s,it)=>s+(amount(it)||0),0))}</div></div>${g.map(item).join("")}</div>`;
   }).join(""):`<div class="empty">Listalla ei ole vielä tuotteita.</div>`;
-  const sg=(d.suggestions||[]).slice().sort((a,b)=>(a.order??99)-(b.order??99));
+  const tr=t=>{const i=Object.keys(TIMING).indexOf(t);return i<0?99:i};
+  const sg=(d.suggestions||[]).slice().sort((a,b)=>tr(a.timing)-tr(b.timing)||(a.order??99)-(b.order??99));
   const cats=[...new Set(sg.map(s=>s.category||"Muut"))];
   $("sugg").innerHTML=sg.length?cats.map(c=>`<div class="group"><h2 style="margin-bottom:4px">${esc(c)}</h2>${sg.filter(s=>(s.category||"Muut")===c).map(s=>`<div class="sugg"><div><div>${esc(s.name)}${s.kela?' <span class="chip kela">Äitiyspakkaus</span>':""}</div><div class="when">${esc(TIMING[s.timing]||"")}${s.note?" · "+esc(s.note):""}</div></div></div>`).join("")}</div>`).join(""):`<div class="empty">Ei ehdotuksia.</div>`;
   $("foot").textContent="Tämä on vain luettava kopio ostoslistasta. Hinnat on tarkistettu kaupoista ja Tori.fi:stä, mutta ne voivat muuttua.";
