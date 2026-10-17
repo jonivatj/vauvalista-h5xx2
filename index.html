@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Vauvan hankinnat</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#eef1f4; --surface:#fff; --sunk:#e3e8ee; --ink:#1d2430; --muted:#5d6878; --line:#d3dae3;
+  --accent:#5a3d72; --accent-soft:#ece4f3; --sun:#c98a12; --sun-soft:#fbf1dc; --good:#2f7a52; --good-soft:#e2f2e9;
+  --st-ostettu:#2f7a52; --st-paatetty:#5a3d72; --st-harkinnassa:#7a8494;
+  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-num:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#14181f; --surface:#1c222b; --sunk:#232a35; --ink:#e6eaf0; --muted:#9aa5b5; --line:#2e3744;
+  --accent:#c4a6dd; --accent-soft:#2c2338; --sun:#e5b04a; --sun-soft:#33291a; --good:#6cc697; --good-soft:#1b2e24;
+  --st-ostettu:#6cc697; --st-paatetty:#c4a6dd; --st-harkinnassa:#8b95a5; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body)}
+.wrap{max-width:760px;margin:0 auto;padding-block:max(20px,env(safe-area-inset-top)) 48px;
+  padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+h1,h2{font-family:var(--f-display);font-weight:700;letter-spacing:-.015em;margin:0;text-wrap:balance}
+h1{font-size:26px} h2{font-size:18px}
+a{color:var(--accent)}
+.muted{color:var(--muted)}
+.sub{font-size:13.5px;color:var(--muted);margin-top:2px}
+.budget{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:16px 0 12px}
+.budget>div{background:var(--surface);padding:10px 12px;min-width:0}
+.lbl{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}
+.val{font-family:var(--f-num);font-size:18px;white-space:nowrap}
+.cnt{font-size:12px;color:var(--muted)}
+.total{background:var(--accent-soft)!important} .total .val{color:var(--accent)}
+@media (max-width:560px){.budget{grid-template-columns:repeat(2,1fr)}}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
+.notice{background:var(--sun-soft);border-radius:10px;padding:8px 12px;font-size:13.5px;margin-bottom:8px}
+.notice b{color:var(--sun)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:16px 0}
+.tab{background:none;border:0;padding:10px 12px;font:inherit;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+.group{margin-bottom:20px}
+.ghead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px}
+.when{font-size:12.5px;color:var(--muted)}
+.gsum{font-family:var(--f-num);font-size:13px;color:var(--muted)}
+details.item{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:8px;overflow:hidden;position:relative}
+details.item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--stc)}
+summary{list-style:none;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 12px 10px 16px;cursor:pointer}
+summary::-webkit-details-marker{display:none}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.nm{font-weight:600}
+.md{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.pr{text-align:right;font-family:var(--f-num);white-space:nowrap}
+.pr small{display:block;font-family:var(--f-body);font-size:11.5px;color:var(--muted)}
+.chips{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;border-radius:6px;padding:2px 8px;background:var(--sunk);color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.chip.st{color:var(--ink)} .chip.deal{background:var(--good-soft);color:var(--good);font-weight:600}
+.chip.tori{background:var(--sun-soft);color:var(--sun);font-weight:600} .chip.kela{background:var(--accent-soft);color:var(--accent)}
+.body{border-top:1px solid var(--line);padding:12px 12px 14px 16px;display:flex;flex-direction:column;gap:12px}
+.sec{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td{padding:5px 0;border-bottom:1px dotted var(--line);vertical-align:top}
+td:last-child{text-align:right;font-family:var(--f-num);white-space:nowrap;padding-left:10px}
+tr.best td{color:var(--good);font-weight:600}
+.note{font-size:12px;color:var(--muted);font-weight:400;font-family:var(--f-body)}
+.toricard{background:var(--sun-soft);border-radius:10px;padding:10px 12px;font-size:14px}
+.sugg{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}
+.empty{text-align:center;padding:32px 16px;color:var(--muted)}
+footer{margin-top:24px;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Vauvan hankinnat</h1>
+  <div class="sub" id="sub">Ladataan…</div>
+  <div class="budget">
+    <div><div class="lbl"><span class="dot" style="background:var(--st-ostettu)"></span>Ostettu</div><div class="val" id="b-ostettu">–</div><div class="cnt" id="c-ostettu"></div></div>
+    <div><div class="lbl"><span class="dot" style="background:var(--st-paatetty)"></span>Päätetty</div><div class="val" id="b-paatetty">–</div><div class="cnt" id="c-paatetty"></div></div>
+    <div><div class="lbl"><span class="dot" style="background:var(--st-harkinnassa)"></span>Harkinnassa</div><div class="val" id="b-harkinnassa">–</div><div class="cnt" id="c-harkinnassa"></div></div>
+    <div class="total"><div class="lbl">Yhteensä</div><div class="val" id="b-total">–</div><div class="cnt">kaikki tilat</div></div>
+  </div>
+  <div id="notices"></div>
+  <div class="tabs" role="tablist">
+    <button class="tab" id="t-list" role="tab" aria-selected="true">Ostoslista</button>
+    <button class="tab" id="t-sugg" role="tab" aria-selected="false">Ehdotukset</button>
+  </div>
+  <section id="list"><div class="empty">Ladataan listaa…</div></section>
+  <section id="sugg" hidden></section>
+  <footer id="foot"></footer>
+</div>
+<script>
+const STATUS={harkinnassa:"Harkinnassa",paatetty:"Päätetty",ostettu:"Ostettu"};
+const METHOD={ostetaan:"Ostetaan",lainataan:"Lainataan",kaytettyna:"Käytettynä"};
+const TIMING={ennen:"Ennen synnytystä","0-3":"0–3 kk","3-6":"3–6 kk","6+":"6 kk →"};
+const WHEN={ennen:"viimeistään helmikuussa 2027","0-3":"maalis–toukokuu 2027","3-6":"kesä–elokuu 2027","6+":"syyskuusta 2027"};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const eur=n=>n==null||isNaN(n)?"–":Math.round(n).toLocaleString("fi-FI")+" €";
+const eur2=n=>n==null||isNaN(n)?"–":Number(n).toLocaleString("fi-FI",{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})+" €";
+const fdate=d=>{const x=new Date(d);return isNaN(x)?esc(d||""):x.toLocaleDateString("fi-FI",{day:"numeric",month:"numeric"})};
+const safe=u=>/^https?:\/\//i.test(u||"")?u:null;
+const link=(u,t)=>{const s=safe(u);return s?`<a href="${esc(s)}" target="_blank" rel="noopener noreferrer">${esc(t)}</a>`:esc(t)};
+const best=it=>(it.offers||[]).filter(o=>typeof o.price==="number").reduce((a,b)=>!a||b.price<a.price?b:a,null);
+function amount(it){
+  if(it.method==="lainataan")return 0;
+  if(it.status==="ostettu"&&typeof it.paidPrice==="number")return it.paidPrice;
+  if(it.method==="kaytettyna"&&it.tori?.pick?.price!=null)return it.tori.pick.price;
+  const b=best(it); if(b)return b.price;
+  return typeof it.price==="number"?it.price:null;
+}
+function deal(it){const b=best(it);if(!b||typeof it.price!=="number")return null;const d=it.price-b.price;return d>=1&&b.url!==it.url?{o:b,d}:null}
+
+function item(it){
+  const a=amount(it),dl=deal(it),st=STATUS[it.status]?it.status:"harkinnassa";
+  const chips=[`<span class="chip st"><span class="dot" style="background:var(--st-${st})"></span>${STATUS[st]}</span>`];
+  if(it.method&&it.method!=="ostetaan")chips.push(`<span class="chip">${METHOD[it.method]||""}</span>`);
+  if(dl)chips.push(`<span class="chip deal">−${eur(dl.d)} · ${esc(dl.o.shop)}</span>`);
+  if(it.tori?.pick)chips.push(`<span class="chip tori">Tori ${eur(it.tori.pick.price)}</span>`);
+  if(it.kela)chips.push(`<span class="chip kela">Äitiyspakkauksessa</span>`);
+  const lbl=it.method==="lainataan"?"lainataan":it.status==="ostettu"&&typeof it.paidPrice==="number"?"maksettu":it.method==="kaytettyna"&&it.tori?.pick?"Tori-löytö":dl?"paras hinta":esc(it.shop||"");
+  const offers=(it.offers||[]).slice().sort((x,y)=>(x.price??1e9)-(y.price??1e9)),b=best(it);
+  const t=it.tori,p=t?.pick;
+  let body="";
+  if(it.info)body+=`<div><div class="sec">Perustiedot</div><div>${esc(it.info)}</div></div>`;
+  if(offers.length)body+=`<div><div class="sec">Hinnat kaupoissa</div><table>${offers.map(o=>`<tr class="${o===b?"best":""}"><td>${link(o.url,o.shop)} <span class="note">${o.checked?"· "+fdate(o.checked):""}${o.note?" · "+esc(o.note):""}</span></td><td>${eur2(o.price)}</td></tr>`).join("")}</table></div>`;
+  if(p)body+=`<div><div class="sec">Viikon Tori-löytö · Uusimaa</div><div class="toricard"><b>${link(p.url,p.title)}</b><div class="muted" style="font-size:13px">${eur(p.price)} · ${esc(p.location||"")}${p.condition?" · "+esc(p.condition):""}</div>${p.why?`<div style="margin-top:4px">${esc(p.why)}</div>`:""}</div>${t.warning?`<div class="muted" style="font-size:13px;margin-top:6px">${esc(t.warning)}</div>`:""}</div>`;
+  if(!body)body=`<div class="muted">Ei vielä lisätietoja.</div>`;
+  return `<details class="item" style="--stc:var(--st-${st})"><summary><div style="min-width:0"><div class="nm">${esc(it.name)}</div><div class="md">${esc([it.model,it.variant].filter(Boolean).join(" · "))||"Malli ei vielä valittu"}</div></div><div class="pr">${it.method==="lainataan"?"0 €":eur(a)}<small>${lbl}</small></div><div class="chips">${chips.join("")}</div></summary><div class="body">${body}</div></details>`;
+}
+
+function render(d){
+  const items=d.items||[],sums={ostettu:0,paatetty:0,harkinnassa:0},cnt={ostettu:0,paatetty:0,harkinnassa:0};
+  for(const it of items){const s=STATUS[it.status]?it.status:"harkinnassa";cnt[s]++;sums[s]+=amount(it)||0}
+  for(const k in sums){$("b-"+k).textContent=eur(sums[k]);$("c-"+k).textContent=cnt[k]+(cnt[k]===1?" tuote":" tuotetta")}
+  $("b-total").textContent=eur(sums.ostettu+sums.paatetty+sums.harkinnassa);
+  const days=Math.round((new Date("2027-03-03")-new Date())/864e5);
+  $("sub").textContent=(days>0?`Laskettuun aikaan noin ${Math.round(days/7)} viikkoa · `:"")+`päivitetty ${fdate(d.generatedAt)}`;
+  const today=new Date();today.setHours(0,0,0,0);
+  const n=[];const deals=items.filter(deal).length;
+  if(deals)n.push(`<div class="notice"><b>${deals} parempi tarjous</b> · avaa vihreällä merkitty tuote</div>`);
+  for(const c of d.meta?.campaigns||[]){const e=new Date(c.end||c.date);if(!isNaN(e)&&e<today)continue;n.push(`<div class="notice"><b>${esc(c.name)}</b> · ${esc(c.note||"")}</div>`)}
+  $("notices").innerHTML=n.join("");
+  $("list").innerHTML=items.length?Object.keys(TIMING).map(k=>{
+    const g=items.filter(it=>(TIMING[it.timing]?it.timing:"ennen")===k).sort((a,b)=>a.name.localeCompare(b.name,"fi"));
+    if(!g.length)return"";
+    return `<div class="group"><div class="ghead"><div><h2>${TIMING[k]}</h2><div class="when">${WHEN[k]}</div></div><div class="gsum">${eur(g.reduce((s,it)=>s+(amount(it)||0),0))}</div></div>${g.map(item).join("")}</div>`;
+  }).join(""):`<div class="empty">Listalla ei ole vielä tuotteita.</div>`;
+  const sg=(d.suggestions||[]).slice().sort((a,b)=>(a.order??99)-(b.order??99));
+  const cats=[...new Set(sg.map(s=>s.category||"Muut"))];
+  $("sugg").innerHTML=sg.length?cats.map(c=>`<div class="group"><h2 style="margin-bottom:4px">${esc(c)}</h2>${sg.filter(s=>(s.category||"Muut")===c).map(s=>`<div class="sugg"><div><div>${esc(s.name)}${s.kela?' <span class="chip kela">Äitiyspakkaus</span>':""}</div><div class="when">${esc(TIMING[s.timing]||"")}${s.note?" · "+esc(s.note):""}</div></div></div>`).join("")}</div>`).join(""):`<div class="empty">Ei ehdotuksia.</div>`;
+  $("foot").textContent="Tämä on vain luettava kopio ostoslistasta. Hinnat on tarkistettu kaupoista ja Tori.fi:stä, mutta ne voivat muuttua.";
+}
+function tab(w){$("t-list").setAttribute("aria-selected",w==="list");$("t-sugg").setAttribute("aria-selected",w==="sugg");$("list").hidden=w!=="list";$("sugg").hidden=w!=="sugg"}
+$("t-list").onclick=()=>tab("list");$("t-sugg").onclick=()=>tab("sugg");
+fetch("data.json?t="+Date.now(),{cache:"no-store"}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(render)
+  .catch(()=>{$("sub").textContent="";$("list").innerHTML=`<div class="empty">Listaa ei saatu ladattua. Päivitä sivu hetken kuluttua.</div>`});
+</script>
+</body>
+</html>

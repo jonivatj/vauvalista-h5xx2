@@ -1,0 +1,390 @@
+{
+ "generatedAt": "2026-10-17T09:24:36+00:00",
+ "items": [
+  {
+   "name": "Turvakaukalo",
+   "status": "harkinnassa",
+   "method": "ostetaan",
+   "timing": "ennen",
+   "kela": false,
+   "offers": [],
+   "history": []
+  },
+  {
+   "name": "Lastenrattaat",
+   "model": "Cybex Priam Style",
+   "variant": "Chrome-Brown / Coconut Brown",
+   "status": "paatetty",
+   "method": "ostetaan",
+   "timing": "ennen",
+   "price": 1569.65,
+   "shop": "Wauva",
+   "url": "https://www.wauva.com/tuotteemme/cybex-priam-style-lastenvaunut-chrome-brown-coconut-brown/p/526000201-PYCBR/",
+   "info": "Priam Style -yhdistelmävaunut: kokoon taittuva vaunukoppa, jousitettu runko ja ergonominen ratasistuin. Kasautuu kompaktisti ja toimii travel system -ratkaisuna turvakaukalon kanssa. Wauvan mukaan tilattavissa, lähetysaika noin 2–19 arkipäivää, takuu 2 vuotta.",
+   "offers": [
+    {
+     "shop": "Wauva",
+     "price": 1569.65,
+     "url": "https://www.wauva.com/tuotteemme/cybex-priam-style-lastenvaunut-chrome-brown-coconut-brown/p/526000201-PYCBR/",
+     "checked": "2026-10-17",
+     "note": "Priam Style, Chrome-Brown / Coconut Brown"
+    },
+    {
+     "shop": "Lastentarvike",
+     "price": 1399,
+     "url": "https://www.lastentarvike.fi/tuotteet/cybex-priam-yhdistelmavaunut-matt-black-rungolla---sepia-black.html",
+     "checked": "2026-08-29",
+     "note": "tavallinen Priam, ei Style"
+    },
+    {
+     "shop": "Wauva",
+     "price": 1399.95,
+     "url": "https://www.wauva.com/tuotteemme/cybex-priam-comfort-lastenvaunut-matt-black-cozy-beige/p/526000021/",
+     "checked": "2026-08-29",
+     "note": "tavallinen Priam Comfort, ei Style"
+    },
+    {
+     "shop": "Stockmann",
+     "price": 1399.95,
+     "url": "https://www.stockmann.com/cybex-cybex-priam-yhdistelmavaunut/2035577568.html",
+     "checked": "2026-08-29",
+     "note": "tavallinen Priam, ei Style"
+    },
+    {
+     "shop": "A-T Lastenturva",
+     "price": 1400,
+     "url": "https://hintaseuranta.fi/muut-lastenhoitotuotteet/cybex-priam-yhdistelmavaunut/16679959",
+     "checked": "2026-10-17",
+     "note": "tavallinen Priam, hintaseurannan kautta"
+    }
+   ],
+   "history": [
+    {
+     "date": "2026-08-29",
+     "price": 1399
+    },
+    {
+     "date": "2026-10-17",
+     "price": 1399
+    }
+   ],
+   "tori": {
+    "checked": "2026-10-17",
+    "range": {
+     "max": 1000,
+     "min": 280,
+     "n": 10
+    },
+    "warning": "Varmista myyjältä, kuuluuko vaunukoppa ja kaukaloadapterit kauppaan. Tarkista runko ja pyörät paikan päällä.",
+    "pick": {
+     "title": "Cybex Priam V4 Matte Black Leaf Green vm.2025",
+     "price": 850,
+     "location": "Masala, Kirkkonummi",
+     "date": "16.10.",
+     "condition": "myyjän mukaan huippusiisti",
+     "url": "https://www.tori.fi/recommerce/forsale/item/48409238",
+     "why": "Uusinta sukupolvea (V4) ja vain vuoden vanha, myyjä kuvaa kunnon erinomaiseksi. Hinta on noin 550 € alle uuden. Halvempia löytyy, mutta ne ovat vanhempia V3-malleja tai kahden lapsen käytössä olleita."
+    }
+   }
+  }
+ ],
+ "suggestions": [
+  {
+   "name": "Kantoliina tai kantoreppu",
+   "category": "Liikkuminen",
+   "timing": "0-3",
+   "kela": false,
+   "order": 1
+  },
+  {
+   "name": "Vaunupussi tai lämpöpussi",
+   "category": "Liikkuminen",
+   "timing": "ennen",
+   "kela": true,
+   "note": "Maaliskuussa vielä talvi. Paketissa ulkohaalari-makuupussi.",
+   "order": 2
+  },
+  {
+   "name": "Vaunujen hyttysverkko",
+   "category": "Liikkuminen",
+   "timing": "3-6",
+   "kela": false,
+   "note": "Kesää varten",
+   "order": 3
+  },
+  {
+   "name": "Turvaistuin",
+   "category": "Liikkuminen",
+   "timing": "6+",
+   "kela": false,
+   "note": "Kun kaukalo jää pieneksi, yleensä 9–15 kk",
+   "order": 4
+  },
+  {
+   "name": "Matkasänky",
+   "category": "Liikkuminen",
+   "timing": "3-6",
+   "kela": false,
+   "order": 5
+  },
+  {
+   "name": "Pinnasänky tai vauvan sänky",
+   "category": "Nukkuminen",
+   "timing": "ennen",
+   "kela": true,
+   "note": "Paketin laatikkoa voi käyttää ensimmäisinä kuukausina",
+   "order": 6
+  },
+  {
+   "name": "Patja",
+   "category": "Nukkuminen",
+   "timing": "ennen",
+   "kela": true,
+   "order": 7
+  },
+  {
+   "name": "Lakanat ja pussilakana",
+   "category": "Nukkuminen",
+   "timing": "ennen",
+   "kela": true,
+   "order": 8
+  },
+  {
+   "name": "Unipussi",
+   "category": "Nukkuminen",
+   "timing": "0-3",
+   "kela": false,
+   "order": 9
+  },
+  {
+   "name": "Itkuhälytin",
+   "category": "Nukkuminen",
+   "timing": "ennen",
+   "kela": false,
+   "order": 10
+  },
+  {
+   "name": "Yövalo",
+   "category": "Nukkuminen",
+   "timing": "ennen",
+   "kela": false,
+   "note": "Yösyötöt",
+   "order": 11
+  },
+  {
+   "name": "Hoitoalusta tai hoitopöytä",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": false,
+   "order": 12
+  },
+  {
+   "name": "Vauvan amme",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": false,
+   "order": 13
+  },
+  {
+   "name": "Kylpylämpömittari",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": true,
+   "order": 14
+  },
+  {
+   "name": "Kynsisakset",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": true,
+   "order": 15
+  },
+  {
+   "name": "Harsoliinat",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": true,
+   "note": "Näitä kuluu aina enemmän kuin luulee",
+   "order": 16
+  },
+  {
+   "name": "Pyyhkeet",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": true,
+   "order": 17
+  },
+  {
+   "name": "Pesuaineet ja perusvoide",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": false,
+   "order": 18
+  },
+  {
+   "name": "Kuumemittari",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": false,
+   "order": 19
+  },
+  {
+   "name": "Nenäimuri",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": false,
+   "order": 20
+  },
+  {
+   "name": "Vaipat ja pesulaput",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": false,
+   "order": 21
+  },
+  {
+   "name": "Vaippaämpäri",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": false,
+   "order": 22
+  },
+  {
+   "name": "Hoitolaukku",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": false,
+   "order": 23
+  },
+  {
+   "name": "Tutit",
+   "category": "Hoito",
+   "timing": "ennen",
+   "kela": false,
+   "order": 24
+  },
+  {
+   "name": "Imetystyyny",
+   "category": "Syöttäminen",
+   "timing": "ennen",
+   "kela": false,
+   "order": 25
+  },
+  {
+   "name": "Imetysliivit ja liivinsuojat",
+   "category": "Syöttäminen",
+   "timing": "ennen",
+   "kela": true,
+   "note": "Paketissa kestoliivinsuojat",
+   "order": 26
+  },
+  {
+   "name": "Tuttipullot ja pullonpesuharja",
+   "category": "Syöttäminen",
+   "timing": "ennen",
+   "kela": false,
+   "order": 27
+  },
+  {
+   "name": "Rintapumppu",
+   "category": "Syöttäminen",
+   "timing": "0-3",
+   "kela": false,
+   "note": "Monesti voi vuokrata apteekista",
+   "order": 28
+  },
+  {
+   "name": "Kuolalaput",
+   "category": "Syöttäminen",
+   "timing": "3-6",
+   "kela": false,
+   "order": 29
+  },
+  {
+   "name": "Syöttötuoli",
+   "category": "Syöttäminen",
+   "timing": "6+",
+   "kela": false,
+   "order": 30
+  },
+  {
+   "name": "Lasten astiat ja nokkamuki",
+   "category": "Syöttäminen",
+   "timing": "6+",
+   "kela": false,
+   "order": 31
+  },
+  {
+   "name": "Bodyt (koot 50–62)",
+   "category": "Vaatteet",
+   "timing": "ennen",
+   "kela": true,
+   "order": 32
+  },
+  {
+   "name": "Potkuhousut ja housut",
+   "category": "Vaatteet",
+   "timing": "ennen",
+   "kela": true,
+   "order": 33
+  },
+  {
+   "name": "Unihaalarit ja yöpuvut",
+   "category": "Vaatteet",
+   "timing": "ennen",
+   "kela": true,
+   "order": 34
+  },
+  {
+   "name": "Myssyt, sukat ja lapaset",
+   "category": "Vaatteet",
+   "timing": "ennen",
+   "kela": true,
+   "order": 35
+  },
+  {
+   "name": "Villahaalari",
+   "category": "Vaatteet",
+   "timing": "ennen",
+   "kela": true,
+   "order": 36
+  },
+  {
+   "name": "Kevätulkoasu",
+   "category": "Vaatteet",
+   "timing": "0-3",
+   "kela": false,
+   "note": "Kevät- tai välikausihaalari toukokuulle",
+   "order": 37
+  },
+  {
+   "name": "Leikkimatto tai vauvajumppa",
+   "category": "Leikki",
+   "timing": "0-3",
+   "kela": false,
+   "order": 38
+  },
+  {
+   "name": "Sitteri",
+   "category": "Leikki",
+   "timing": "3-6",
+   "kela": false,
+   "order": 39
+  }
+ ],
+ "meta": {
+  "lastRun": "2026-10-17T11:30:00+03:00",
+  "campaigns": [
+   {
+    "end": "2026-11-30",
+    "name": "Black Friday 27.11.",
+    "note": "Lastentarvikeketjut ja tavaratalot alentavat yleensä myös vaunuja ja kaukaloita. Isoja ostoksia kannattaa lykätä tähän asti, jos aikaa riittää."
+   },
+   {
+    "end": "2027-01-10",
+    "name": "Joulun jälkeiset alennukset",
+    "note": "Joulun jälkeen tulee yleensä toinen alennusikkuna, vielä hyvissä ajoin ennen laskettua aikaa."
+   }
+  ]
+ }
+}
