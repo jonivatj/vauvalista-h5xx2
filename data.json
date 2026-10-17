@@ -1,6 +1,20 @@
 {
- "generatedAt": "2026-10-17T16:52:40+00:00",
+ "generatedAt": "2026-10-17T17:01:52+00:00",
  "items": [
+  {
+   "name": "Leikkimatto tai vauvajumppa",
+   "status": "harkinnassa",
+   "method": "ostetaan",
+   "timing": "0-3",
+   "kela": false,
+   "alts": [
+    {
+     "offers": [],
+     "history": []
+    }
+   ],
+   "favorite": 0
+  },
   {
    "name": "Turvakaukalo",
    "status": "paatetty",
@@ -637,6 +651,9 @@
    "kela": false,
    "alts": [
     {
+     "model": "Elodie Details hoitolaukku Wide Black",
+     "shop": "Wauva",
+     "url": "https://www.wauva.com/tuotteemme/elodie-details-hoitolaukku-wide-black/p/50670212120NA/",
      "offers": [],
      "history": []
     }
@@ -855,13 +872,6 @@
    "kela": false,
    "note": "Kevät- tai välikausihaalari toukokuulle",
    "order": 37
-  },
-  {
-   "name": "Leikkimatto tai vauvajumppa",
-   "category": "Leikki",
-   "timing": "0-3",
-   "kela": false,
-   "order": 38
   },
   {
    "name": "Sitteri",
