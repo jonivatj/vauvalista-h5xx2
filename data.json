@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-17T10:11:54+00:00",
+ "generatedAt": "2026-10-17T11:25:35+00:00",
  "items": [
   {
    "name": "Turvakaukalo",
@@ -7,42 +7,52 @@
    "method": "ostetaan",
    "timing": "ennen",
    "kela": false,
-   "offers": [],
-   "history": []
+   "alts": [
+    {
+     "offers": [],
+     "history": []
+    }
+   ],
+   "favorite": 0
   },
   {
    "name": "Lastenrattaat",
-   "model": "Cybex Priam Style",
-   "variant": "Chrome-Brown / Coconut Brown",
    "status": "paatetty",
    "method": "ostetaan",
    "timing": "ennen",
-   "price": 1569.65,
-   "shop": "Wauva",
-   "url": "https://www.wauva.com/tuotteemme/cybex-priam-style-lastenvaunut-chrome-brown-coconut-brown/p/526000201-PYCBR/",
-   "info": "Priam Style -yhdistelmävaunut: kokoon taittuva vaunukoppa, jousitettu runko ja ergonominen ratasistuin. Kasautuu kompaktisti ja toimii travel system -ratkaisuna turvakaukalon kanssa. Wauvan mukaan tilattavissa, lähetysaika noin 2–19 arkipäivää, takuu 2 vuotta.",
-   "offers": [
+   "alts": [
     {
-     "shop": "Wauva",
+     "model": "Cybex Priam Style",
+     "variant": "Chrome-Brown / Coconut Brown",
      "price": 1569.65,
+     "shop": "Wauva",
      "url": "https://www.wauva.com/tuotteemme/cybex-priam-style-lastenvaunut-chrome-brown-coconut-brown/p/526000201-PYCBR/",
-     "checked": "2026-10-17",
-     "note": "Priam Style, Chrome-Brown / Coconut Brown"
+     "info": "Priam Style -yhdistelmävaunut: kokoon taittuva vaunukoppa, jousitettu runko ja ergonominen ratasistuin. Kasautuu kompaktisti ja toimii travel system -ratkaisuna turvakaukalon kanssa. Wauvan mukaan tilattavissa, lähetysaika noin 2–19 arkipäivää, takuu 2 vuotta.",
+     "offers": [
+      {
+       "shop": "Wauva",
+       "price": 1569.65,
+       "url": "https://www.wauva.com/tuotteemme/cybex-priam-style-lastenvaunut-chrome-brown-coconut-brown/p/526000201-PYCBR/",
+       "checked": "2026-10-17",
+       "note": "Priam Style, Chrome-Brown / Coconut Brown"
+      }
+     ],
+     "history": [
+      {
+       "date": "2026-10-17",
+       "price": 1569.65
+      }
+     ],
+     "tori": {
+      "checked": "2026-10-17",
+      "range": {
+       "n": 0
+      },
+      "warning": "Uudellamaalla ei tällä viikolla ollut yhtään Priam Style -ilmoitusta. Style on uusi mallisto, joten käytettyjä on vielä vähän."
+     }
     }
    ],
-   "history": [
-    {
-     "date": "2026-10-17",
-     "price": 1569.65
-    }
-   ],
-   "tori": {
-    "checked": "2026-10-17",
-    "range": {
-     "n": 0
-    },
-    "warning": "Uudellamaalla ei tällä viikolla ollut yhtään Priam Style -ilmoitusta. Style on uusi mallisto, joten käytettyjä on vielä vähän."
-   }
+   "favorite": 0
   }
  ],
  "suggestions": [

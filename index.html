@@ -67,6 +67,10 @@ td:last-child{text-align:right;font-family:var(--f-num);white-space:nowrap;paddi
 tr.best td{color:var(--good);font-weight:600}
 .note{font-size:12px;color:var(--muted);font-weight:400;font-family:var(--f-body)}
 .toricard{background:var(--sun-soft);border-radius:10px;padding:10px 12px;font-size:14px}
+.alts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:620px){.alts{grid-template-columns:1fr}}
+.alt{border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.alt.fav{border-color:var(--accent)}
 .sugg{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}
 .empty{text-align:center;padding:32px 16px;color:var(--muted)}
 footer{margin-top:24px;font-size:12px;color:var(--muted)}
@@ -103,36 +107,52 @@ const eur2=n=>n==null||isNaN(n)?"–":Number(n).toLocaleString("fi-FI",{minimumF
 const fdate=d=>{const x=new Date(d);return isNaN(x)?esc(d||""):x.toLocaleDateString("fi-FI",{day:"numeric",month:"numeric"})};
 const safe=u=>/^https?:\/\//i.test(u||"")?u:null;
 const link=(u,t)=>{const s=safe(u);return s?`<a href="${esc(s)}" target="_blank" rel="noopener noreferrer">${esc(t)}</a>`:esc(t)};
-const best=it=>(it.offers||[]).filter(o=>typeof o.price==="number").reduce((a,b)=>!a||b.price<a.price?b:a,null);
+const norm=it=>(Array.isArray(it.alts)&&it.alts.length)?it:{...it,alts:[it]};
+const chosenOk=it=>Number.isInteger(it.chosen)&&it.chosen<it.alts.length;
+const pidx=it=>chosenOk(it)?it.chosen:(Number.isInteger(it.favorite)&&it.favorite<it.alts.length?it.favorite:0);
+const best=a=>(a.offers||[]).filter(o=>typeof o.price==="number").reduce((x,y)=>!x||y.price<x.price?y:x,null);
+function altAmt(it,a){
+  if(it.method==="kaytettyna"&&a.tori?.pick?.price!=null)return a.tori.pick.price;
+  const b=best(a); if(b)return b.price;
+  return typeof a.price==="number"?a.price:null;
+}
 function amount(it){
   if(it.method==="lainataan")return 0;
   if(it.status==="ostettu"&&typeof it.paidPrice==="number")return it.paidPrice;
-  if(it.method==="kaytettyna"&&it.tori?.pick?.price!=null)return it.tori.pick.price;
-  const b=best(it); if(b)return b.price;
-  return typeof it.price==="number"?it.price:null;
+  return altAmt(it,it.alts[pidx(it)]);
 }
-function deal(it){const b=best(it);if(!b||typeof it.price!=="number")return null;const d=it.price-b.price;return d>=1&&b.url!==it.url?{o:b,d}:null}
+function altDeal(a){const b=best(a);if(!b||typeof a.price!=="number")return null;const d=a.price-b.price;return d>=1&&b.url!==a.url?{o:b,d}:null}
+const deal=it=>altDeal(it.alts[pidx(it)]);
 
-function item(it){
-  const a=amount(it),dl=deal(it),st=STATUS[it.status]?it.status:"harkinnassa";
+function altBody(it,a,head){
+  const offers=(a.offers||[]).slice().sort((x,y)=>(x.price??1e9)-(y.price??1e9)),b=best(a),t=a.tori,p=t?.pick;
+  let h=head||"";
+  if(a.info)h+=`<div><div class="sec">Perustiedot</div><div>${esc(a.info)}</div></div>`;
+  if(offers.length)h+=`<div><div class="sec">Hinnat kaupoissa</div><table>${offers.map(o=>`<tr class="${o===b?"best":""}"><td>${link(o.url,o.shop)} <span class="note">${o.checked?"· "+fdate(o.checked):""}${o.note?" · "+esc(o.note):""}</span></td><td>${eur2(o.price)}</td></tr>`).join("")}</table></div>`;
+  if(p)h+=`<div><div class="sec">Viikon Tori-löytö · Uusimaa</div><div class="toricard"><b>${link(p.url,p.title)}</b><div class="muted" style="font-size:13px">${eur(p.price)} · ${esc(p.location||"")}${p.condition?" · "+esc(p.condition):""}</div>${p.why?`<div style="margin-top:4px">${esc(p.why)}</div>`:""}</div></div>`;
+  if(t?.warning)h+=`<div class="muted" style="font-size:13px">${esc(t.warning)}</div>`;
+  return h||`<div class="muted">Ei vielä lisätietoja.</div>`;
+}
+
+function item(raw){
+  const it=norm(raw),a=amount(it),pi=pidx(it),pa=it.alts[pi],dl=deal(it),st=STATUS[it.status]?it.status:"harkinnassa";
+  const comparing=it.alts.length>1&&!chosenOk(it);
   const chips=[`<span class="chip st"><span class="dot" style="background:var(--st-${st})"></span>${STATUS[st]}</span>`];
   if(it.method&&it.method!=="ostetaan")chips.push(`<span class="chip">${METHOD[it.method]||""}</span>`);
+  if(comparing)chips.push(`<span class="chip kela">${it.alts.length} vaihtoehtoa</span>`);
   if(dl)chips.push(`<span class="chip deal">−${eur(dl.d)} · ${esc(dl.o.shop)}</span>`);
-  if(it.tori?.pick)chips.push(`<span class="chip tori">Tori ${eur(it.tori.pick.price)}</span>`);
+  if(pa.tori?.pick)chips.push(`<span class="chip tori">Tori ${eur(pa.tori.pick.price)}</span>`);
   if(it.kela)chips.push(`<span class="chip kela">Äitiyspakkauksessa</span>`);
-  const lbl=it.method==="lainataan"?"lainataan":it.status==="ostettu"&&typeof it.paidPrice==="number"?"maksettu":it.method==="kaytettyna"&&it.tori?.pick?"Tori-löytö":dl?"paras hinta":esc(it.shop||"");
-  const offers=(it.offers||[]).slice().sort((x,y)=>(x.price??1e9)-(y.price??1e9)),b=best(it);
-  const t=it.tori,p=t?.pick;
-  let body="";
-  if(it.info)body+=`<div><div class="sec">Perustiedot</div><div>${esc(it.info)}</div></div>`;
-  if(offers.length)body+=`<div><div class="sec">Hinnat kaupoissa</div><table>${offers.map(o=>`<tr class="${o===b?"best":""}"><td>${link(o.url,o.shop)} <span class="note">${o.checked?"· "+fdate(o.checked):""}${o.note?" · "+esc(o.note):""}</span></td><td>${eur2(o.price)}</td></tr>`).join("")}</table></div>`;
-  if(p)body+=`<div><div class="sec">Viikon Tori-löytö · Uusimaa</div><div class="toricard"><b>${link(p.url,p.title)}</b><div class="muted" style="font-size:13px">${eur(p.price)} · ${esc(p.location||"")}${p.condition?" · "+esc(p.condition):""}</div>${p.why?`<div style="margin-top:4px">${esc(p.why)}</div>`:""}</div>${t.warning?`<div class="muted" style="font-size:13px;margin-top:6px">${esc(t.warning)}</div>`:""}</div>`;
-  if(!body)body=`<div class="muted">Ei vielä lisätietoja.</div>`;
-  return `<details class="item" style="--stc:var(--st-${st})"><summary><div style="min-width:0"><div class="nm">${esc(it.name)}</div><div class="md">${esc([it.model,it.variant].filter(Boolean).join(" · "))||"Malli ei vielä valittu"}</div></div><div class="pr">${it.method==="lainataan"?"0 €":eur(a)}<small>${lbl}</small></div><div class="chips">${chips.join("")}</div></summary><div class="body">${body}</div></details>`;
+  const lbl=it.method==="lainataan"?"lainataan":it.status==="ostettu"&&typeof it.paidPrice==="number"?"maksettu":comparing?"suosikki":it.method==="kaytettyna"&&pa.tori?.pick?"Tori-löytö":dl?"paras hinta":esc(pa.shop||"");
+  const ml=comparing?it.alts.map((x,i)=>`${i===pi?"★ ":""}${esc(x.model||"Vaihtoehto "+(i+1))} ${eur(altAmt(it,x))}`).join(" · "):(esc([pa.model,pa.variant].filter(Boolean).join(" · "))||"Malli ei vielä valittu");
+  const body=comparing
+    ?`<div class="alts">${it.alts.map((x,i)=>`<div class="alt${i===pi?" fav":""}">${altBody(it,x,`<div><b>${i===pi?"★ ":""}${esc(x.model||"Vaihtoehto "+(i+1))}</b><div class="muted" style="font-size:13px">${esc(x.variant||"")} · ${eur(altAmt(it,x))}</div></div>`)}</div>`).join("")}</div>`
+    :altBody(it,pa);
+  return `<details class="item" style="--stc:var(--st-${st})"><summary><div style="min-width:0"><div class="nm">${esc(it.name)}</div><div class="md">${ml}</div></div><div class="pr">${it.method==="lainataan"?"0 €":eur(a)}<small>${lbl}</small></div><div class="chips">${chips.join("")}</div></summary><div class="body">${body}</div></details>`;
 }
 
 function render(d){
-  const items=d.items||[],sums={ostettu:0,paatetty:0,harkinnassa:0},cnt={ostettu:0,paatetty:0,harkinnassa:0};
+  const items=(d.items||[]).map(norm),sums={ostettu:0,paatetty:0,harkinnassa:0},cnt={ostettu:0,paatetty:0,harkinnassa:0};
   for(const it of items){const s=STATUS[it.status]?it.status:"harkinnassa";cnt[s]++;sums[s]+=amount(it)||0}
   for(const k in sums){$("b-"+k).textContent=eur(sums[k]);$("c-"+k).textContent=cnt[k]+(cnt[k]===1?" tuote":" tuotetta")}
   $("b-total").textContent=eur(sums.ostettu+sums.paatetty+sums.harkinnassa);

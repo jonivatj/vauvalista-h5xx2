@@ -22,16 +22,25 @@ def load(pattern):
 def pick(d, keys):
     return {k: d[k] for k in keys if isinstance(d, dict) and d.get(k) not in (None, "", [])}
 
-items = []
-for it in load("items/*.json"):
-    x = pick(it, ["name", "model", "variant", "status", "method", "timing", "kela", "price", "shop", "url", "paidPrice", "info"])
-    x["offers"] = [pick(o, ["shop", "price", "url", "checked", "note"]) for o in it.get("offers") or []]
-    x["history"] = [pick(h, ["date", "price"]) for h in (it.get("history") or [])][-40:]
-    t = it.get("tori")
+def alt_out(a):
+    x = pick(a, ["model", "variant", "price", "shop", "url", "info"])
+    x["offers"] = [pick(o, ["shop", "price", "url", "checked", "note"]) for o in a.get("offers") or []]
+    x["history"] = [pick(h, ["date", "price"]) for h in (a.get("history") or [])][-40:]
+    t = a.get("tori")
     if isinstance(t, dict):
         x["tori"] = pick(t, ["checked", "range", "warning"])
         if isinstance(t.get("pick"), dict):
             x["tori"]["pick"] = pick(t["pick"], ["title", "price", "location", "date", "condition", "url", "why"])
+    return x
+
+items = []
+for it in load("items/*.json"):
+    x = pick(it, ["name", "status", "method", "timing", "kela", "paidPrice"])
+    alts = it.get("alts") if isinstance(it.get("alts"), list) and it.get("alts") else [it]  # older items kept the model fields at top level
+    x["alts"] = [alt_out(a) for a in alts if isinstance(a, dict)]
+    for k in ("favorite", "chosen"):
+        if isinstance(it.get(k), int) and 0 <= it[k] < len(x["alts"]):
+            x[k] = it[k]
     items.append(x)
 
 suggs = [pick(s, ["name", "category", "timing", "kela", "note", "order"]) for s in load("suggestions/*.json")]
