@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-17T17:01:52+00:00",
+ "generatedAt": "2026-10-17T17:12:41+00:00",
  "items": [
   {
    "name": "Leikkimatto tai vauvajumppa",
@@ -197,9 +197,25 @@
    "alts": [
     {
      "model": "Anne&Mikael hoitoalusta 50x63 cm harmaa laventeli",
+     "variant": "Harmaa/Laventeli",
+     "price": 54.9,
+     "shop": "A-T Lastenturva",
      "url": "https://www.lastenturva.fi/kotiin/annemikael-hoitoalusta-50x63cm-harmaa-laventeli/p/6430059730377/",
-     "offers": [],
-     "history": []
+     "offers": [
+      {
+       "shop": "A-T Lastenturva",
+       "price": 54.9,
+       "url": "https://www.lastenturva.fi/kotiin/annemikael-hoitoalusta-50x63cm-harmaa-laventeli/p/6430059730377/",
+       "checked": "2026-10-17",
+       "note": "Anne&Mikael hoitoalusta 50x63 cm, Harmaa/Laventeli"
+      }
+     ],
+     "history": [
+      {
+       "date": "2026-10-17",
+       "price": 54.9
+      }
+     ]
     }
    ],
    "favorite": 0
@@ -495,7 +511,7 @@
        "price": 149.95,
        "url": "https://www.wauva.com/tuotteemme/cybex-amya-kantoreppu-3-2-15-kg-chocolate-brown/p/526001748/",
        "checked": "2026-10-17",
-       "note": "Cybex Amya, Chocolate Brown"
+       "note": "Cybex Amya, Chocolate Brown, ilmainen toimitus"
       }
      ],
      "history": [
@@ -652,10 +668,25 @@
    "alts": [
     {
      "model": "Elodie Details hoitolaukku Wide Black",
+     "variant": "Black",
+     "price": 99.9,
      "shop": "Wauva",
      "url": "https://www.wauva.com/tuotteemme/elodie-details-hoitolaukku-wide-black/p/50670212120NA/",
-     "offers": [],
-     "history": []
+     "offers": [
+      {
+       "shop": "Wauva",
+       "price": 99.9,
+       "url": "https://www.wauva.com/tuotteemme/elodie-details-hoitolaukku-wide-black/p/50670212120NA/",
+       "checked": "2026-10-17",
+       "note": "Elodie Details Wide, Black"
+      }
+     ],
+     "history": [
+      {
+       "date": "2026-10-17",
+       "price": 99.9
+      }
+     ]
     }
    ],
    "favorite": 0
