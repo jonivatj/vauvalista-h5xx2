@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-17T17:15:24+00:00",
+ "generatedAt": "2026-10-18T10:08:10+00:00",
  "items": [
   {
    "name": "Leikkimatto tai vauvajumppa",
@@ -196,47 +196,66 @@
    "kela": false,
    "alts": [
     {
-     "model": "Anne&Mikael hoitoalusta 50x63 cm harmaa laventeli",
-     "variant": "Harmaa/Laventeli",
-     "price": 54.9,
-     "shop": "A-T Lastenturva",
-     "url": "https://www.lastenturva.fi/kotiin/annemikael-hoitoalusta-50x63cm-harmaa-laventeli/p/6430059730377/",
+     "model": "Woodies hoitoalusta 70x40 cm",
+     "variant": "Boho beige",
+     "price": 49.95,
+     "shop": "Lasten Satumetsä",
+     "url": "https://www.lastensatumetsa.fi/products/woodies-hoitoalusta-70x40cm-boho-beige",
+     "caveat": "Kaupan mukaan sopii Woodies Classic -hoitopöytään. Tarkista mitat, jos hoitotaso on muu.",
      "offers": [
       {
-       "shop": "A-T Lastenturva",
-       "price": 54.9,
-       "url": "https://www.lastenturva.fi/kotiin/annemikael-hoitoalusta-50x63cm-harmaa-laventeli/p/6430059730377/",
-       "checked": "2026-10-17",
-       "note": "Anne&Mikael hoitoalusta 50x63 cm, Harmaa/Laventeli"
-      },
-      {
-       "shop": "Karkkainen",
-       "price": 39.9,
-       "url": "https://www.karkkainen.com/verkkokauppa/anne-mikael-pollo-50x63-cm-hoitoalusta",
-       "checked": "2026-10-17",
-       "note": "Eri kuosi: pöllö"
-      },
-      {
-       "shop": "Verkkokauppa.com",
-       "price": 39.99,
-       "url": "https://www.verkkokauppa.com/fi/product/381632/Anne-Mikael-Care-Pad-50-x-63-cm-owl-gray",
-       "checked": "2026-10-17",
-       "note": "Eri kuosi: pöllö, harmaa"
+       "shop": "Lasten Satumetsä",
+       "price": 49.95,
+       "url": "https://www.lastensatumetsa.fi/products/woodies-hoitoalusta-70x40cm-boho-beige",
+       "checked": "2026-10-18",
+       "note": "Woodies 70x40 cm, Boho beige"
       }
      ],
      "history": [
       {
-       "date": "2026-10-17",
-       "price": 39.9
+       "date": "2026-10-18",
+       "price": 49.95
       }
      ],
      "tori": {
-      "checked": "2026-10-17",
+      "checked": "2026-10-18",
       "range": {
        "n": 0
       },
-      "warning": "Uusimaalta ei löytynyt viimeisen 7 päivän aikana jätettyjä Anne&Mikael-hoitoalustailmoituksia (uusin 6.10.). Käytetyssä pehmeässä hoitoalustassa huomioi hygienia: pinnan tulee olla ehjä ja pyyhittävä, eikä täytteeseen saa olla imeytynyt kosteutta tai hajuja."
+      "warning": "Uudellamaalla ei ollut Woodies-hoitoalustoja myynnissä. Woodiesia myy Suomessa vain Lasten Satumetsä."
      }
+    }
+   ],
+   "favorite": 0
+  },
+  {
+   "name": "Imetystyyny",
+   "status": "harkinnassa",
+   "method": "ostetaan",
+   "timing": "ennen",
+   "kela": false,
+   "alts": [
+    {
+     "model": "LEN imetystyyny",
+     "variant": "harmaa, 60x50x18 cm",
+     "price": 29.99,
+     "shop": "IKEA",
+     "url": "https://www.ikea.com/fi/fi/p/len-imetystyyny-harmaa-20400243/",
+     "offers": [
+      {
+       "shop": "IKEA",
+       "price": 29.99,
+       "url": "https://www.ikea.com/fi/fi/p/len-imetystyyny-harmaa-20400243/",
+       "checked": "2026-10-18",
+       "note": "LEN, harmaa"
+      }
+     ],
+     "history": [
+      {
+       "date": "2026-10-18",
+       "price": 29.99
+      }
+     ]
     }
    ],
    "favorite": 0
@@ -921,13 +940,6 @@
    "timing": "ennen",
    "kela": false,
    "order": 24
-  },
-  {
-   "name": "Imetystyyny",
-   "category": "Syöttäminen",
-   "timing": "ennen",
-   "kela": false,
-   "order": 25
   },
   {
    "name": "Imetysliivit ja liivinsuojat",
