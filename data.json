@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-18T10:08:10+00:00",
+ "generatedAt": "2026-10-18T10:42:52+00:00",
  "items": [
   {
    "name": "Leikkimatto tai vauvajumppa",
@@ -190,7 +190,7 @@
   },
   {
    "name": "Hoitoalusta tai hoitopöytä",
-   "status": "harkinnassa",
+   "status": "ostettu",
    "method": "ostetaan",
    "timing": "ennen",
    "kela": false,
