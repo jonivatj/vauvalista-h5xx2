@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-19T15:06:46+00:00",
+ "generatedAt": "2026-10-22T15:07:08+00:00",
  "items": [
   {
    "name": "Leikkimatto tai vauvajumppa",
@@ -34,29 +34,22 @@
        "shop": "Wauva",
        "price": 549.9,
        "url": "https://www.wauva.com/tuotteemme/cybex-cloud-t-i-size-turvakaukalo-starttipaketti-base-t-jalustalla-plus-coconut-brown/p/526001650-P/",
-       "checked": "2026-10-19",
+       "checked": "2026-10-22",
        "note": "Cloud T i-Size starttipaketti Base T -jalustalla, PLUS Coconut Brown (ei alennuksessa)"
       },
       {
        "shop": "A-T Lastenturva",
        "price": 549.9,
        "url": "https://www.lastenturva.fi/lapselle/cybex-cloud-t-i-size-turvakaukalo-ja-telakka/p/406384640223/",
-       "checked": "2026-10-19",
-       "note": "Kaukalo + telakka -paketti, Plus Mirage Grey 549,90 € (ei Coconut Brown); ei-Plus Sepia Black / Mirage Grey 519,90 €"
+       "checked": "2026-10-22",
+       "note": "Kaukalo + telakka -paketti, Plus Mirage Grey 549,90 € (ei Coconut Brown); ei-Plus Sepia Black / Mirage Grey 519,90 €; kaikki tilaustuotteita, toimitus n. 1–30 arkipäivää"
       },
       {
        "shop": "Crocoliini",
        "price": 549.9,
        "url": "https://www.crocoliini.fi/product/3588/cybex-cloud-t-i-size-plus",
-       "checked": "2026-10-19",
-       "note": "Summahinta: Cloud T Plus 289,95 € + Base T 259,95 € erikseen (Base T -hinta 17.10. tarkistuksesta); ei Coconut Brown -väriä, toimitus n. 21 pv"
-      },
-      {
-       "shop": "Cybex (oma verkkokauppa)",
-       "price": 529.9,
-       "url": "https://www.cybex-online.com/fi/fi/p/set-st-pl-priam-5-style.html",
-       "checked": "2026-10-19",
-       "note": "Summahinta: Cloud T Plus Mirage Grey 279,95 € (norm. 289,95 €) + Base T 249,95 € (norm. 259,95 €) erikseen; ei Coconut Brown"
+       "checked": "2026-10-22",
+       "note": "Summahinta: Cloud T Plus 289,95 € (tarkistettu 22.10.) + Base T 259,95 € erikseen (Base T -hinta 17.10. tarkistuksesta); ei Coconut Brown -väriä, toimitus n. 21 pv"
       }
      ],
      "history": [
@@ -67,24 +60,28 @@
       {
        "date": "2026-10-19",
        "price": 529.9
+      },
+      {
+       "date": "2026-10-22",
+       "price": 549.9
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
-       "max": 340,
-       "min": 280,
-       "n": 2
+       "max": 250,
+       "min": 250,
+       "n": 1
       },
-      "warning": "Käytettyä turvakaukaloa ei suositella, koska kolarihistoriaa ei voi tietää. Pelkkiä kaukaloita ilman Base T:tä oli myynnissä 130–160 € (48523551, 48282874).",
+      "warning": "Käytettyä turvakaukaloa ei suositella, koska kolarihistoriaa ei voi tietää. Edellinen pick 48581515 ei enää näy haussa, ja 48348264 (340 €) on julkaistu 11.10. eli yli viikko sitten. Pelkkiä kaukaloita ilman Base T:tä 120–200 € (esim. 48703690 käyttämätön 200 €, 48523551 120 €).",
       "pick": {
-       "title": "Cybex Cloud T i-size turvakaukalo & Base T jalusta",
-       "price": 280,
-       "location": "Nihtisilta, Espoo",
-       "date": "2026-10-18",
-       "condition": "Myyjän mukaan kuin uusi, ei kolaroitu, päälliset pesty hajusteettomalla pesuaineella; Plus-versio ja ikä eivät selviä.",
-       "url": "https://www.tori.fi/recommerce/forsale/item/48581515",
-       "why": "Koko paketti (kaukalo + Base T) noin puoleen hintaan uudesta, ja myyjä vakuuttaa kolarittomuuden. Vaihtoehto 48348264 (340 €, Lauttasaari, yhden lapsen käytössä, hyvä kunto) sisältää myös aurinko- ja kesäsuojuksen."
+       "title": "Cybex Base T + Cybex cloud t i-size turvakaukalo + maxicosi adapt",
+       "price": 250,
+       "location": "Länsikorkee-Suvikumpu, Espoo",
+       "date": "2026-10-20",
+       "condition": "Ostettu alkuvuodesta 2025, myyjän mukaan ei kulumia muovi- tai kangasosissa; Plus-versio ja kolarihistoria eivät selviä.",
+       "url": "https://www.tori.fi/recommerce/forsale/item/48771126",
+       "why": "Ainoa viikon sisällä julkaistu koko paketti (kaukalo + Base T), alle vuoden ikäinen ja hyväkuntoinen, mukana myös rattaiden adapterit; hinta alle puolet uudesta."
       }
      }
     }
@@ -110,8 +107,8 @@
        "shop": "Mon Lit Cabane",
        "price": 560,
        "url": "https://monlitcabane.com/fi/vauvansanky/9478-muunneltava-7-in-1-suorakulmainen-kehto-patjalla-vintage.html",
-       "checked": "2026-10-19",
-       "note": "7-in-1 vauvansänky Vintage, patja sisältyy; varastossa, arvioitu toimitus 21.–30.10.2026"
+       "checked": "2026-10-22",
+       "note": "7-in-1 vauvansänky Vintage, kolmiosainen patja sisältyy; ei alennusta; varastossa, arvioitu toimitus 26.10.–4.11.2026"
       }
      ],
      "history": [
@@ -122,14 +119,18 @@
       {
        "date": "2026-10-19",
        "price": 560
+      },
+      {
+       "date": "2026-10-22",
+       "price": 560
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "n": 0
       },
-      "warning": "Haulla \"mon lit cabane\" ei ollut Uudellamaalla yhtään ilmoitusta. Tuotetta myy Suomessa vain valmistaja."
+      "warning": "Haulla \"mon lit cabane\" ei ollut Uudellamaalla yhtään ilmoitusta 22.10.2026. Tuotetta myy Suomessa vain valmistaja. Jos käytettynä löytyy, patjan hygienia ja kunto kannattaa varmistaa; uusi patja on turvallisin valinta."
      }
     },
     {
@@ -137,35 +138,35 @@
      "price": 669,
      "shop": "Lastentarvike",
      "url": "https://www.lastentarvike.fi/tuotteet/stokke-sleepi-bed-pinnasanky-v3.html",
-     "caveat": "Patja, pyörät ja lakanat myydään erikseen V3-kokoisina; Lastentarvikkeelta kaikki värit ovat loppu, Stokken omasta kaupasta saa samaan hintaan (toimitus 27.10. alkaen).",
+     "caveat": "Patja, pyörät ja lakanat myydään erikseen V3-kokoisina; Lastentarvikkeelta kaikki värit ovat loppu, Stokken omasta kaupasta saa samaan hintaan (toimitus 30.10. alkaen).",
      "offers": [
       {
        "shop": "Lastentarvike",
        "price": 669,
        "url": "https://www.lastentarvike.fi/tuotteet/stokke-sleepi-bed-pinnasanky-v3.html",
-       "checked": "2026-10-19",
-       "note": "Natural, Warm Brown ja Valkoinen; ei alennusta; kaikki värit loppu varastosta"
+       "checked": "2026-10-22",
+       "note": "Natural, Warm Brown ja Valkoinen; ei alennusta; kaikki värit loppu kaikista varastoista"
       },
       {
        "shop": "Crocoliini",
        "price": 669,
        "url": "https://www.crocoliini.fi/product/3717/stokke-sleepi-v3-pinnasanky",
-       "checked": "2026-10-19",
-       "note": "Valkoinen, Natural tai Warm Brown; patja erikseen, toimitus n. 21 pv"
+       "checked": "2026-10-22",
+       "note": "White, Natural tai Warm Brown; ei alennusta; patja erikseen, toimitus n. 21 pv"
       },
       {
        "shop": "Stokke (oma verkkokauppa)",
        "price": 669,
        "url": "https://www.stokke.com/FIN/en-fi/nursery/stokke-sleepi/5914.html",
-       "checked": "2026-10-19",
-       "note": "Natural, White tai Warm Brown; varastossa, toimitus 27.10. alkaen; sänky + patja + lakana -pakettiin lisäetu"
+       "checked": "2026-10-22",
+       "note": "Natural, White tai Warm Brown; varastossa, toimitus 30.10. alkaen; patja erikseen; sänky + patja + lakana -pakettiin lisäetu"
       },
       {
        "shop": "A-T Lastenturva",
        "price": 669,
        "url": "https://www.lastenturva.fi/kotiin/stokke-sleepi-bed-pinnasanky-120-cm-patjalla/p/954587451/",
        "checked": "2026-10-17",
-       "note": "Warm Brown; osoitteessa lukee 'patjalla', mutta vertailusivujen mukaan patja ostetaan erikseen; ei tarkistettu 19.10."
+       "note": "Warm Brown; osoitteessa lukee 'patjalla', mutta vertailusivujen mukaan patja ostetaan erikseen; ei tarkistettu 19.10. eikä 22.10."
       }
      ],
      "history": [
@@ -176,16 +177,20 @@
       {
        "date": "2026-10-19",
        "price": 669
+      },
+      {
+       "date": "2026-10-22",
+       "price": 669
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "max": 650,
        "min": 350,
        "n": 8
       },
-      "warning": "Yksikään ilmoitus ei kerro sukupolvea (V1/V2/V3), ja V3:n patjat, lakanat ja lisäosat eivät sovi vanhempiin malleihin. Useimmissa ilmoituksissa on mukana käytetty patja, joten patjan hygienia ja kunto kannattaa varmistaa; uusi patja on turvallisin valinta.",
+      "warning": "Yksikään ilmoitus ei kerro sukupolvea (V1/V2/V3), ja V3:n patjat, lakanat ja lisäosat eivät sovi vanhempiin malleihin. Useimmissa ilmoituksissa on mukana käytetty patja: käytetyn patjan hygieniaa (kosteus, home, pölypunkit) ja kuntoa ei voi varmistaa, joten uusi patja on turvallisin valinta.",
       "pick": {
        "title": "Stokke Sleepi, patja ja junior jatkopalat",
        "price": 350,
@@ -193,7 +198,7 @@
        "date": "2026-10-16",
        "condition": "Patja ostettu viime kesänä ja käytetty vain muutaman kerran; sängyn ikää, kuntoa ja sukupolvea ei kerrota.",
        "url": "https://www.tori.fi/recommerce/forsale/item/48495155",
-       "why": "Edullisin kokonaisuus: sänky, lähes käyttämätön patja ja junior-jatkopalat noin puoleen hintaan uudesta V3:sta. Kysy myyjältä, onko sänky V3."
+       "why": "Edullisin kokonaisuus: sänky, lähes käyttämätön patja ja junior-jatkopalat noin puoleen hintaan uudesta V3:sta. Vaihtoehto: 375 € Porvoossa (48611887), sänky täysin ehjä ja mukana Villa ja Peite -patja ja suoja. Kysy myyjältä, onko sänky V3."
       }
      }
     }
@@ -219,14 +224,14 @@
        "shop": "Lasten Satumetsä",
        "price": 49.95,
        "url": "https://www.lastensatumetsa.fi/products/woodies-hoitoalusta-70x40cm-boho-beige",
-       "checked": "2026-10-19",
-       "note": "Woodies 70x40 cm, Boho beige; loppunut varastosta 19.10."
+       "checked": "2026-10-22",
+       "note": "Woodies 70x40 cm, Boho beige; edelleen loppunut varastosta 22.10."
       },
       {
        "shop": "Lasten Satumetsä",
        "price": 49.95,
        "url": "https://www.lastensatumetsa.fi/products/woodies-hoitoalusta-meadow",
-       "checked": "2026-10-19",
+       "checked": "2026-10-22",
        "note": "Woodies 70x40 cm, White (eri väri), tilattavissa"
       }
      ],
@@ -238,14 +243,18 @@
       {
        "date": "2026-10-19",
        "price": 49.95
+      },
+      {
+       "date": "2026-10-22",
+       "price": 49.95
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "n": 0
       },
-      "warning": "Uudellamaalla ei ole Woodies-hoitoalustoja myynnissä. Woodiesia myy Suomessa vain Lasten Satumetsä."
+      "warning": "Uudellamaalla ei ole Woodies-hoitoalustoja myynnissä (haku: woodies). Woodiesia myy Suomessa vain Lasten Satumetsä."
      }
     }
    ],
@@ -269,8 +278,8 @@
        "shop": "IKEA",
        "price": 29.99,
        "url": "https://www.ikea.com/fi/fi/p/len-imetystyyny-harmaa-20400243/",
-       "checked": "2026-10-19",
-       "note": "LEN, harmaa, 60x50x18 cm"
+       "checked": "2026-10-22",
+       "note": "LEN, harmaa, 60x50x18 cm; verkkosaatavuus ei näkynyt"
       }
      ],
      "history": [
@@ -281,24 +290,28 @@
       {
        "date": "2026-10-19",
        "price": 29.99
+      },
+      {
+       "date": "2026-10-22",
+       "price": 29.99
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "max": 15,
-       "min": 8,
-       "n": 3
+       "min": 7,
+       "n": 4
       },
-      "warning": "Vaihtoehdot: 48596278 (15 €, Kilo, harmaa LEN, hyvä kunto) ja 48416641 (8 €, Kannelmäki, malli ei varmistunut). Käytetyn tyynyn täyte ei pesty, joten päällinen kannattaa pestä.",
+      "warning": "Vaihtoehdot: 48596278 (15 €, Kilo, varmistettu harmaa LEN, hyvä kunto), 48875628 (8 €, Mankkaa, kaksi pupupäällistä, kuntoa ei kerrota) ja 48585736 (7 €, Laajalahti, valkoinen eläinkuvio, hyvä käytetty kunto). Hygienia: käytetyn tyynyn täytettä ei voi pestä, joten pese päällinen ennen käyttöä.",
       "pick": {
-       "title": "Ikea LEN imetystyyny",
+       "title": "Ikea imetystyyny pupukuosi",
        "price": 9,
-       "location": "Etelä-Leppävaara, Espoo",
-       "date": "2026-10-19",
-       "condition": "Lähes käyttämätön, irrotettava päällinen; eläimetön ja hajusteeton koti.",
-       "url": "https://www.tori.fi/recommerce/forsale/item/48736499",
-       "why": "Halvin ja lähes käyttämätön, tänään jätetty ilmoitus. Väriä ei kerrota."
+       "location": "Laajalahti, Espoo",
+       "date": "2026-10-22",
+       "condition": "Hyväkuntoinen, yhden lapsen käytössä, puhdas ja tahraton; irrotettava pupukuosinen päällinen.",
+       "url": "https://www.tori.fi/recommerce/forsale/item/48875957",
+       "why": "Hyvä kunto ja selkeä kuvaus edullisesti, tänään jätetty. Mallinimeä ei mainita, mutta IKEAn imetystyyny on LEN."
       }
      }
     }
@@ -322,15 +335,15 @@
        "shop": "Wauva",
        "price": 1569.65,
        "url": "https://www.wauva.com/tuotteemme/cybex-priam-style-lastenvaunut-chrome-brown-coconut-brown/p/526000201-PYCBR/",
-       "checked": "2026-10-19",
-       "note": "Priam Style, Chrome-Brown / Coconut Brown (ei alennuksessa)"
+       "checked": "2026-10-22",
+       "note": "Priam Style, Chrome-Brown / Coconut Brown (ei alennuksessa, normaalihinta 1569,65 €)"
       },
       {
        "shop": "Cybex (oma verkkokauppa)",
        "price": 1619.85,
        "url": "https://www.cybex-online.com/fi/fi/p/set-st-pl-priam-5-style.html",
-       "checked": "2026-10-19",
-       "note": "Priam Style -setti (runko 859,95 € + Fold Lux -koppa 489,95 € + istuinpaketti 269,95 €); oletusväri Rosegold / Sepia Black, Chrome Brown / Coconut Brown ei näkynyt"
+       "checked": "2026-10-22",
+       "note": "Priam Style -setti (runko 859,95 € + Fold Lux -koppa 489,95 € + istuinpaketti 269,95 €) + toimituskulut; sivulla vain Rosegold / Sepia Black, Chrome Brown / Coconut Brown ei näkynyt"
       }
      ],
      "history": [
@@ -341,14 +354,18 @@
       {
        "date": "2026-10-19",
        "price": 1569.65
+      },
+      {
+       "date": "2026-10-22",
+       "price": 1569.65
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "n": 0
       },
-      "warning": "Uudellamaalla ei viimeisen 7 päivän aikana ollut yhtään Priam Style -ilmoitusta; haut palauttivat vain tavallisia Priameja (esim. 48587228 Chrome Black -starttipaketti 1 000 €), Priam 3/4 -malleja, e-Priameja ja pelkkiä koppia."
+      "warning": "Uudellamaalla ei viimeisen 7 päivän aikana (15.–22.10.) ollut yhtään Priam Style -ilmoitusta; haut \"priam style\" ja \"cybex priam\" palauttivat vain tavallisia Priameja (esim. 48587228 Chrome Black -starttipaketti 1 000 €), Priam 3/4 -malleja, e-Priameja ja pelkkiä koppia."
      }
     }
    ],
@@ -386,21 +403,21 @@
        "shop": "Wauva",
        "price": 129,
        "url": "https://www.wauva.com/tuotteemme/stokke-tripp-trapp-newborn-set-vastasyntyneelle-vauvalle-grey-white/p/526101/",
-       "checked": "2026-10-19",
+       "checked": "2026-10-22",
        "note": "Grey/White, ei alennusta"
       },
       {
        "shop": "Crocoliini",
        "price": 129,
        "url": "https://www.crocoliini.fi/product/1889/stokke-tripp-trapp-newborn-set",
-       "checked": "2026-10-19",
+       "checked": "2026-10-22",
        "note": "Grey varastossa, Anthracite tilaustuote (21 pv)"
       },
       {
        "shop": "A-T Lastenturva",
        "price": 129,
        "url": "https://hintaseuranta.fi/syottotuolit/stokke-tripp-trapp-newborn-set/470899",
-       "checked": "2026-10-19",
+       "checked": "2026-10-22",
        "note": "Hinta hintaseuranta.fi:stä, väri ei tiedossa"
       }
      ],
@@ -412,23 +429,27 @@
       {
        "date": "2026-10-19",
        "price": 129
+      },
+      {
+       "date": "2026-10-22",
+       "price": 129
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
-       "max": 80,
-       "min": 60,
-       "n": 4
+       "max": 85,
+       "min": 40,
+       "n": 10
       },
       "pick": {
-       "title": "Stokke Tripp Trapp Newborn Set, harmaa",
-       "price": 65,
-       "location": "Jokiniemi, Vantaa",
-       "date": "2026-10-17",
-       "condition": "Siisti käytetty kunto",
-       "url": "https://www.tori.fi/recommerce/forsale/item/48659682",
-       "why": "Siisti, säädettävä istuinkulma ja tuore ilmoitus, 64 € alle uuden. Vaihtoehto 48568449 (60 €, Espoo) on uudempi malli lelukaarella, mutta kankaassa on haaleita tahroja."
+       "title": "Tripp Trapp Newborn Set, uudempi malli",
+       "price": 70,
+       "location": "Pohjois-Leppävaara, Espoo",
+       "date": "2026-10-21",
+       "condition": "Ei myyjän mukaan huomautettavaa, kankaat pesty hajusteettomalla pesuaineella",
+       "url": "https://www.tori.fi/recommerce/forsale/item/48846070",
+       "why": "Uudempi malli (kaksi asentoa) lelukaarineen, ei vikoja ja kankaat pesty; 59 € alle uuden. Vaihtoehdot: 48877844 (85 €, Espoo, uudempi White/Grey, erittäin siisti) ja 48871264 (70 €, Sipoo, uudenveroinen harmaa)."
       }
      }
     }
@@ -450,18 +471,32 @@
      "url": "https://www.lastenturva.fi/lapselle/magic-the-original-vaipparoskis-majestic-white/p/9501356968842/",
      "offers": [
       {
+       "shop": "Vaunula",
+       "price": 59.95,
+       "url": "https://www.vaunula.fi/fi/tuote/vaipparoskis-magic-white",
+       "checked": "2026-10-22",
+       "note": "Myydään nimellä Magic Majestic -vaipparoskis, hajuton, valkoinen (sama malli); varastossa"
+      },
+      {
        "shop": "A-T Lastenturva",
        "price": 63.9,
        "url": "https://www.lastenturva.fi/lapselle/magic-the-original-vaipparoskis-majestic-white/p/9501356968842/",
-       "checked": "2026-10-19",
-       "note": "Magic The Original, Majestic White"
+       "checked": "2026-10-22",
+       "note": "Magic The Original, Majestic White; varastossa"
       },
       {
        "shop": "Verkkokauppa.com",
        "price": 64.99,
        "url": "https://www.verkkokauppa.com/fi/product/901537/Magic-Majestic-vaipparoskis-valkoinen",
-       "checked": "2026-10-19",
-       "note": "Myydään nimellä Magic Majestic -vaipparoskis, valkoinen (sama malli)"
+       "checked": "2026-10-22",
+       "note": "Myydään nimellä Magic Majestic -vaipparoskis, valkoinen (sama malli); 6 kpl varastossa"
+      },
+      {
+       "shop": "Muksumassi",
+       "price": 69.95,
+       "url": "https://muksumassi.fi/lastentarvikkeet/tarvikkeet/magic-vaipparoskis/",
+       "checked": "2026-10-22",
+       "note": "Magic the Original (valkoinen/musta/harmaa); ei varastossa, vain jälkitoimituksena"
       }
      ],
      "history": [
@@ -472,10 +507,14 @@
       {
        "date": "2026-10-19",
        "price": 63.9
+      },
+      {
+       "date": "2026-10-22",
+       "price": 59.95
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "n": 0
       },
@@ -504,22 +543,22 @@
        "shop": "A-T Lastenturva",
        "price": 73,
        "url": "https://www.lastenturva.fi/lapselle/stokke-flexi-bath-kylpyamme-ja-kylvetystuki-paketti-lavender-sis-amme-ja-kylvetystuki/p/70403553120021/",
-       "checked": "2026-10-19",
-       "note": "Flexi Bath + kylvetystuki, Lavender"
+       "checked": "2026-10-22",
+       "note": "Flexi Bath + kylvetystuki, Lavender; ei alennusta; varastossa (5 kpl), heti verkkokaupasta ja Vantaan myymälästä"
       },
       {
        "shop": "Crocoliini",
        "price": 73,
        "url": "https://www.crocoliini.fi/category/132/flexi-bath",
-       "checked": "2026-10-19",
-       "note": "Erikseen: Flexi Bath 49 € (Lavender varastossa) + kylvetystuki 24 €"
+       "checked": "2026-10-22",
+       "note": "Erikseen: Flexi Bath 49 € + kylpytuki 24 €; kategoriasivulla ei näy väriä eikä varastotilannetta (Lavender todettu varastossa 19.10.)"
       },
       {
        "shop": "Stokke (oma verkkokauppa)",
        "price": 69,
        "url": "https://www.stokke.com/FIN/en-fi/bath/stokke-flexibath/5315.html",
-       "checked": "2026-10-19",
-       "note": "Sisältää kylvetystuen; ei Lavender-väriä (White, Sandy Beige, Ocean Blue); toimitus 27.10. alkaen"
+       "checked": "2026-10-22",
+       "note": "Sisältää kylvetystuen; ei Lavender-väriä (White, Sandy Beige, Ocean Blue); varastossa, toimitus 27.10. alkaen"
       }
      ],
      "history": [
@@ -530,24 +569,28 @@
       {
        "date": "2026-10-19",
        "price": 69
+      },
+      {
+       "date": "2026-10-22",
+       "price": 69
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
-       "max": 80,
-       "min": 65,
-       "n": 2
+       "max": 100,
+       "min": 70,
+       "n": 3
       },
-      "warning": "48508102 (80 €, Vuosaari) sisältää myös jalustan, mutta kuntoa ei kerrota. Pois jätetty pelkät ammeet, pelkät tuet ja XL-mallit.",
+      "warning": "Kaikissa kolmessa on mukana myös jalusta. 48770399 (100 €, Katajanokka) on käytetty noin 5 kertaa ja kaikki osat ovat tallella. 48742153 (90 €, Puotinharju): kuntoa ei kerrota. Pois jätetty pelkät ammeet, joiden tuesta ei mainita (48784835 60 €, 48890670 25 €), pelkät tuet, XL-mallit ja varatut. Viime kerran ilmoitukset 48552279 ja 48508102 eivät enää näy haussa.",
       "pick": {
-       "title": "Stokke flexi bath",
-       "price": 65,
-       "location": "Espoonlahti, Espoo",
-       "date": "2026-10-15",
-       "condition": "Vähän käytetty; käytetty kahdella lapsella noin 5 ensimmäistä kuukautta, kylvetystuki mukana.",
-       "url": "https://www.tori.fi/recommerce/forsale/item/48552279",
-       "why": "Ainoa tuore ilmoitus, jossa amme ja tuki ovat yhdessä ja kunto kerrotaan; uusi maksaa 69 €, joten hinnasta kannattaa neuvotella."
+       "title": "Stokke Flexi Bath täydellinen setti",
+       "price": 70,
+       "location": "Lauttasaari, Helsinki",
+       "date": "2026-10-22",
+       "condition": "Hyvä, käytetty; mukana amme, kylvetystuki ja teline.",
+       "url": "https://www.tori.fi/recommerce/forsale/item/48876903",
+       "why": "Halvin viikon täysi setti, ja mukana on myös teline (uutena 69 €), vaikka uusi amme ja tuki maksavat yhteensä vain 69 €. Ikää ei kerrota, joten kysy se."
       }
      }
     }
@@ -572,43 +615,50 @@
        "shop": "Verkkokauppa.com",
        "price": 185.99,
        "url": "https://www.verkkokauppa.com/fi/product/985273/BabyBjorn-Harmony-3D-Mesh-kantoreppu-Black",
-       "checked": "2026-10-19",
+       "checked": "2026-10-22",
        "note": "Black, varastossa, toimitus alk. 5,99 € (noutopiste ilmainen)"
       },
       {
        "shop": "Verkkokauppa.com",
-       "price": 178.99,
+       "price": 143.19,
        "url": "https://hinta.fi/5351005/babybjorn-harmony-3d-mesh-kantoreppu-dark-green",
-       "checked": "2026-10-19",
-       "note": "Dark green (eri väri)"
+       "checked": "2026-10-22",
+       "note": "Dark green (eri väri), hinta.fi:n mukaan, + toimitus 5,99 €; ei varmistettu kaupan sivulta"
       },
       {
        "shop": "Jollyroom",
        "price": 178.9,
        "url": "https://www.jollyroom.fi/lastentarvikkeet/kantoreput-kantoliinat/kantoreput/babybjorn-harmony-kantoreppu-3d-mesh-tummanvihrea",
-       "checked": "2026-10-19",
-       "note": "Tummanvihreä (eri väri), jäsenhinta"
+       "checked": "2026-10-22",
+       "note": "Tummanvihreä (eri väri), jäsenhinta (ovh 249,90 €), 8 jäljellä"
       },
       {
        "shop": "Jollyroom",
        "price": 219.9,
        "url": "https://www.jollyroom.fi/lastentarvikkeet/kantoreput-kantoliinat/kantoreput/babybjorn-harmony-kantoreppu-3d-mesh-musta",
-       "checked": "2026-10-19",
-       "note": "Musta"
+       "checked": "2026-10-22",
+       "note": "Musta, jäsenhinta"
       },
       {
        "shop": "Prisma",
-       "price": 219,
-       "url": "https://www.prisma.fi/tuotteet/111144848/babybjorn-vauvan-vantoreppu-varmony-3d-mesh-musta-111144848",
-       "checked": "2026-10-19",
-       "note": "Musta"
+       "price": 209,
+       "url": "https://www.prisma.fi/tuotteet/111144861/babybjorn-vauvan-kantoreppu-harmony-3d-mesh-tummanvihrea-111144861",
+       "checked": "2026-10-22",
+       "note": "Tummanvihreä (eri väri)"
       },
       {
        "shop": "Prisma",
        "price": 209,
        "url": "https://www.prisma.fi/tuotteet/111144850/babybjorn-vauvan-kantoreppu-harmony-3d-mesh-harmaa-beige-111144850",
-       "checked": "2026-10-19",
+       "checked": "2026-10-22",
        "note": "Harmaa-beige (eri väri)"
+      },
+      {
+       "shop": "Prisma",
+       "price": 219,
+       "url": "https://www.prisma.fi/tuotteet/111144848/babybjorn-vauvan-vantoreppu-varmony-3d-mesh-musta-111144848",
+       "checked": "2026-10-22",
+       "note": "Musta"
       }
      ],
      "history": [
@@ -619,14 +669,18 @@
       {
        "date": "2026-10-19",
        "price": 178.9
+      },
+      {
+       "date": "2026-10-22",
+       "price": 178.9
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "n": 0
       },
-      "warning": "Uudellamaalla ei ollut viimeisen 7 päivän aikana yhtään BabyBjörn Harmony -kantoreppuilmoitusta (ainoa osuma 44816618, 100 €, Espoo, on julkaistu 29.7.)."
+      "warning": "Uudellamaalla ei ollut 15.–22.10.2026 yhtään BabyBjörn Harmony -kantoreppuilmoitusta; viikon BabyBjörn-kantoreput olivat Mini- ja One-malleja tai mallia ei mainittu (esim. 48568846 \"kantoreppu mesh\" 20 €)."
      }
     },
     {
@@ -640,36 +694,36 @@
        "shop": "Wauva",
        "price": 149.95,
        "url": "https://www.wauva.com/tuotteemme/cybex-amya-kantoreppu-3-2-15-kg-chocolate-brown/p/526001748/",
-       "checked": "2026-10-19",
-       "note": "Chocolate Brown, ilmainen toimitus"
+       "checked": "2026-10-22",
+       "note": "Chocolate Brown, ei alennusta, ilmainen toimitus"
       },
       {
        "shop": "Jollyroom",
        "price": 149.9,
        "url": "https://www.jollyroom.fi/lastentarvikkeet/kantoreput-kantoliinat/kantoreput/cybex-amya-kantoreppu-chocolate-brown",
-       "checked": "2026-10-19",
-       "note": "Chocolate Brown, ilmainen toimitus; WOW-koodi ei enää voimassa"
+       "checked": "2026-10-22",
+       "note": "Chocolate Brown, ilmainen toimitus, 9 jäljellä"
       },
       {
        "shop": "Verkkokauppa.com",
        "price": 149,
        "url": "https://hinta.fi/6040966/cybex-amya-kantoreppu-chocolate-brown",
-       "checked": "2026-10-19",
-       "note": "Chocolate Brown, toimitus 5,99 €"
+       "checked": "2026-10-22",
+       "note": "Chocolate Brown (myös muut värit 149 €), toimitus 5,99 €"
       },
       {
        "shop": "A-T Lastenturva",
        "price": 149.95,
        "url": "https://hintaseuranta.fi/muut-lastenhoitotuotteet/cybex-amya-kantoreppu/16648192",
-       "checked": "2026-10-19",
-       "note": "Väri ei selvinnyt (hintaseuranta.fi)"
+       "checked": "2026-10-22",
+       "note": "Väri ei selvinnyt (hintaseuranta.fi), ilmainen toimitus"
       },
       {
        "shop": "Cybex (oma verkkokauppa)",
        "price": 149.95,
        "url": "https://www.cybex-online.com/fi/fi/p/10108823.html",
-       "checked": "2026-10-19",
-       "note": "Almond Beige (eri väri), ilmainen toimitus"
+       "checked": "2026-10-22",
+       "note": "Almond Beige (eri väri), varastossa, ilmainen toimitus"
       }
      ],
      "history": [
@@ -680,14 +734,18 @@
       {
        "date": "2026-10-19",
        "price": 149
+      },
+      {
+       "date": "2026-10-22",
+       "price": 149
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "n": 0
       },
-      "warning": "Uudellamaalla ei ollut viimeisen 7 päivän aikana yhtään Cybex Amya -ilmoitusta."
+      "warning": "Uudellamaalla ei ollut 15.–22.10.2026 yhtään Cybex Amya -ilmoitusta (haku 0 osumaa)."
      }
     }
    ],
@@ -711,21 +769,21 @@
        "shop": "A-T Lastenturva",
        "price": 239,
        "url": "https://www.lastenturva.fi/kotiin/stokke-tripp-trapp-syottotuoli/p/854712145/",
-       "checked": "2026-10-19",
+       "checked": "2026-10-22",
        "note": "Pyökki, useita värejä, ei alennusta"
       },
       {
        "shop": "Wauva",
        "price": 239,
        "url": "https://www.wauva.com/stokke-tripp-trapp-tuoli/p/100101/",
-       "checked": "2026-10-19",
+       "checked": "2026-10-22",
        "note": "Väri Natural"
       },
       {
        "shop": "Crocoliini",
        "price": 239,
        "url": "https://www.crocoliini.fi/product/3913/stokke-tripp-trapp-syottotuoli",
-       "checked": "2026-10-19",
+       "checked": "2026-10-22",
        "note": "Useita värejä varastossa; Natural tilaustuote (21 pv)"
       }
      ],
@@ -737,23 +795,27 @@
       {
        "date": "2026-10-19",
        "price": 239
+      },
+      {
+       "date": "2026-10-22",
+       "price": 239
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "max": 260,
-       "min": 35,
-       "n": 36
+       "min": 30,
+       "n": 28
       },
       "pick": {
-       "title": "Stokke Tripp Trapp syöttötuoli musta",
-       "price": 150,
-       "location": "Pihkaniitty, Kerava",
-       "date": "2026-10-19",
-       "condition": "Erittäin hyvä kunto, noin vuoden vanha",
-       "url": "https://www.tori.fi/recommerce/forsale/item/48617982",
-       "why": "Noin vuoden vanha eli uusi säädettävä malli; mukana tarjotin, Baby Set ja liukuesteet, ja hinta on 89 € alle uuden pelkän tuolin. Vaihtoehdot: 48318293 (whitewash uusimalli, 150 €, Espoo, pieniä käytön jälkiä) ja 48568072 (150 €, Helsinki, kunnostettu, yksi koroke puuttuu)."
+       "title": "Stokke Tripp Trapp syöttötuoli valkoinen",
+       "price": 130,
+       "location": "Kauniainen",
+       "date": "2026-10-21",
+       "condition": "Hyvä käytetty kunto, uudempi malli",
+       "url": "https://www.tori.fi/recommerce/forsale/item/48833231",
+       "why": "Uudempi malli, mukana vauva- ja taaperolisäosat sekä Extension Glider -liukutassut; 109 € alle uuden pelkän tuolin. Vaihtoehdot: 48709114 (170 €, valkoinen + Baby Set + tarjotin, kuntoa ei kerrottu), 48590525 (150 €, musta vm 2020, kulumaa alatason reunassa) ja 48568072 (150 €, kunnostettu, yksi koroke puuttuu)."
       }
      }
     }
@@ -775,18 +837,18 @@
      "caveat": "Najellin verkkokaupassa Mocha Brown on loppuunmyyty eikä hintaa näy; kosteussuoja ja kuomu myydään erikseen.",
      "offers": [
       {
-       "shop": "Stockmann",
-       "price": 179,
-       "url": "https://www.stockmann.com/najell-najell-sleepcarrier-vol.5-kantokassi/2038120622.html",
-       "checked": "2026-10-17",
-       "note": "SleepCarrier Vol.5, väri ja hinta eivät selvinneet sivulta 2026-10-17 (aiempi tieto)"
-      },
-      {
        "shop": "Najell",
        "price": 169,
        "url": "https://najell.com/fi-fi/p/sleepcarrier-volume-5-mocha-brown",
        "checked": "2026-10-17",
-       "note": "SleepCarrier vol.5, Mocha Brown; loppuunmyyty 2026-10-17, hinta ei näkyvissä (viimeksi 169 €)"
+       "note": "SleepCarrier vol.5, Mocha Brown; edelleen loppuunmyyty 22.10.2026, eikä hintaa näy (viimeksi 169 €)"
+      },
+      {
+       "shop": "Stockmann",
+       "price": 179,
+       "url": "https://www.stockmann.com/najell-najell-sleepcarrier-vol.5-kantokassi/2038120622.html",
+       "checked": "2026-10-17",
+       "note": "SleepCarrier Vol.5; hinta, väri ja saatavuus eivät näkyneet sivulla 22.10.2026 (aiempi tieto)"
       }
      ],
      "history": [
@@ -796,21 +858,21 @@
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "max": 155,
-       "min": 140,
+       "min": 135,
        "n": 3
       },
-      "warning": "Muut vol. 5 -ilmoitukset 155 €: 48562000 (Leopard Cream, Ruskeasuo) ja 48695694 (Leopard Cream, Lauttasaari). Halvemmat SleepCarrierit (100–135 €) ovat X-mallia tai versio ei selviä. Patja on kiinteä, joten käytetyn pesän hygienia kannattaa varmistaa (pestävyys, tahrat, savuton koti).",
+      "warning": "48841908 (135 €, Ruskeasuo) on käytetty yhdellä lapsella ja aina patjansuojan kanssa, mutta ikää ja väriä ei kerrota. 48562000 (155 €, Ruskeasuo) on Leopard Cream, ostettu 6/2026, pesty kerran. Halvemmat SleepCarrierit ovat X-mallia tai versio ei selviä. Patja on kiinteä, joten käytetyn pesän hygienia kannattaa varmistaa (pestävyys, tahrat, savuton koti).",
       "pick": {
-       "title": "Najell sleepcarrier vol.5",
+       "title": "Najell SleepCarrier",
        "price": 140,
        "location": "Etelä-Leppävaara, Espoo",
-       "date": "2026-10-18",
-       "condition": "Ostettu uutena kesäkuussa 2026, vähällä käytöllä, hyvä kunto.",
-       "url": "https://www.tori.fi/recommerce/forsale/item/48660874",
-       "why": "Varmasti vol. 5, noin 4 kk vanha ja vähän käytetty, 15 € halvempi kuin muut viikon vol. 5 -ilmoitukset. Kysy väri sekä kuuluvatko kosteussuoja ja kuomu mukaan."
+       "date": "2026-10-21",
+       "condition": "Vol. 5, ostettu 6/2026; kuntoa ei kerrota tarkemmin.",
+       "url": "https://www.tori.fi/recommerce/forsale/item/48853661",
+       "why": "Ilmoituksen mukaan vol. 5, noin 4 kk vanha ja 15 € halvempi kuin Leopard Cream -ilmoitus. Todennäköisesti sama myyjä ja sama hinta kuin viime kerran valinnalla. Kysy väri, kunto sekä kuuluvatko kosteussuoja ja kuomu mukaan."
       }
      }
     }
@@ -835,8 +897,8 @@
        "shop": "Ensipeti",
        "price": 85,
        "url": "http://ensipeti.fi/product/55/ensisanky",
-       "checked": "2026-10-19",
-       "note": "Ensisänky musta tai valkoinen, vuokra 4 kk; patja +8 €; palautus ilmainen"
+       "checked": "2026-10-22",
+       "note": "Ensisänky musta tai valkoinen, vuokra 4 kk (jatkettavissa); patja +8 €; toimitus vain Suomeen, 2–5 arkipäivää"
       }
      ],
      "history": [
@@ -847,14 +909,18 @@
       {
        "date": "2026-10-19",
        "price": 85
+      },
+      {
+       "date": "2026-10-22",
+       "price": 85
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "n": 0
       },
-      "warning": "Uudellamaalla ei ollut yhtään Ensipetin Ensisänky-ilmoitusta (haut \"ensisänky\" ja \"ensipeti\"); Ensisänkyä voi vain vuokrata. Torissa vuokrataan muiden merkkien ensisänkyjä halvemmalla (esim. 35–45 €/4 kk) ja käytettyjä myydään 30–160 €."
+      "warning": "Uudellamaalla ei ollut yhtään Ensipetin Ensisänky-ilmoitusta (haut \"ensisänky\" ja \"ensipeti\"). Ensisänkyä voi vain vuokrata. Torissa vuokrataan muiden merkkien ensisänkyjä halvemmalla (esim. 35–45 €/4 kk), ja käytettyjä myydään viikon ilmoituksissa 30–160 €."
      }
     }
    ],
@@ -879,15 +945,15 @@
        "shop": "Wauva",
        "price": 99.9,
        "url": "https://www.wauva.com/tuotteemme/elodie-details-hoitolaukku-wide-black/p/50670212120NA/",
-       "checked": "2026-10-19",
-       "note": "Elodie Details Wide, Black, 1 kpl varastossa"
+       "checked": "2026-10-22",
+       "note": "Elodie Details Wide, Black; poistuva tuote, 1 kpl varastossa, ei alennusta"
       },
       {
        "shop": "Boozt",
        "price": 99.9,
        "url": "https://www.boozt.com/eu/en/elodie-details/changing-bag-wide-frame-black_32746749/228916157",
-       "checked": "2026-10-19",
-       "note": "Changing Bag Wide Frame, Black, varastossa, ilmainen toimitus yli 69 €"
+       "checked": "2026-10-22",
+       "note": "Changing Bag Wide Frame, Black, varastossa"
       }
      ],
      "history": [
@@ -898,14 +964,18 @@
       {
        "date": "2026-10-19",
        "price": 99.9
+      },
+      {
+       "date": "2026-10-22",
+       "price": 99.9
       }
      ],
      "tori": {
-      "checked": "2026-10-19",
+      "checked": "2026-10-22",
       "range": {
        "n": 0
       },
-      "warning": "Uudellamaalla ei ollut viimeisen 7 päivän aikana yhtään Elodie Details Wide -hoitolaukkua (uusin Elodie-hoitolaukku 29.9.)."
+      "warning": "Uudellamaalla ei ollut viimeisen 7 päivän aikana yhtään Elodie Details Wide -hoitolaukkua (haut \"elodie hoitolaukku\" ja \"elodie details\"; uusin Elodie-hoitolaukku 29.9.)."
      }
     }
    ],
@@ -1126,7 +1196,7 @@
   }
  ],
  "meta": {
-  "lastRun": "2026-10-19T18:06:05+03:00",
+  "lastRun": "2026-10-22T18:06:46+03:00",
   "campaigns": [
    {
     "end": "2026-11-29",
@@ -1136,12 +1206,12 @@
    {
     "end": "2026-11-30",
     "name": "Black Friday 27.11.",
-    "note": "Lastentarvikeketjut ja tavaratalot alentavat yleensä myös vaunuja ja kaukaloita. Isoja ostoksia kannattaa lykätä tähän asti, jos aikaa riittää."
+    "note": "Prisma ja Cybex vahvistavat Black Fridayn 27.11. ja Cyber Mondayn 30.11. Lastentarvikeketjut alentavat yleensä myös vaunuja ja kaukaloita, joten isoja ostoksia kannattaa lykätä tähän asti."
    },
    {
     "end": "2027-01-10",
     "name": "Joulun jälkeiset alennukset",
-    "note": "Joulun jälkeen tulee yleensä toinen alennusikkuna, vielä hyvissä ajoin ennen laskettua aikaa."
+    "note": "Arvio: joulun jälkeen tulee yleensä toinen alennusikkuna, vielä hyvissä ajoin ennen laskettua aikaa."
    }
   ]
  }
