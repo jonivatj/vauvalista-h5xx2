@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-24T17:00:21+00:00",
+ "generatedAt": "2026-10-25T11:30:11+00:00",
  "items": [
   {
    "name": "Leikkimatto tai vauvajumppa",
@@ -220,6 +220,46 @@
        "url": "https://www.tori.fi/recommerce/forsale/item/48873294",
        "why": "Edelleen myynnissä ja ainoa edullinen ilmoitus, joka kertoo sukupolven (V3): mukana mini- ja isompi koko jatkopaloineen, pyörät ja patjat molempiin kokoihin, 400 € (uusi sänky yksin 669 €). Rikkinäinen pyörä pitää korvata. Vaihtoehto: 375 € Porvoossa (48611887, täysin ehjä, patja ja suojus mukana, versio ei selviä) tai 500 € Vantaalla (48926941, patja ja minin osat mukana, yksi ruuvi puuttuu)."
       }
+     }
+    }
+   ],
+   "favorite": 0
+  },
+  {
+   "name": "BabyBjörn sitteri",
+   "status": "ostettu",
+   "method": "kaytettyna",
+   "timing": "ennen",
+   "paidPrice": 70,
+   "alts": [
+    {
+     "model": "BabyBjörn Bouncer Balance Soft Woven -sitteri",
+     "variant": "jersey light beige",
+     "price": 182.4,
+     "shop": "Verkkokauppa.com",
+     "url": "https://www.verkkokauppa.com/fi/product/922411/BabyBjorn-Bouncer-Balance-Soft-Woven-sitteri-jersey-light-be",
+     "caveat": "Kampanjahinta 182,40 € voimassa 31.10.2026 asti, normaalihinta 228 €.",
+     "offers": [
+      {
+       "shop": "Verkkokauppa.com",
+       "price": 182.4,
+       "url": "https://www.verkkokauppa.com/fi/product/922411/BabyBjorn-Bouncer-Balance-Soft-Woven-sitteri-jersey-light-be",
+       "checked": "2026-10-25",
+       "note": "Bouncer Balance Soft Woven, jersey light beige; kampanjahinta 31.10. asti (norm. 228,00 €)"
+      }
+     ],
+     "history": [
+      {
+       "date": "2026-10-25",
+       "price": 182.4
+      }
+     ],
+     "tori": {
+      "checked": "2026-10-25",
+      "range": {
+       "n": 0
+      },
+      "warning": "Haku ei löytänyt tori.fi-ilmoituksia tästä mallista."
      }
     }
    ],
@@ -993,6 +1033,21 @@
        "why": "Edelleen myynnissä. Ilmoituksen mukaan vol. 5 ja noin 4 kk vanha, 15 € halvempi kuin Leopard Cream -ilmoitus. Kysy väri, kunto sekä kuuluvatko kosteussuoja ja kuomu mukaan."
       }
      }
+    }
+   ],
+   "favorite": 0
+  },
+  {
+   "name": "Syöttötuolin lisäosa (istuin+tarjotin+pehmusteet)",
+   "status": "ostettu",
+   "method": "kaytettyna",
+   "timing": "ennen",
+   "paidPrice": 65,
+   "alts": [
+    {
+     "model": "Baby set",
+     "offers": [],
+     "history": []
     }
    ],
    "favorite": 0
