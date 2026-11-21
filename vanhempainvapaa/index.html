@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Vanhempainvapaan laskuri</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: step 1 basics (two fields per parent) → step 2 year calendar of month tiles with a sticky status rail → guidance. Clicking a tile opens a question dialog. */
+:root{
+  --bg:#EEF2F4; --surface:#FFFFFF; --sunk:#F5F8F9; --ink:#17212B; --muted:#56626E; --line:#D3DBE1; --dim:#E4E9ED;
+  --a:#0D6A6E; --a-soft:#D7ECEC; --b:#A9426A; --b-soft:#F4DDE6; --rr:#5E7E2C; --rr-soft:#E3EDD2;
+  --kht:#A86F0B; --kht-soft:#F6E8C9; --loma:#2B7A4B; --loma-soft:#DDF1E4; --err:#B3261E; --err-soft:#FBE3E0; --warn:#8A5A00; --warn-soft:#FBF0D6; --ok:#2B7A4B; --ok-soft:#DDF1E4;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Public Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --r:10px; --shadow:0 18px 50px rgba(15,25,35,.22);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F151B; --surface:#17202A; --sunk:#131B23; --ink:#E5EBF0; --muted:#9AA7B3; --line:#2A3643; --dim:#1B242E;
+  --a:#5BC0C4; --a-soft:#163638; --b:#E68CAE; --b-soft:#3A1E2A; --rr:#A3C46B; --rr-soft:#26331A;
+  --kht:#E4B252; --kht-soft:#3A2D12; --loma:#74CC97; --loma-soft:#163323; --err:#F2948B; --err-soft:#3E1C1A; --warn:#E8BC5E; --warn-soft:#3A2E14; --ok:#74CC97; --ok-soft:#163323;
+  --shadow:0 18px 50px rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F151B; --surface:#17202A; --sunk:#131B23; --ink:#E5EBF0; --muted:#9AA7B3; --line:#2A3643; --dim:#1B242E;
+  --a:#5BC0C4; --a-soft:#163638; --b:#E68CAE; --b-soft:#3A1E2A; --rr:#A3C46B; --rr-soft:#26331A;
+  --kht:#E4B252; --kht-soft:#3A2D12; --loma:#74CC97; --loma-soft:#163323; --err:#F2948B; --err-soft:#3E1C1A; --warn:#E8BC5E; --warn-soft:#3A2E14; --ok:#74CC97; --ok-soft:#163323;
+  --shadow:0 18px 50px rgba(0,0,0,.5); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:28px 64px}
+.wrap{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:30px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,4.4vw,42px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:22px;font-weight:700}
+h3{font-size:16px;font-weight:700}
+p{margin:0}
+.lede{color:var(--muted);max-width:68ch}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.hint{font-size:12.5px;color:var(--muted);line-height:1.45}
+section{display:flex;flex-direction:column;gap:14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.stephead{display:flex;gap:12px;align-items:baseline}
+.stepno{font-family:var(--f-mono);font-size:13px;font-weight:500;color:var(--surface);background:var(--ink);border-radius:999px;width:26px;height:26px;display:inline-grid;place-items:center;flex:none;transform:translateY(-2px)}
+
+/* step 1 */
+.basics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.basics{grid-template-columns:1fr}}
+.pcard{border-top:4px solid var(--c)}
+.pcard h3{color:var(--c)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.fields .full{grid-column:1/-1}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13.5px;font-weight:600;min-width:0}
+label.f .hint{font-weight:400}
+input,select{font:inherit;font-size:15px;color:var(--ink);background:var(--sunk);border:1px solid var(--line);border-radius:7px;padding:8px 10px;width:100%;min-width:0}
+input[type=checkbox],input[type=radio]{width:auto}
+input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+details.more{margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
+details.more>summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--muted);list-style:none}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::before{content:"▸ ";}
+details.more[open]>summary::before{content:"▾ ";}
+.check{display:flex;gap:8px;align-items:center;font-size:13.5px;font-weight:600}
+.est{margin-top:12px;padding:10px 12px;border-radius:8px;background:var(--sunk);display:grid;grid-template-columns:1fr auto;gap:3px 12px;font-size:13px}
+.est b{font-family:var(--f-mono);font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+button{font:inherit;cursor:pointer;color:inherit}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+/* step 2 layout */
+.plan{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start}
+@media (max-width:1000px){.plan{grid-template-columns:1fr}}
+.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);display:flex;flex-direction:column;gap:14px}
+@media (max-width:1000px){.rail{position:static;order:-1}}
+.presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:700px){.presets{grid-template-columns:1fr}}
+.preset{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.preset:hover{border-color:var(--ink)}
+.preset b{font-size:14.5px}
+.preset span{font-size:12.5px;color:var(--muted);line-height:1.4}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.yearblock{display:flex;flex-direction:column;gap:10px}
+.yearblock h3{font-size:20px}
+.months{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.months{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:520px){.months{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.mbox{position:relative;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:10px 11px 9px;display:flex;flex-direction:column;gap:7px;min-height:150px;min-width:0;transition:border-color .12s, transform .12s}
+.mbox:hover{border-color:var(--ink);transform:translateY(-1px)}
+.mbox.off{background:var(--dim);border-style:dashed;cursor:default;opacity:.55}
+.mbox.off:hover{transform:none;border-color:var(--line)}
+.mbox.due{box-shadow:inset 0 0 0 2px var(--ink)}
+.mbox.bad{border-color:var(--err);box-shadow:inset 0 0 0 1px var(--err)}
+.mtop{display:flex;justify-content:space-between;gap:6px;align-items:baseline}
+.mname{font-family:var(--f-display);font-weight:700;font-size:16px}
+.mage{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.flag{font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:var(--sunk);border:1px solid var(--line);color:var(--muted);align-self:flex-start}
+.flag.err{background:var(--err);color:var(--surface);border-color:var(--err)}
+.prow{display:flex;flex-direction:column;gap:3px;min-width:0}
+.plabel{font-size:11.5px;display:flex;gap:5px;align-items:center;min-width:0}
+.plabel i{width:8px;height:8px;border-radius:50%;flex:none}
+.plabel span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.sbar{display:flex;height:8px;border-radius:3px;overflow:hidden;background:var(--sunk);border:1px solid var(--line)}
+.sbar i{display:block;height:100%}
+.seg-rr{background:var(--rr)} .seg-loma{background:var(--loma)} .seg-kht{background:var(--kht)} .seg-unpaid{background:var(--muted)}
+.mmoney{margin-top:auto;display:flex;justify-content:space-between;gap:6px;font-family:var(--f-mono);font-size:12.5px;font-variant-numeric:tabular-nums}
+.neg{color:var(--err)} .pos{color:var(--ok)}
+.empty{font-size:12px;color:var(--muted)}
+
+/* rail */
+.next{border-left:4px solid var(--ink)}
+.next ol{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.next li button{border:none;background:none;padding:0;color:var(--a);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.meter{display:flex;flex-direction:column;gap:5px}
+.meter + .meter{margin-top:12px}
+.mhead{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;flex-wrap:wrap}
+.mhead strong{color:var(--c)}
+.bar{position:relative;height:14px;border-radius:5px;background:var(--sunk);border:1px solid var(--line);overflow:hidden}
+.bar i{position:absolute;top:0;bottom:0;left:0;background:var(--c)}
+.bar i.over{background:repeating-linear-gradient(45deg,var(--c) 0 5px,transparent 5px 9px)}
+.bar .tick{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink)}
+.fig{display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.fig:last-child{border-bottom:none}
+.fig b{font-family:var(--f-mono);font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.msgs{display:flex;flex-direction:column;gap:6px}
+.msg{display:flex;gap:8px;align-items:flex-start;padding:7px 9px;border-radius:7px;font-size:13px;line-height:1.4}
+.msg::before{content:attr(data-tag);font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:1px 5px;border-radius:4px;flex:none;margin-top:1px}
+.msg.err{background:var(--err-soft)} .msg.err::before{background:var(--err);color:var(--surface)}
+.msg.warn{background:var(--warn-soft)} .msg.warn::before{background:var(--warn);color:var(--surface)}
+.msg.info{background:var(--sunk);border:1px solid var(--line)} .msg.info::before{background:var(--muted);color:var(--surface)}
+.msg.ok{background:var(--ok-soft)} .msg.ok::before{background:var(--ok);color:var(--surface)}
+
+/* years table */
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:560px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+thead th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+td{font-family:var(--f-mono)}
+td:first-child{font-family:var(--f-display);font-weight:700}
+
+/* dialog */
+.overlay{position:fixed;inset:0;background:rgba(10,16,22,.5);display:flex;align-items:flex-start;justify-content:center;z-index:50;overflow-y:auto;
+  padding:max(20px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(20px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px))}
+.dlg{background:var(--surface);border-radius:14px;box-shadow:var(--shadow);width:100%;max-width:620px;display:flex;flex-direction:column;margin:auto 0}
+.dhead{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.dhead h2{flex:1;font-size:22px}
+.dhead .sub{font-size:13px;color:var(--muted);font-family:var(--f-body);font-weight:400;margin-top:3px}
+.icon{width:36px;height:36px;border-radius:999px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;font-size:17px;flex:none}
+.icon:disabled{opacity:.35;cursor:default}
+.dbody{padding:16px 18px;display:flex;flex-direction:column;gap:20px}
+.q{display:flex;flex-direction:column;gap:10px}
+.q h3{color:var(--c);font-size:17px}
+.note{font-size:13px;padding:8px 10px;border-radius:7px;background:var(--rr-soft)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (max-width:520px){.opts{grid-template-columns:1fr}}
+.opt{display:flex;gap:9px;align-items:flex-start;border:1px solid var(--line);border-radius:9px;padding:9px 10px;cursor:pointer;background:var(--surface)}
+.opt input{margin-top:3px;accent-color:var(--c)}
+.opt b{display:block;font-size:14px}
+.opt span{display:block;font-size:12px;color:var(--muted);line-height:1.35}
+.opt:has(input:checked){border-color:var(--c);background:var(--c-soft)}
+.opt.dis{opacity:.5;cursor:not-allowed}
+.follow{display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:9px;background:var(--sunk);border:1px solid var(--line)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;align-self:flex-start;flex-wrap:wrap}
+.seg button{border:none;background:none;padding:6px 12px;font-size:13.5px;font-weight:600}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--surface)}
+.rangerow{display:flex;gap:10px;align-items:center}
+.rangerow input[type=range]{flex:1;accent-color:var(--c);padding:0}
+.rangerow input[type=number]{width:74px;text-align:right}
+.dfoot{padding:14px 18px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px;background:var(--sunk);border-radius:0 0 14px 14px}
+.preview{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:14px}
+.preview b{font-family:var(--f-mono);font-weight:500}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--surface);padding:10px 14px;border-radius:999px;font-size:14px;display:flex;gap:12px;align-items:center;z-index:60;box-shadow:var(--shadow)}
+.linkbtn{border:none;background:none;padding:0;color:var(--a);font-weight:600;text-decoration:underline;text-underline-offset:2px;font-size:inherit}
+.toast button{background:none;border:none;color:var(--surface);text-decoration:underline;font-weight:700}
+
+/* guidance */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+.rules dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:10px 0 0}
+.rules dt{font-family:var(--f-mono);font-weight:500;color:var(--a);white-space:nowrap}
+.rules dd{margin:0;min-width:0}
+details.tip{border-bottom:1px solid var(--line);padding:10px 0}
+details.tip:last-child{border-bottom:none}
+details.tip summary{cursor:pointer;font-weight:600;list-style:none;display:flex;gap:10px;align-items:baseline}
+details.tip summary::-webkit-details-marker{display:none}
+details.tip summary::before{content:"+";font-family:var(--f-mono);color:var(--a);width:12px;flex:none}
+details.tip[open] summary::before{content:"–"}
+details.tip p{margin-top:6px;color:var(--muted);max-width:70ch;padding-left:22px}
+.src{font-size:13px;color:var(--muted)}
+.src a{color:var(--a)}
+textarea{font-family:var(--f-mono);font-size:12px;width:100%;min-height:64px;background:var(--sunk);color:var(--ink);border:1px solid var(--line);border-radius:7px;padding:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header style="display:flex;flex-direction:column;gap:10px">
+  <p class="eyebrow">Kelan säännöt, summat ja verot 2026</p>
+  <h1>Meidän vanhempainvapaat</h1>
+  <p class="lede">Kaksi vaihetta: kerro laskettu aika ja palkkanne, sitten klikkaa kalenterista kuukausia ja vastaa kysymyksiin. Laskuri hoitaa Kelan päivärahat, verot ja kiintiöiden tarkistukset, ja kertoo oikeassa reunassa, mitä kannattaa tehdä seuraavaksi.</p>
+</header>
+
+<section>
+  <div class="stephead"><span class="stepno">1</span><h2>Perustiedot</h2></div>
+  <div class="basics">
+    <div class="panel">
+      <h3>Vauva</h3>
+      <div class="fields">
+        <label class="f full">Laskettu aika<input type="date" id="due"><span class="hint">Neuvolasta saatu laskettu aika. Laskuri olettaa, että vauva syntyy tänä päivänä.</span></label>
+        <label class="f full">Montako vauvaa odotatte?<select id="kids"><option value="1">Yksi</option><option value="2">Kaksoset</option><option value="3">Kolmoset</option></select><span class="hint">Kaksosista ja kolmosista saa lisää vapaapäiviä.</span></label>
+      </div>
+      <details class="more"><summary>Tarkenna (valinnainen)</summary>
+        <div class="fields">
+          <label class="f full">Milloin synnyttävä vanhempi jää raskausvapaalle?<select id="rrStart"></select><span class="hint">Raskausraha alkaa 30–14 arkipäivää ennen laskettua aikaa. Yleisin valinta on 30.</span></label>
+          <label class="f">Muita alle 3-vuotiaita kotona<input type="number" id="sib3" min="0" max="3" step="1"><span class="hint">Vain jos he ovat kotihoidossa, ei päiväkodissa.</span></label>
+          <label class="f">Muita 3–6-vuotiaita kotona<input type="number" id="sib36" min="0" max="3" step="1"><span class="hint">Nostaa kotihoidon tukea.</span></label>
+          <label class="f full">Lomasaldojen päivämäärä<select id="vacDate"></select><span class="hint">Päivä, jolle vanhempien lomasaldot on ilmoitettu. Lomavuosi vaihtuu 1.4., joten 1.3. on hyvä hetki tarkistaa saldo palkkakuitista.</span></label>
+          <label class="f full">Kunnan kotihoidon tuen lisä €/kk<input type="number" id="kunta" min="0" step="10"><span class="hint">Osa kunnista maksaa kotihoidon tuen päälle kuntalisää. Tarkista summa kotikuntasi sivuilta tai <a href="https://laskurit.kela.fi/lastenhoidon-tukien-maaran-laskuri" target="_blank" rel="noopener" style="color:var(--a)">Kelan laskurista</a>. Jätä 0, jos et tiedä.</span></label>
+        </div>
+      </details>
+    </div>
+    <div class="panel pcard" style="--c:var(--a)" id="cardA"></div>
+    <div class="panel pcard" style="--c:var(--b)" id="cardB"></div>
+  </div>
+</section>
+
+<section>
+  <div class="stephead"><span class="stepno">2</span><h2>Suunnittele vapaat kalenteriin</h2></div>
+  <div class="plan">
+    <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <p class="hint">Aloita valmiista pohjasta ja muokkaa sitten yksittäisiä kuukausia. Pohja korvaa nykyisen suunnitelman, mutta voit kumota sen.</p>
+        <div class="presets" id="presets">
+          <button class="preset" data-p="even"><b>Tasajako</b><span>Kumpikin pitää omat 160 päivää. Toinen vanhempi on ensin 18 päivää kotona vauvan syntyessä.</span></button>
+          <button class="preset" data-p="max"><b>Synnyttävä vanhempi pidempään</b><span>Toinen vanhempi luovuttaa enimmäismäärän (63 pv). Synnyttävä vanhempi on kotona noin 10 kk.</span></button>
+          <button class="preset" data-p="kht"><b>Lisäksi kotihoidon tuki</b><span>Kuten edellä, ja sen jälkeen synnyttävä vanhempi kotihoidon tuella, kunnes lapsi on 1,5-vuotias.</span></button>
+        </div>
+      </div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--rr)"></i>Raskausraha</span>
+        <span><i class="sw" style="background:var(--a)"></i><span class="nA"></span> vapaalla</span>
+        <span><i class="sw" style="background:var(--b)"></i><span class="nB"></span> vapaalla</span>
+        <span><i class="sw" style="background:var(--kht)"></i>Kotihoidon tuki</span>
+        <span><i class="sw" style="background:var(--loma)"></i>Vuosiloma / säästövapaa</span>
+        <span>Tyhjä palkki = töissä</span>
+      </div>
+      <div id="calendar" style="display:flex;flex-direction:column;gap:22px"></div>
+    </div>
+    <aside class="rail">
+      <div class="panel" id="syncPanel"><h3>Tallennus</h3>
+        <p class="hint" id="syncStatus" style="margin-top:6px">Haetaan tallennettua suunnitelmaa…</p>
+        <div class="row" style="margin-top:10px"><button class="btn primary" id="saveBtn" disabled>Tallenna</button><span class="hint" id="syncErr"></span></div>
+        <div class="msg warn" data-tag="Huom" id="syncBanner" hidden style="margin-top:10px"><span><span id="syncBannerText"></span><span class="row" style="margin-top:8px"><button class="btn" id="takeCloud">Ota tallennettu versio</button><button class="btn" id="keepLocal">Pidä omat muutokset</button></span></span></div>
+      </div>
+      <div class="panel next"><h3>Seuraavaksi</h3><ol id="next"></ol></div>
+      <div class="panel"><h3>Vapaapäivät</h3><div id="meters" style="margin-top:10px"></div></div>
+      <div class="panel"><h3>Vuosilomat</h3><div id="vac" style="margin-top:8px"></div></div>
+      <div class="panel"><h3>Raha koko jaksolla</h3><div id="money" style="margin-top:6px"></div></div>
+      <div class="panel"><h3>Tarkistukset</h3><div class="msgs" id="msgs" style="margin-top:10px"></div></div>
+    </aside>
+  </div>
+</section>
+
+<section>
+  <div class="stephead"><span class="stepno">3</span><h2>Vuodet, verot ja lomat</h2></div>
+  <div class="panel">
+    <p class="hint" style="margin-bottom:8px">Nettotulot kalenterivuosittain. Veroaste lasketaan koko vuoden tuloista, joten pienempien tulojen vuonna vero on pienempi. Jos arvio on selvästi verokorttianne pienempi, hakekaa muutosverokortti OmaVerossa.</p>
+    <div class="tablewrap"><table id="years"></table></div>
+  </div>
+  <div class="panel">
+    <h3>Vuosilomat lomavuosittain</h3>
+    <p class="hint" style="margin:6px 0 8px">Lomavuosi alkaa 1.4. Kunakin lomavuonna käytettävissä ovat edellisiltä vuosilta jääneet päivät ja edellisenä lomavuonna kertyneet päivät. Lomaa kertyy kuukausilta, joilla on vähintään 14 työ-, loma- tai vanhempainvapaapäivää. Raskaus- ja vanhempainvapaa kerryttävät lomaa enintään 160 arkipäivän ajalta. Kotihoidon tuen aika ja palkaton vapaa eivät kerrytä lomaa.</p>
+    <div class="tablewrap"><table id="vacYears"></table></div>
+  </div>
+</section>
+
+<section class="cols">
+  <div class="panel rules">
+    <h2>Näin kiintiöt toimivat</h2>
+    <dl>
+      <dt>40 pv</dt><dd>Raskausraha synnyttävälle vanhemmalle, alkaa 30–14 arkipäivää ennen laskettua aikaa. Ei kuluta vanhempainrahakiintiötä.</dd>
+      <dt>160 + 160</dt><dd>Kummallakin vanhemmalla on oma 160 arkipäivän kiintiö (noin 6,5 kk). Monikkoperheessä +84 päivää jokaisesta lisälapsesta, jaettuna tasan.</dd>
+      <dt>63 pv</dt><dd>Omasta kiintiöstä voi luovuttaa enintään 63 arkipäivää toiselle (monikoilla +42 per lisälapsi). Luovutettuja päiviä ei saa takaisin.</dd>
+      <dt>18 pv</dt><dd>Vanhemmat voivat olla vapaalla samaan aikaan enintään 18 arkipäivää (monikoilla +90 per lisälapsi).</dd>
+      <dt>2 v</dt><dd>Kaikki vanhempainrahapäivät on käytettävä lapsen 2-vuotispäivään mennessä. Käyttämättömät menetetään.</dd>
+      <dt>½ pv</dt><dd>Osittainen vapaa: töitä enintään 5 h/pv, Kela maksaa puolet päivärahasta ja kiintiöstä kuluu puoli päivää.</dd>
+      <dt>16 pv</dt><dd>Kummankin 16 ensimmäistä vanhempainrahapäivää ja koko raskausraha maksetaan korotettuna (90 % tuloista).</dd>
+      <dt>4 × 12</dt><dd>Työnantaja voi rajata vapaan enintään neljään vähintään 12 arkipäivän jaksoon, ellei toisin sovita.</dd>
+      <dt>6 kk – 3 v</dt><dd>Kotihoidon tukea saa, kun lapsi on 160 arkipäivän ikäinen eikä samaan aikaan makseta vanhempainrahaa. Alle kuukauden jaksoilta tukea ei makseta.</dd>
+      <dt>Loma</dt><dd>Vuosilomalain mukaan lomaa kertyy 2,5 arkipäivää kuukaudessa (alle vuoden työsuhteessa 2), ja lauantaitkin kuluttavat lomaa. Valtiolla, kunnilla ja joillakin aloilla loma lasketaan työpäivinä (ma–pe), jolloin viikon loma vie 5 päivää. Laskurissa yksikön voi valita kummallekin vanhemmalle erikseen. Raskaus- ja vanhempainvapaa kerryttävät lomaa enintään 160 arkipäivän ajalta vanhempaa kohden, kotihoidon tuen aikainen hoitovapaa ei. Kuluvana lomavuonna (1.4.–31.3.) ansaitut päivät tulevat käyttöön seuraavana 1.4.</dd>
+      <dt>ma–la</dt><dd>Arkipäiviä ovat maanantai–lauantai ilman arkipyhiä, noin 25 kuukaudessa.</dd>
+    </dl>
+  </div>
+  <div class="panel">
+    <h2>Fiksuja asioita talouden kannalta</h2>
+    <div style="margin-top:6px">
+      <details class="tip" open><summary>Käyttäkää molemmat omat päivänne</summary><p>Omavaraisuushaasteen blogissa julkaistuissa Suomen Ekonomien laskelmissa perhe sai kahden vuoden aikana lähes aina enemmän nettotuloja, kun kumpikin vanhempi käytti omat päivänsä, kuin jos toinen jäi kotihoidon tuelle. Ero kääntyi niukasti toisin päin vain, kun suurempituloinen tienasi selvästi enemmän (7 000 vs. 4 000 €/kk), ja silloinkin noin 460 euroa kahdessa vuodessa. Vertailkaa omilla luvuillanne valmiiden pohjien avulla.</p></details>
+      <details class="tip"><summary>Selvittäkää työehtosopimuksen palkalliset päivät</summary><p>Monessa TES:ssä työnantaja maksaa palkkaa osan vapaasta, esimerkiksi kunta-alalla synnyttävälle 40 raskausvapaan ja 32 vanhempainvapaan päivää ja toiselle vanhemmalle 32 päivää. Ehtoina on yleensä vähintään 2 kk kestänyt työsuhde ja ilmoitus 2 kk ennen. Kysy palkkahallinnosta tai katso oman alasi TES:stä ja merkitse päivät kohtaan 1.</p></details>
+      <details class="tip"><summary>Tulot ennen vapaata ratkaisevat päivärahan</summary><p>Päiväraha lasketaan 12 kuukauden tuloista. Jakso päättyy kuukautta ennen vapaan alkua edeltävään kuukauteen. Ylityöt, bonukset ja palkankorotukset tällä jaksolla nostavat rahaa koko vapaan ajaksi. Toisen vanhemman jakso määräytyy hänen oman vapaansa alusta.</p></details>
+      <details class="tip"><summary>Seuraava lapsi alle 3 vuoden päästä</summary><p>Jos seuraavan lapsen laskettu aika on ennen kuin edellinen täyttää 3 vuotta, päiväraha voidaan laskea edellisen lapsen tulojen mukaan. Kela valitsee edullisemman vaihtoehdon itse. Tämä suojaa, jos tulot ovat välissä laskeneet.</p></details>
+      <details class="tip"><summary>Hakekaa muutosverokortti</summary><p>Kun vuoden tulot laskevat, oikea veroprosentti laskee. Laskuri arvioi vuoden veroasteen kohdassa 3. Jos se on selvästi verokorttianne pienempi, päivittäkää verokortti OmaVerossa, niin rahaa jää heti enemmän käteen veronpalautuksen odottamisen sijaan.</p></details>
+      <details class="tip"><summary>Puskuri ensimmäisiin kuukausiin</summary><p>Kela maksaa vanhempainrahan jälkikäteen enintään 25 arkipäivän erissä. Jos työnantaja maksaa palkkaa, päätös odottaa myös työnantajan hakemusta. Hakemus on jätettävä 2 kuukauden kuluessa kunkin jakson alusta.</p></details>
+      <details class="tip"><summary>Vuosiloma ja säästövapaat vapaan jatkeena</summary><p>Vanhempainvapaa kerryttää vuosilomaa, kotihoidon tuen ajan hoitovapaa ei. Toinen vanhempi voi olla vuosilomalla samaan aikaan kun toinen on vanhempainvapaalla, eikä se kuluta yhteisiä päiviä. Omavaraisuushaasteen kirjoittaja jatkoi vapaataan säästetyillä lomilla ja saldovapailla täydellä palkalla.</p></details>
+      <details class="tip"><summary>Kotihoidon tuki on selvästi pienempi</summary><p>Hoitoraha on 377,68 €/kk ja hoitolisä enintään 202,12 €/kk perheen bruttotuloista riippuen. Hoitolisä loppuu jo noin 3 580 €/kk bruttotuloilla kolmen hengen perheessä. Jos vanhempainrahajaksojen väliin jää alle kuukauden rako, siltä ajalta ei saa mitään.</p></details>
+      <details class="tip"><summary>Hakekaa varhaiskasvatuspaikka ajoissa</summary><p>Varhaiskasvatuspaikkaa haetaan yleensä viimeistään 4 kuukautta ennen tarvetta. Paikka säilyy, jos lapsen yhtäjaksoinen poissaolo vanhempainvapaan takia on enintään 13 viikkoa.</p></details>
+      <details class="tip"><summary>Eläke, ura ja kulujen jako</summary><p>Pitkä poissaolo hidastaa usein palkkakehitystä ja eläkekertymää. Omavaraisuushaasteen keskustelussa nousi esiin ajatus kompensoida pidempään kotona olevalle vanhemmalle menetettyä eläkettä tai sopia kulujen jaosta vapaan ajaksi. Sopikaa tästä etukäteen.</p></details>
+      <details class="tip"><summary>Äitiysavustus</summary><p>Kelan äitiysavustus on 1.4.2026 alkaen 210 €, rahana tai äitiyspakkauksena.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Laskennan oletukset ja lähteet</h2>
+  <p class="src">Päiväraha: Kelan 2026 kaavat, vuositulosta 9,07 % vakuutusmaksuvähennys, minimi 31,99 €/arkipäivä. Vuositulo = 12 × kuukausipalkka + lomaraha + muut työtulot. Verot: arvio vuoden 2026 perusteilla kalenterivuosittain (valtion asteikko, kunnallisvero, sairaanhoitomaksu 1,10 % palkasta ja 1,49 % etuuksista, perusvähennys, työtulovähennys lapsikorotuksineen, Yle-vero). Palkasta vähennetään lisäksi palkansaajan maksut 9,07 %. Palkka arkipäivää kohden = kuukausipalkka / kuukauden arkipäivät, normaali työpäivä 7,5 h. Mukana ei ole lapsilisää eikä lomarahan maksukuukautta. Yhteiset päivät arvioidaan kuukausitasolla vähimmäismääränä. Laskuri on suunnittelun apuväline, ei Kelan tai Verohallinnon päätös.</p>
+  <p class="src" style="margin-top:8px">Lähteet: <a href="https://www.kela.fi/vanhempainvapaalla" target="_blank" rel="noopener">Kela: Vanhempainvapaalla</a> · <a href="https://www.kela.fi/vuositulot" target="_blank" rel="noopener">Kela: Vuositulo</a> · <a href="https://www.kela.fi/kotihoidontuki" target="_blank" rel="noopener">Kela: Kotihoidon tuki</a> · <a href="https://www.veronmaksajat.fi/neuvot/henkiloverotus/tyo-elake-ja-etuudet/ansiotulojen-verot-ja-maksut/valtion-tulovero/" target="_blank" rel="noopener">Veronmaksajat: Valtion tulovero</a> · <a href="https://www.veronmaksajat.fi/neuvot/henkiloverotus/tyo-elake-ja-etuudet/verovahennykset/2026/ansiotulosta-tehtavat-vahennykset-2026/" target="_blank" rel="noopener">Veronmaksajat: Vähennykset 2026</a> · <a href="https://www.veronmaksajat.fi/neuvot/henkiloverotus/tyo-elake-ja-etuudet/ansiotulojen-verot-ja-maksut/2026/sairausvakuutusmaksut-2026/" target="_blank" rel="noopener">Veronmaksajat: Sairausvakuutusmaksut 2026</a> · <a href="https://www.omavaraisuushaaste.com/vanhempainvapaiden-jakaminen/" target="_blank" rel="noopener">Omavaraisuushaaste: Näin jaamme vanhempainvapaat</a></p>
+  <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
+    <h3>Jaa suunnitelma puolisolle</h3>
+    <p class="hint">Suunnitelma tallentuu vain tähän selaimeen. Siirrä se toiselle laitteelle tai puolisolle kopioimalla koodi ja liittämällä se toisessa selaimessa tähän kenttään, sitten "Lataa".</p>
+    <textarea id="code" aria-label="Suunnitelmakoodi"></textarea>
+    <div class="row"><button class="btn" id="copy">Kopioi koodi</button><button class="btn" id="load">Lataa liitetty koodi</button><span class="hint" id="codeMsg"></span></div>
+  </div>
+</section>
+</div>
+
+<div class="overlay" id="overlay" hidden></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+/* ================= constants ================= */
+const K={MIN:31.99,N1:13712,N2:45744,N3:70379,K1:10664,DED:0.0907,HR:377.68,SIB3:113.07,SIB36:72.66,HL:202.12,
+  HLT:{2:[1160,.115],3:[1430,.094],4:[1700,.079]}};
+const TAXS=[[0,0,.1264],[22000,2780.80,.19],[32600,4794.80,.3025],[40100,7063.55,.3325],[52100,11053.55,.375]];
+const MON=["tammikuu","helmikuu","maaliskuu","huhtikuu","toukokuu","kesäkuu","heinäkuu","elokuu","syyskuu","lokakuu","marraskuu","joulukuu"];
+const MONS=["Tammi","Helmi","Maalis","Huhti","Touko","Kesä","Heinä","Elo","Syys","Loka","Marras","Joulu"];
+const fmt=new Intl.NumberFormat('fi-FI',{maximumFractionDigits:0});
+const fmt1=new Intl.NumberFormat('fi-FI',{minimumFractionDigits:1,maximumFractionDigits:1});
+const fmt2=new Intl.NumberFormat('fi-FI',{minimumFractionDigits:2,maximumFractionDigits:2});
+const eur=v=>fmt.format(Math.round(v))+' €';
+const sgnEur=v=>Math.abs(v)<1?'±0 €':(v<0?'−':'+')+eur(Math.abs(v));
+const fd=v=>Number.isInteger(v)?String(v):fmt1.format(v);
+const pad=n=>String(n).padStart(2,'0');
+const dkey=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const mkey=d=>d.getFullYear()+'-'+pad(d.getMonth()+1);
+const parseD=s=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d,12)};
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const addYears=(d,n)=>new Date(d.getFullYear()+n,d.getMonth(),d.getDate(),12);
+const fdate=d=>d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+
+function easter(y){const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),
+  h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),
+  mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;return new Date(y,mo-1,da,12)}
+const holCache={};
+function holidays(y){if(holCache[y])return holCache[y];const s=new Set();const add=(m,d)=>s.add(y+'-'+pad(m)+'-'+pad(d));
+  add(1,1);add(1,6);add(5,1);add(12,6);add(12,24);add(12,25);add(12,26);
+  const e=easter(y);[-2,1,39].forEach(o=>s.add(dkey(addDays(e,o))));
+  for(let d=19;d<=25;d++){if(new Date(y,5,d,12).getDay()===5){add(6,d);add(6,d+1)}}
+  for(let i=0;i<7;i++){const x=new Date(y,9,31+i,12);if(x.getDay()===6)s.add(dkey(x))}
+  return holCache[y]=s}
+const isWork=d=>d.getDay()!==0&&!holidays(d.getFullYear()).has(dkey(d));
+
+function normalRate(V){if(V<=K.N1)return K.MIN;if(V<=K.N2)return Math.max(K.MIN,0.7*V/300);if(V<=K.N3)return 106.74+0.4*(V-K.N2)/300;return 139.58+0.25*(V-K.N3)/300}
+function korRate(V){if(V<=K.K1)return K.MIN;if(V<=K.N3)return Math.max(K.MIN,0.9*V/300);return 211.14+0.325*(V-K.N3)/300}
+const holidayPay=S=>S.holidayAuto?Math.round(S.salary*0.5):+S.holiday;
+const annual=S=>Math.max(0,(+S.salary*12+holidayPay(S)+ +S.extra)*(1-K.DED));
+
+/* annual personal tax (excl. employee contributions) — 2026 rules, approximate */
+function yearTax(W,B,kids,S){
+  if(S.taxOverride&&+S.taxPct>0)return (W+B)*(+S.taxPct)/100;
+  const C=W*K.DED;const T=Math.max(0,W+B-Math.min(750,W)-C);
+  const perus=Math.max(0,4265-0.18*Math.max(0,T-4265));const KT=Math.max(0,T-perus);
+  let st=0;for(let i=TAXS.length-1;i>=0;i--){if(T>TAXS[i][0]){st=TAXS[i][1]+TAXS[i][2]*(T-TAXS[i][0]);break}}
+  const mun=KT*(+S.mun)/100,ch=S.church?KT*0.014:0;
+  const shm=(W+B)>0?KT*(0.011*W+0.0149*B)/(W+B):0;
+  let ttv=Math.min(3430+105*kids,0.18*W);if(T>35000)ttv-=0.02*(T-35000);ttv=Math.max(0,ttv);
+  const yle=Math.min(163,Math.max(0,0.025*(T-15150)));
+  return Math.max(0,st+mun+ch+shm-ttv)+yle;
+}
+
+/* ================= state ================= */
+const P0=(name,salary,old,earned)=>({name,salary,holidayAuto:true,holiday:0,extra:0,paidMode:'none',paidRR:0,paidVR:0,mun:7.5,church:false,taxOverride:false,taxPct:0,vacOld:old,vacEarned:earned,vacRate:2.5});
+const DEFAULT={v:3,example:true,due:'2027-04-15',vacDate:'2027-03-01',kids:1,rrStart:30,sib3:0,sib36:0,kunta:0,A:P0('Vanhempi 1',3800,5,27.5),B:P0('Vanhempi 2',4800,8,27.5),plan:null};
+let state;
+try{state=JSON.parse(localStorage.getItem('vv-laskuri-v2'))}catch(e){state=null}
+function migrate(s){if(!s||!s.A||!s.B||!s.due)return null;
+  if(s.v===2){['A','B'].forEach(P=>{s[P]=Object.assign({vacBal:0,vacRate:2.5},s[P])});
+    s.vacDate=s.vacDate||(parseD(s.due).getFullYear()+'-03-01');
+    Object.values(s.plan||{}).forEach(e=>['A','B'].forEach(P=>{const p=e[P];p.l=p.l||0;if(p.s==='loma'){p.s='work';p.l=99}}));s.v=3}
+  if(s.v===3)['A','B'].forEach(P=>{if(s[P].vacOld==null){s[P].vacOld=+s[P].vacBal||0;s[P].vacEarned=0}delete s[P].vacBal});
+  return s.v===3?s:null}
+state=migrate(state);const hadLocal=!!state;
+if(!state)state=JSON.parse(JSON.stringify(DEFAULT));
+const save=()=>{try{localStorage.setItem('vv-laskuri-v2',JSON.stringify(state))}catch(e){}};
+const nm=P=>(state[P].name||'').trim()||(P==='A'?'Vanhempi 1':'Vanhempi 2');
+
+/* ================= model ================= */
+let M,C;
+function buildModel(){
+  const due=parseD(state.due);
+  let d=new Date(due),c=0;while(c<state.rrStart){d=addDays(d,-1);if(isWork(d))c++}
+  const rrDays=[];let x=new Date(d);while(rrDays.length<40){if(isWork(x))rrDays.push(dkey(x));x=addDays(x,1)}
+  const rrSet=new Set(rrDays),rrEnd=parseD(rrDays[39]),aStart=addDays(rrEnd,1);
+  const bd2=addYears(due,2),bd3=addYears(due,3);
+  let k=new Date(due),kc=0;while(kc<160){if(isWork(k))kc++;k=addDays(k,1)}
+  const khtStart=k;const months=[];
+  let cur=new Date(d.getFullYear(),d.getMonth(),1,12);const end=new Date(bd3.getFullYear(),bd3.getMonth(),1,12);
+  const dueIdx=due.getFullYear()*12+due.getMonth();
+  while(cur<=end){const y=cur.getFullYear(),mo=cur.getMonth();
+    const m={key:mkey(cur),y,mo,total:0,wd:0,rr:0,availA:0,availB:0,khtElig:0};
+    for(let dd=new Date(cur);dd.getMonth()===mo;dd=addDays(dd,1)){if(!isWork(dd))continue;m.total++;if(dd.getDay()!==6)m.wd++;const kk=dkey(dd);
+      if(rrSet.has(kk))m.rr++;if(dd>=aStart&&dd<=bd2)m.availA++;if(dd>=due&&dd<=bd2)m.availB++;if(dd>=khtStart&&dd<bd3)m.khtElig++}
+    m.age=(y*12+mo)-dueIdx;months.push(m);cur=new Date(y,mo+1,1,12)}
+  M={due,rrStart:d,rrEnd,aStart,bd2,bd3,khtStart,months,rrSet,byKey:Object.fromEntries(months.map((m,i)=>[m.key,i]))};
+}
+const lomaMax=(m,P)=>{const p=getP(m.key,P);return Math.max(0,m.total-(P==='A'?m.rr:0)-((p.s==='vv'||p.s==='osit')?Math.min(p.d,avail(m,P)):0))};
+const isTP=P=>state[P].vacUnit==='tp';
+const uShort=P=>isTP(P)?'työpv':'pv',uLong=P=>isTP(P)?'työpäivää':'arkipäivää';
+/* loma is stored in the parent's own unit; toArk converts it to calendar arkipäivät (ma–la) */
+const lomaMaxU=(m,P)=>{const lm=lomaMax(m,P);if(!isTP(P))return lm;return lm>=m.total?m.wd:Math.round(lm*m.wd/m.total)};
+const toArk=(m,P,lu)=>{lu=+lu||0;if(!isTP(P))return Math.min(lu,lomaMax(m,P));if(lu<=0)return 0;const mu=lomaMaxU(m,P);
+  return lu>=mu?lomaMax(m,P):Math.min(lomaMax(m,P),Math.round(lu*m.total/Math.max(1,m.wd)))};
+const vvMax=(m,P)=>Math.max(0,Math.min(avail(m,P),m.total-(P==='A'?m.rr:0)-toArk(m,P,getP(m.key,P).l)));
+function normLoma(){M.months.forEach(m=>['A','B'].forEach(P=>{const p=getP(m.key,P);p.l=Math.min(p.l||0,lomaMaxU(m,P))}))}
+function convertUnit(P,toTP){M.months.forEach(m=>{const p=getP(m.key,P);if(!p.l)return;
+  const lm=lomaMax(m,P);const full=toTP?p.l>=lm:p.l>=(lm>=m.total?m.wd:Math.round(lm*m.wd/m.total));
+  p.l=toTP?(full?(lm>=m.total?m.wd:Math.round(lm*m.wd/m.total)):Math.round(p.l*m.wd/m.total)):(full?lm:Math.min(lm,Math.round(p.l*m.total/Math.max(1,m.wd))))})}
+const avail=(m,P)=>P==='A'?m.availA:m.availB;
+const getP=(mk,P)=>{state.plan=state.plan||{};state.plan[mk]=state.plan[mk]||{A:{s:'work',d:0,h:4,l:0},B:{s:'work',d:0,h:4,l:0}};if(state.plan[mk][P].l==null)state.plan[mk][P].l=0;return state.plan[mk][P]};
+const extra=()=>state.kids-1;
+
+/* ================= presets ================= */
+function allocate(P,from,n){let d=new Date(from),left=n,last=null;
+  while(left>0&&d<=M.bd2){if(isWork(d)&&!(P==='A'&&M.rrSet.has(dkey(d)))&&(P==='B'||d>=M.aStart)){
+      const p=getP(mkey(d),P);if(p.s!=='vv'){p.s='vv';p.d=0}p.d++;left--;last=new Date(d)}d=addDays(d,1)}
+  return last?addDays(last,1):d}
+function preset(kind){state.plan={};M.months.forEach(m=>{getP(m.key,'A');getP(m.key,'B')});
+  if(kind==='empty')return;const own=160+42*extra(),tr=63+42*extra();
+  allocate('B',M.due,18);
+  if(kind==='even'){const e=allocate('A',M.aStart,own);allocate('B',e,own-18)}
+  else{const e=allocate('A',M.aStart,own+tr);
+    if(kind==='max')allocate('B',e,own-tr-18);
+    else{const sm=new Date(e.getFullYear(),e.getMonth()+1,1,12);
+      M.months.forEach(m=>{if(new Date(m.y,m.mo,1,12)>=sm&&m.age<18&&m.khtElig>0){const p=getP(m.key,'A');if(p.s==='work'){p.s='kht';p.d=0}}});
+      allocate('B',new Date(M.due.getFullYear(),M.due.getMonth()+18,1,12),own-tr-18)}}
+}
+
+/* ================= calc ================= */
+function calc(){
+  const S={A:state.A,B:state.B};
+  const R={};['A','B'].forEach(P=>{const V=annual(S[P]);R[P]={V,n:normalRate(V),k:korRate(V)}});
+  const cnt={A:0,B:0},used={A:0,B:0};let rrIdx=0,ov=0;const rows=[];const msgs=[];const bad={};
+  const paid=P=>{const s=S[P];if(s.paidMode==='public')return P==='A'?{rr:40,vr:32}:{rr:0,vr:32};if(s.paidMode==='custom')return{rr:+s.paidRR||0,vr:+s.paidVR||0};return{rr:0,vr:0}};
+  const PD={A:paid('A'),B:paid('B')};
+  M.months.forEach(m=>{
+    const r={m,P:{}};
+    ['A','B'].forEach(P=>{const s=S[P],p=getP(m.key,P),av=avail(m,P),perDay=m.total?(+s.salary)/m.total:0;
+      const rr=P==='A'?m.rr:0;let sal=0,kela=0,vv=0,os=0;
+      for(let j=0;j<rr;j++){if(rrIdx<PD.A.rr)sal++;else kela+=R.A.k;rrIdx++}
+      if(p.s==='vv'){vv=Math.min(p.d,av);for(let j=0;j<vv;j++){if(cnt[P]<PD[P].vr)sal++;else kela+=cnt[P]<16?R[P].k:R[P].n;cnt[P]++}used[P]+=vv}
+      if(p.s==='osit'){os=Math.min(p.d,av);kela+=0.5*R[P].n*os;sal+=os*Math.min(5,+p.h||4)/7.5;used[P]+=os/2}
+      if((p.s==='vv'||p.s==='osit')&&p.d>av)bad[m.key]=1;
+      const l=Math.min(toArk(m,P,p.l),Math.max(0,m.total-rr-vv-os));sal+=l;const lu=l>0?(+p.l||0):0;
+      const rest=Math.max(0,m.total-rr-vv-os-l);if(['work','vv','osit'].includes(p.s))sal+=rest;
+      r.P[P]={s:p.s,rr,vv,os,l,lu,rest,W:perDay*sal,B:kela,kela,kht:0};});
+    const a=r.P.A,b=r.P.B;
+    let o=0;const fa=a.rr+a.vv,fb=b.vv,pa=fa+a.os,pb=fb+b.os;if((fa+fb)>0&&pa>0&&pb>0)o=Math.max(0,pa+pb-m.total);r.ov=o;ov+=o;
+    if(a.s==='kht'&&b.s==='kht')msgs.push(['warn',`${cap(MON[m.mo])} ${m.y}: molemmat on merkitty kotihoidon tuelle. Tuki maksetaan perheelle vain kerran.`,m.key]);
+    ['A','B'].forEach(P=>{if(r.P[P].s==='kht'&&m.khtElig===0){bad[m.key]=1;msgs.push(['err',`${cap(MON[m.mo])} ${m.y}: kotihoidon tukea saa vasta ${fdate(M.khtStart)} alkaen.`,m.key])}});
+    const kP=a.s==='kht'?'A':(b.s==='kht'?'B':null);r.khtFrac=0;
+    if(kP&&m.khtElig>0){const blocked=Math.min(m.khtElig,pa+pb);const frac=Math.max(0,(m.khtElig-blocked)/m.total);
+      const size=2+Math.min(2,1+(+state.sib3)+(+state.sib36));const [lim,rate]=K.HLT[size];
+      const fam=a.W+b.W+a.kela+b.kela;const hl=Math.min(K.HL,Math.max(0,K.HL-rate*(fam-lim)));
+      const sum=(K.HR+(+state.sib3)*K.SIB3+(+state.sib36)*K.SIB36+hl+(+state.kunta))*frac;
+      r.P[kP].kht=sum;r.P[kP].B+=sum;r.khtFrac=frac}
+    if((b.vv+b.os)>0&&m.availB===0){bad[m.key]=1}
+    rows.push(r)});
+
+  /* vacation ledger */
+  const vref=parseD(state.vacDate),refKey=mkey(vref);const vac={};
+  ['A','B'].forEach(P=>{const s=S[P];let bal=+s.vacOld||0,pend=+s.vacEarned||0,lim=160,acc=0,accL=0,taken=0,first=true;const LY={};
+    rows.forEach(r=>{const m=r.m,x=r.P[P];if(m.key<refKey){x.vacPre=true;return}
+      if(!first&&m.mo===3){bal+=pend;pend=0}
+      const ly=m.mo>=3?m.y:m.y-1;if(!LY[ly])LY[ly]={ly,partial:first&&m.mo!==3,from:m,start:bal,used:0,acc:0,accL:0,end:bal,toNext:pend};
+      first=false;const Y=LY[ly];
+      x.vs=bal;bal-=x.lu;taken+=x.lu;Y.used+=x.lu;
+      if(bal<-0.01&&x.vs>=-0.01)msgs.unshift(['err',`${cap(MON[m.mo])} ${m.y}, ${nm(P)}: lomapäivät eivät riitä (saldo ${fmt1.format(bal)} ${uShort(P)}). Kertyneet lomat tulevat käyttöön vasta seuraavana 1.4.`,m.key]);
+      const workish=(['work','vv','osit'].includes(x.s)?x.rest:0)+x.os+x.l;const lv=Math.min(lim,x.rr+x.vv);lim-=lv;
+      if(workish+lv>=14){pend+=+s.vacRate;acc+=+s.vacRate;Y.acc+=+s.vacRate;if(x.rr+x.vv+x.os>0){accL+=+s.vacRate;Y.accL+=+s.vacRate}}
+      Y.end=bal;Y.toNext=pend;x.ve=bal;x.vp=pend});
+    let last=-1;rows.forEach((r,i)=>{const x=r.P[P];if(x.rr+x.vv+x.os>0)last=i});
+    const nx=last>=0&&last<rows.length-1?rows[last+1]:null;
+    const lys=Object.values(LY).sort((a,b)=>a.ly-b.ly);
+    vac[P]={old:+s.vacOld||0,earned:+s.vacEarned||0,firstToNext:lys.length?lys[0].toNext:0,years:lys,acc,accL,taken,end:bal,pend,final:bal+pend,next:nx&&nx.P[P].vs!=null?nx.P[P].vs:null,nextM:nx?nx.m:null}});
+  if(rows.some(r=>r.m.key<refKey&&(r.P.A.l+r.P.B.l)>0))msgs.push(['info',`Ennen ${fdate(vref)} merkityt lomat eivät vähennä saldoa, koska saldo on ilmoitettu ${fdate(vref)} tilanteen mukaan.`]);
+
+  /* taxes by calendar year */
+  const years={};rows.forEach(r=>{(years[r.m.y]=years[r.m.y]||{y:r.m.y,rows:[]}).rows.push(r)});
+  const by=M.due.getFullYear();
+  Object.values(years).forEach(Y=>{const kids=(Y.y>=by?state.kids:0)+(+state.sib3)+(+state.sib36);Y.P={};
+    ['A','B'].forEach(P=>{const s=S[P];const outside=12-Y.rows.length;
+      const W=Y.rows.reduce((t,r)=>t+r.P[P].W,0)+outside*(+s.salary)+holidayPay(s)+(+s.extra);
+      const B=Y.rows.reduce((t,r)=>t+r.P[P].B,0);
+      const tax=yearTax(W,B,kids,s);const rate=(W+B)>0?tax/(W+B):0;
+      const Wb=12*(+s.salary)+holidayPay(s)+(+s.extra);const tb=yearTax(Wb,0,kids,s);const rateB=tb/Wb||0;
+      Y.P[P]={W,B,rate,rateB,net:W+B-tax-W*K.DED,netBase:Wb-tb-Wb*K.DED};
+      Y.rows.forEach(r=>{const x=r.P[P];x.net=x.W*(1-K.DED-rate)+x.B*(1-rate);x.base=(+s.salary)*(1-K.DED-rateB)})})});
+  const tot={fam:0,base:0,kela:0,kht:0};
+  rows.forEach(r=>{r.fam=r.P.A.net+r.P.B.net;r.base=r.P.A.base+r.P.B.base;tot.fam+=r.fam;tot.base+=r.base;tot.kela+=r.P.A.kela+r.P.B.kela;tot.kht+=r.P.A.kht+r.P.B.kht});
+
+  /* rule checks */
+  const own=160+42*extra(),maxTr=63+42*extra(),total=320+84*extra(),ovLimit=18+90*extra();
+  const need={A:Math.max(0,used.A-own),B:Math.max(0,used.B-own)};
+  if(used.A+used.B>total+1e-9)msgs.unshift(['err',`Suunniteltuja vapaapäiviä on ${fd(used.A+used.B)}, mutta lapselle maksetaan enintään ${total}.`]);
+  [['A','B'],['B','A']].forEach(([P,Q])=>{const n=need[P];if(n<=0)return;
+    if(n>maxTr+1e-9)msgs.unshift(['err',`${nm(P)} käyttää ${fd(used[P])} päivää. Omia on ${own} ja toiselta voi saada enintään ${maxTr}, joten ${fd(n-maxTr)} päivää on liikaa.`]);
+    else if(used[Q]+n>own+1e-9)msgs.unshift(['err',`${nm(P)} tarvitsee ${fd(n)} päivää toiselta, mutta ${nm(Q)} käyttää itse ${fd(used[Q])} päivää. Päiviä ei riitä luovutettavaksi.`]);
+    else msgs.push(['info',`Luovutus ${nm(Q)} → ${nm(P)}: ${fd(n)} arkipäivää. Tehdään OmaKelassa, eikä sitä voi perua.`])});
+  if(ov>ovLimit){const k=rows.find(r=>r.ov>0);msgs.unshift(['err',`Olette vapaalla yhtä aikaa vähintään ${ov} arkipäivää, kun enimmäismäärä on ${ovLimit}. Siirtäkää toisen vapaata tai pitäkää päällekkäiset päivät vuosilomana.`,k&&k.m.key])}
+  rows.forEach(r=>['A','B'].forEach(P=>{const p=getP(r.m.key,P),av=avail(r.m,P);
+    if((p.s==='vv'||p.s==='osit')&&p.d>av)msgs.unshift(['err',`${cap(MON[r.m.mo])} ${r.m.y}: ${nm(P)} on merkinnyt ${p.d} päivää, mutta käytettävissä on ${av}.`,r.m.key])}));
+  ['A','B'].forEach(P=>{let runs=0,prev=false;
+    rows.forEach((r,i)=>{const x=r.P[P];const on=(x.vv+x.os)>0||x.rr>0;if(on&&!prev)runs++;prev=on;
+      const lv=x.vv+x.os;if(lv>0&&lv<12){const adj=q=>q&&((q.P[P].vv+q.P[P].os)>0||q.P[P].rr>0);
+        if(!adj(rows[i-1])&&!adj(rows[i+1]))msgs.push(['warn',`${cap(MON[r.m.mo])} ${r.m.y}, ${nm(P)}: vapaajakso on alle 12 arkipäivää. Työnantaja voi edellyttää vähintään 12 päivän jaksoja.`,r.m.key])}});
+    if(runs>4)msgs.push(['warn',`${nm(P)}: ${runs} erillistä vapaajaksoa. Työnantaja voi rajata ne neljään, ellei muuta sovita.`])});
+  let run=0,runKey=null;rows.forEach((r,i)=>{const on=r.khtFrac>0;if(on){run+=r.khtFrac;runKey=runKey||r.m.key}
+    if((!on||i===rows.length-1)&&run>0){if(run<0.95)msgs.push(['warn','Kotihoidon tuen jakso on alle kuukauden, eikä sitä silloin makseta.',runKey]);run=0;runKey=null}});
+  const left={};['A','B'].forEach(P=>{const Q=P==='A'?'B':'A';left[P]=own-used[P]-Math.max(0,used[Q]-own)});
+  const order={err:0,warn:1,info:2,ok:3};
+  const uniq=[...new Map(msgs.map(x=>[x[1],x])).values()].sort((a,b)=>order[a[0]]-order[b[0]]);
+  if(!uniq.some(x=>x[0]==='err'))uniq.unshift(['ok','Suunnitelma pysyy kiintiöiden ja takarajojen sisällä.']);
+  return {R,PD,rows,years:Object.values(years),used,own,maxTr,total,ov,ovLimit,need,left,msgs:uniq,tot,bad,vac,vref};
+}
+
+/* ================= step 1 UI ================= */
+function parentCard(P){
+  const el=document.getElementById('card'+P),S=state[P],birth=P==='A';
+  el.innerHTML=`<div class="row" style="justify-content:space-between"><h3 class="n${P}">${esc(nm(P))}</h3><span class="hint">${birth?'synnyttävä vanhempi':'toinen vanhempi'}</span></div>
+  <div class="fields">
+    <label class="f">Nimi<input id="${P}-name" type="text" value="${esc(S.name)}" placeholder="${birth?'esim. Anna':'esim. Joni'}"></label>
+    <label class="f">Bruttopalkka €/kk<input id="${P}-salary" type="number" min="0" max="30000" step="50" value="${S.salary}"></label>
+    <span class="hint full">Kuukausipalkka ennen veroja, löytyy palkkakuitista. Kela laskee päivärahan tästä automaattisesti.</span>
+    <label class="f full">Maksaako työnantaja palkkaa osan vapaasta?
+      <select id="${P}-paidMode">
+        <option value="none">Ei / en tiedä</option>
+        <option value="public">${birth?'Kyllä, kunta- tai valtiosektori (40 + 32 pv)':'Kyllä, kunta- tai valtiosektori (32 pv)'}</option>
+        <option value="custom">Kyllä, eri määrä</option>
+      </select>
+      <span class="hint">Monen alan työehtosopimus maksaa alkuvapaasta täyden palkan. Tarkista palkkahallinnosta.</span></label>
+    <div class="full fields" id="${P}-customPaid" style="margin-top:0"${S.paidMode==='custom'?'':' hidden'}>
+      ${birth?`<label class="f">Palkallisia raskausvapaan päiviä<input id="${P}-paidRR" type="number" min="0" max="40" step="1" value="${S.paidRR}"></label>`:''}
+      <label class="f${birth?'':' full'}">Palkallisia vanhempainvapaan päiviä<input id="${P}-paidVR" type="number" min="0" max="160" step="1" value="${S.paidVR}"></label>
+    </div>
+  </div>
+  <div class="fields" style="margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)">
+    <label class="f full">Mitkä päivät kuluttavat lomaa?<select id="${P}-vacUnit"><option value="ark">Ma–la, myös lauantait (vuosilomalaki, useimmat yksityiset alat)</option><option value="tp">Ma–pe, vain työpäivät (esim. valtio ja kunta)</option></select><span class="hint">Katso palkkakuitista tai TES:stä. Jos viikon loma vie saldosta 6 päivää, valitse ma–la. Jos se vie 5 päivää, valitse ma–pe.</span></label>
+    <label class="f">Heti käytettävät lomat <span class="vacD">${fdate(parseD(state.vacDate))}</span><input id="${P}-vacOld" type="number" min="0" max="200" step="0.5" value="${S.vacOld}"><span class="hint">Pitämättömät päivät, jotka voi pitää nyt. Palkkakuitissa usein "pitämättä" tai "lomasaldo".</span></label>
+    <label class="f">Ansaittu, käyttöön <span class="vacN">${vacNextLabel()}</span><input id="${P}-vacEarned" type="number" min="0" max="60" step="0.5" value="${S.vacEarned}"><span class="hint">Kuluvana lomavuonna kertyneet päivät, joita ei voi vielä pitää. <button type="button" class="linkbtn" data-est="${P}">Laske arvio</button></span></label>
+    <label class="f full">Lomaa kertyy kuukaudessa<select id="${P}-vacRate"><option value="3">3 pv/kk</option><option value="2.5">2,5 pv/kk</option><option value="2.25">2,25 pv/kk</option><option value="2">2 pv/kk</option><option value="1.5">1,5 pv/kk</option><option value="0">Ei kerry</option></select><span class="hint">Lomalain mukaan 2,5 (työsuhde yli vuoden) tai 2. Valtiolla ja kunnalla kertymä riippuu palvelusvuosista, katso palkkakuitista.</span></label>
+  </div>
+  <details class="more"><summary>Tarkenna tuloja ja veroja (valinnainen)</summary>
+    <div class="fields">
+      <label class="f full"><span class="check"><input type="checkbox" id="${P}-holidayAuto"${S.holidayAuto?' checked':''}> Lomaraha on puolet kuukausipalkasta</span><span class="hint">Tavallisin TES-käytäntö. Poista valinta, jos summa on eri.</span></label>
+      <label class="f"${S.holidayAuto?' hidden':''} id="${P}-holidayWrap">Lomaraha €/vuosi<input id="${P}-holiday" type="number" min="0" step="50" value="${S.holiday}"></label>
+      <label class="f">Muut työtulot €/vuosi<input id="${P}-extra" type="number" min="0" step="100" value="${S.extra}"><span class="hint">Ylityöt, bonukset, vuorolisät. Nostavat päivärahaa.</span></label>
+      <label class="f">Kunnallisvero %<input id="${P}-mun" type="number" min="0" max="12" step="0.05" value="${S.mun}"><span class="hint">Oletus on kuntien keskiarvo noin 7,5 %.</span></label>
+      <label class="f full"><span class="check"><input type="checkbox" id="${P}-church"${S.church?' checked':''}> Kuuluu kirkkoon (kirkollisvero noin 1,4 %)</span></label>
+      <label class="f full"><span class="check"><input type="checkbox" id="${P}-taxOverride"${S.taxOverride?' checked':''}> Käytä verokortin veroprosenttia arvion sijaan</span></label>
+      <label class="f"${S.taxOverride?'':' hidden'} id="${P}-taxWrap">Veroprosentti<input id="${P}-taxPct" type="number" min="0" max="60" step="0.5" value="${S.taxPct}"></label>
+    </div>
+  </details>
+  <div class="est" id="est${P}"></div>`;
+  el.querySelector(`#${P}-paidMode`).value=S.paidMode;el.querySelector(`#${P}-vacRate`).value=String(S.vacRate);if(!el.querySelector(`#${P}-vacRate`).value){const o=document.createElement('option');o.value=String(S.vacRate);o.textContent=String(S.vacRate).replace('.',',')+' pv/kk';el.querySelector(`#${P}-vacRate`).appendChild(o);el.querySelector(`#${P}-vacRate`).value=String(S.vacRate)}
+  el.querySelector(`#${P}-vacUnit`).value=S.vacUnit==='tp'?'tp':'ark';
+  el.querySelector(`[data-est="${P}"]`).addEventListener('click',()=>{const n=earnMonths();const v=Math.round(n*(+S.vacRate)*2)/2;S.vacEarned=v;
+    const inp=document.getElementById(P+'-vacEarned');inp.value=v;const b=el.querySelector(`[data-est="${P}"]`);b.textContent=`Arvio ${n} kk × ${String(S.vacRate).replace('.',',')} = ${fmt1.format(v)} pv`;update()});
+  el.querySelectorAll('input,select').forEach(inp=>{const ev=inp.type==='checkbox'||inp.tagName==='SELECT'?'change':'input';inp.addEventListener(ev,()=>{
+    const f=inp.id.split('-')[1];
+    if(f==='vacUnit'&&(S.vacUnit==='tp')!==(inp.value==='tp')&&M)convertUnit(P,inp.value==='tp');
+    if(inp.type==='checkbox')S[f]=inp.checked;else if(inp.type==='number')S[f]=clampInput(inp);else S[f]=f==='vacRate'?+inp.value:inp.value;
+    if(f==='vacUnit')normLoma();
+    if(f==='salary')state.example=false;
+    if(f==='paidMode')document.getElementById(P+'-customPaid').hidden=S.paidMode!=='custom';
+    if(f==='holidayAuto')document.getElementById(P+'-holidayWrap').hidden=S.holidayAuto;
+    if(f==='taxOverride')document.getElementById(P+'-taxWrap').hidden=!S.taxOverride;
+    if(f==='name')document.querySelectorAll('.n'+P).forEach(e=>e.textContent=nm(P));
+    update()})});
+}
+function earnMonths(){const r=parseD(state.vacDate);const sy=r.getMonth()>=3?r.getFullYear():r.getFullYear()-1;return Math.max(0,(r.getFullYear()*12+r.getMonth())-(sy*12+3))}
+function vacNextLabel(){const r=parseD(state.vacDate);return '1.4.'+(r.getMonth()>=3?r.getFullYear()+1:r.getFullYear())}
+function clampInput(inp){let v=parseFloat(String(inp.value).replace(',','.'));if(isNaN(v))return 0;const mn=parseFloat(inp.min),mx=parseFloat(inp.max);
+  if(!isNaN(mn)&&v<mn){v=mn;inp.value=v}if(!isNaN(mx)&&v>mx){v=mx;inp.value=v}return v}
+function commonInputs(){
+  const due=document.getElementById('due');due.addEventListener('change',()=>{if(!due.value)return;state.due=due.value;rebuild(true)});
+  const rs=document.getElementById('rrStart');for(let i=30;i>=14;i--){const o=document.createElement('option');o.value=i;o.textContent=i+' arkipäivää ennen laskettua aikaa'+(i===30?' (yleisin)':'');rs.appendChild(o)}
+  rs.addEventListener('change',()=>{state.rrStart=+rs.value;rebuild(true)});
+  const vd=document.getElementById('vacDate');vd.addEventListener('change',()=>{state.vacDate=vd.value;document.querySelectorAll('.vacD').forEach(e=>e.textContent=fdate(parseD(vd.value)));document.querySelectorAll('.vacN').forEach(e=>e.textContent=vacNextLabel());update()});
+  const kids=document.getElementById('kids');kids.addEventListener('change',()=>{state.kids=+kids.value;update()});
+  ['sib3','sib36','kunta'].forEach(id=>{const e=document.getElementById(id);e.addEventListener('input',()=>{state[id]=clampInput(e);update()})});
+}
+function fillVacDates(){const vd=document.getElementById('vacDate'),y0=parseD(state.due).getFullYear();vd.innerHTML='';
+  for(let y=y0-2;y<=y0+2;y++){const o=document.createElement('option');o.value=y+'-03-01';o.textContent='1.3.'+y;vd.appendChild(o)}
+  if(![...vd.options].some(o=>o.value===state.vacDate)){const o=document.createElement('option');o.value=state.vacDate;o.textContent=fdate(parseD(state.vacDate));vd.appendChild(o)}
+  vd.value=state.vacDate}
+function fillCommon(){fillVacDates();document.getElementById('due').value=state.due;document.getElementById('kids').value=state.kids;
+  document.getElementById('rrStart').value=state.rrStart;['sib3','sib36','kunta'].forEach(id=>document.getElementById(id).value=state[id])}
+
+/* ================= calendar ================= */
+const ST={work:'Töissä',vv:'Vanhempainvapaa',osit:'Osittainen vapaa',kht:'Kotihoidon tuki',unpaid:'Palkaton vapaa'};
+function segs(x,m,P){const t=m.total||1,c=P==='A'?'var(--a)':'var(--b)';let h='';
+  if(x.rr)h+=`<i class="seg-rr" style="width:${x.rr/t*100}%"></i>`;
+  if(x.vv)h+=`<i style="width:${x.vv/t*100}%;background:${c}"></i>`;
+  if(x.os)h+=`<i style="width:${x.os/t*100}%;background:repeating-linear-gradient(45deg,${c} 0 3px,transparent 3px 6px)"></i>`;
+  if(x.l)h+=`<i class="seg-loma" style="width:${x.l/t*100}%"></i>`;
+  if(x.rest&&['kht','unpaid'].includes(x.s))h+=`<i class="seg-${x.s}" style="width:${x.rest/t*100}%"></i>`;
+  return h}
+function plabel(x,P){const parts=[];if(x.rr)parts.push(`raskausraha ${x.rr} pv`);
+  if(x.s==='vv'&&x.vv)parts.push(`vapaa ${x.vv} pv`);else if(x.s==='osit'&&x.os)parts.push(`osittainen ${x.os} pv`);
+  else if(x.s!=='work'&&x.s!=='vv'&&x.s!=='osit')parts.push(ST[x.s].toLowerCase());
+  if(x.l)parts.push(`loma ${x.lu} ${uShort(P)}`);
+  return parts.length?cap(parts.join(' + ')):'Töissä'}
+function renderCalendar(){
+  const host=document.getElementById('calendar');const ys=[...new Set(M.months.map(m=>m.y))];let h='';
+  ys.forEach(y=>{h+=`<div class="yearblock"><h3>${y}</h3><div class="months">`;
+    for(let mo=0;mo<12;mo++){const key=y+'-'+pad(mo+1),i=M.byKey[key];
+      if(i===undefined){h+=`<div class="mbox off" aria-hidden="true"><div class="mtop"><span class="mname">${MONS[mo]}</span></div><span class="empty">Ei suunnittelujaksolla</span></div>`;continue}
+      const r=C.rows[i],m=r.m,d=r.fam-r.base;
+      let flags='';if(m.age===0)flags=`<span class="flag">Laskettu aika ${M.due.getDate()}.${M.due.getMonth()+1}.</span>`;
+      if(M.bd2.getFullYear()===y&&M.bd2.getMonth()===mo)flags=`<span class="flag">2 v · vapaat viim. ${fdate(M.bd2)}</span>`;
+      const isBad=C.bad[key]||C.msgs.some(x=>x[0]==='err'&&x[2]===key);
+      if(isBad)flags=`<span class="flag err" title="${esc((C.msgs.find(x=>x[0]==='err'&&x[2]===key)||['',''])[1])}">Korjattavaa · avaa</span>`;
+      const age=m.age<0?'raskaus':m.age===0?'syntymä':(m.age<24?m.age+' kk':Math.floor(m.age/12)+' v '+(m.age%12)+' kk');
+      h+=`<button class="mbox${m.age===0?' due':''}${isBad?' bad':''}" data-k="${key}" aria-label="${cap(MON[mo])} ${y}, muokkaa">
+        <div class="mtop"><span class="mname">${MONS[mo]}</span><span class="mage">${age}</span></div>${flags}
+        ${['A','B'].map(P=>{const x=r.P[P];return `<div class="prow"><span class="plabel"><i style="background:var(--${P==='A'?'a':'b'})"></i><span>${esc(nm(P))}: ${plabel(x,P)}</span></span><span class="sbar">${segs(x,m,P)}</span></div>`}).join('')}
+        <div class="mmoney"><span>${eur(r.fam)}</span><span class="${d<-1?'neg':d>1?'pos':''}">${sgnEur(d)}</span></div></button>`}
+    h+=`</div></div>`});
+  host.innerHTML=h;
+  host.querySelectorAll('button.mbox').forEach(b=>b.addEventListener('click',()=>openDialog(b.dataset.k)));
+}
+
+/* ================= dialog ================= */
+let dKey=null,lastFocus=null;
+const ov=document.getElementById('overlay');
+function reasons(m,P,s){
+  if(s==='vv'||s==='osit'){if(avail(m,P)>0)return null;
+    if(P==='B'&&m.age<0)return `Mahdollista aikaisintaan vauvan syntymästä (${fdate(M.due)}).`;
+    if(P==='A'&&new Date(m.y,m.mo+1,0,12)<M.aStart)return `Vanhempainraha alkaa raskausrahan jälkeen (${fdate(M.aStart)}).`;
+    return `Vanhempainrahapäivien takaraja oli ${fdate(M.bd2)}.`}
+  if(s==='kht'){if(m.khtElig>0)return null;if(m.age<12)return `Kotihoidon tukea saa ${fdate(M.khtStart)} alkaen.`;return 'Kotihoidon tuki päättyy, kun lapsi täyttää 3 vuotta.'}
+  return null}
+function optDesc(P,s,m){const R=C.R[P];
+  return {work:'Normaali palkka.',
+    vv:`Kela maksaa noin ${fmt2.format(R.n)} €/arkipäivä${C.PD[P].vr?' (alkuun palkka)':''}.`,
+    osit:'Lyhennetty työpäivä (enintään 5 h) ja puolikas vanhempainraha. Kuluttaa puoli päivää.',
+    kht:'Hoitovapaa. Kela maksaa kotihoidon tukea perheelle.',
+    unpaid:'Ei palkkaa eikä Kelan tukea.'}[s]}
+function openDialog(key){lastFocus=document.activeElement;dKey=key;renderDialog();ov.hidden=false;document.body.style.overflow='hidden';
+  setTimeout(()=>{const f=ov.querySelector('input[type=radio]:checked')||ov.querySelector('button');f&&f.focus()},20)}
+function closeDialog(){ov.hidden=true;ov.innerHTML='';document.body.style.overflow='';dKey=null;renderCalendar();lastFocus&&lastFocus.focus&&lastFocus.focus()}
+ov.addEventListener('click',e=>{if(e.target===ov)closeDialog()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!ov.hidden)closeDialog()});
+function renderDialog(){
+  const i=M.byKey[dKey],m=M.months[i],r=C.rows[i];
+  const age=m.age<0?'raskausaika':m.age===0?'vauva syntyy':'lapsi '+m.age+' kk';
+  const q=P=>{const p=getP(m.key,P),x=r.P[P],av=avail(m,P),col=P==='A'?'a':'b';
+    const restDays=m.total-x.rr;
+    let html=`<div class="q" style="--c:var(--${col});--c-soft:var(--${col}-soft)">`;
+    html+=`<h3>${x.rr?`Mitä ${esc(nm(P))} tekee raskausrahan lisäksi?`:`Mitä ${esc(nm(P))} tekee ${MON[m.mo].replace('kuu','kuussa')}?`}</h3>`;
+    if(x.rr)html+=`<p class="note">Raskausraha ${x.rr} arkipäivää on merkitty automaattisesti (${fdate(M.rrStart)}–${fdate(M.rrEnd)}). Valitse, mitä tehdään kuun ${restDays} muuna arkipäivänä.</p>`;
+    html+=`<div class="opts" role="radiogroup">`+Object.keys(ST).map(s=>{const why=reasons(m,P,s);const dis=why&&p.s!==s;
+      return `<label class="opt${dis?' dis':''}"><input type="radio" name="s${P}" value="${s}"${p.s===s?' checked':''}${dis?' disabled':''}><span><b>${ST[s]}</b><span>${esc(why||optDesc(P,s,m))}</span></span></label>`}).join('')+`</div>`;
+    if(p.s==='vv'||p.s==='osit'){
+      const vmax=vvMax(m,P);const full=p.d>=vmax;const lbl=p.s==='vv'?'vanhempainvapaalla':'osittaisella vapaalla';
+      const leftAfter=C.own+C.maxTr-C.used[P];
+      html+=`<div class="follow"><b style="font-size:14px">Kuinka suuren osan kuukaudesta ${esc(nm(P))} on ${lbl}?</b>
+        <div class="seg"><button type="button" data-full="${P}" aria-pressed="${full}">Koko kuukauden (${vmax} pv)</button><button type="button" data-part="${P}" aria-pressed="${!full}">Osan kuukaudesta</button></div>
+        <div class="rangerow"${full?' hidden':''}><input type="range" min="1" max="${Math.max(1,vmax)}" value="${Math.min(p.d,vmax)||1}" data-range="${P}" aria-label="Arkipäiviä"><input type="number" min="1" max="${Math.max(1,vmax)}" value="${Math.min(p.d,vmax)||1}" data-num="${P}" aria-label="Arkipäiviä"><span class="hint">arkipäivää</span></div>`;
+      if(p.s==='osit')html+=`<label class="f">Kuinka monta tuntia ${esc(nm(P))} tekee töitä näinä päivinä?<select data-h="${P}">${[2,3,4,5].map(h=>`<option value="${h}"${(+p.h||4)===h?' selected':''}>${h} h/pv</option>`).join('')}</select><span class="hint">Enintään 5 h. Palkka maksetaan tehdyistä tunneista, Kela maksaa puolet päivärahasta.</span></label>`;
+      html+=`<p class="hint">Tämä kuluttaa kiintiöstä ${fd(p.s==='vv'?Math.min(p.d,av):Math.min(p.d,av)/2)} päivää. ${esc(nm(P))}: käytetty yhteensä ${fd(C.used[P])} / ${C.own} omaa pv${C.used[P]>C.own?' (loput luovutettuna)':''}. Enimmäismäärästä on jäljellä ${fd(Math.max(0,leftAfter))} pv.</p></div>`}
+    if(p.s==='kht'&&r.khtFrac>0){const k=r.P[P].kht;html+=`<div class="follow"><span class="hint">Kotihoidon tuki tälle kuukaudelle noin <b class="num">${eur(k)}</b> brutto (hoitoraha${+state.kunta?' + kuntalisä':''}${k>K.HR*r.khtFrac+1?' + hoitolisä':''}).${r.khtFrac<0.999?' Tukea ei makseta päiviltä, joilta maksetaan vanhempainrahaa.':''}</span></div>`}
+    if(p.s==='kht'&&r.khtFrac===0&&m.khtElig>0)html+=`<div class="follow"><span class="hint">Tukea ei makseta, koska samaan aikaan maksetaan vanhempainrahaa koko kuukauden.</span></div>`;
+    const lm=lomaMaxU(m,P),lv=Math.min(p.l||0,lm);
+    html+=`<div class="follow" style="border-color:var(--loma)"><b style="font-size:14px">Pitääkö ${esc(nm(P))} vuosilomaa tai säästövapaita tässä kuussa?</b>`;
+    if(lm===0)html+=`<span class="hint">Kaikki kuun arkipäivät ovat jo raskaus- tai vanhempainvapaata. Vähennä vapaapäiviä, jos haluat pitää lomaa tässä kuussa.</span>`;
+    else{html+=`<div class="seg"><button type="button" data-lnone="${P}" aria-pressed="${lv===0}">Ei lomaa</button><button type="button" data-lpart="${P}" aria-pressed="${lv>0&&lv<lm}">Osa päivistä</button><button type="button" data-lfull="${P}" aria-pressed="${lv>0&&lv>=lm}">Kaikki loput (${lm} ${uShort(P)})</button></div>`;
+      if(lv>0&&lv<lm)html+=`<div class="rangerow"><input type="range" min="1" max="${lm}" value="${lv}" data-lrange="${P}" aria-label="Lomapäiviä"><input type="number" min="1" max="${lm}" value="${lv}" data-lnum="${P}" aria-label="Lomapäiviä"><span class="hint">${uLong(P)}</span></div>`;
+      if(x.vacPre)html+=`<span class="hint">Ennen ${fdate(C.vref)} pidetyt lomat sisältyvät jo ilmoitettuun saldoon, joten niitä ei vähennetä.</span>`;
+      else if(x.vs!=null){const neg=x.ve<-0.01;html+=`<span class="hint">Lomasaldo kuun alussa <b class="num">${fmt1.format(x.vs)}</b> ${uShort(P)} → lopussa <b class="num${neg?' neg':''}">${fmt1.format(x.ve)}</b> ${uShort(P)}. Lisäksi ${fmt1.format(x.vp)} ${uShort(P)} kertymässä, käyttöön 1.4. ${isTP(P)?'Lomapäivät lasketaan työpäivinä (ma–pe), viikko = 5 pv. Lauantait eivät kuluta lomaa.':'Lomapäivät lasketaan arkipäivinä (ma–la), viikko = 6 pv.'} Loman ajalta maksetaan täysi palkka, eikä se kuluta vanhempainrahapäiviä.</span>`}}
+    html+=`</div>`;
+    return html+`</div>`};
+  const d=r.fam-r.base;
+  const prevOK=i>0,nextOK=i<M.months.length-1;
+  const mine=C.msgs.filter(x=>x[2]===m.key&&(x[0]==='err'||x[0]==='warn'));
+  const issues=mine.length?`<div class="msgs"><b style="font-size:14px">${mine.some(x=>x[0]==='err')?'Korjattavaa tässä kuussa':'Huomioitavaa tässä kuussa'}</b>${mine.map(([l,t])=>`<div class="msg ${l}" data-tag="${l==='err'?'Virhe':'Huom'}"><span>${esc(t)}</span></div>`).join('')}</div>`:'';
+  ov.innerHTML=`<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+    <div class="dhead"><button class="icon" data-nav="-1" aria-label="Edellinen kuukausi"${prevOK?'':' disabled'}>‹</button>
+      <div style="flex:1"><h2 id="dTitle">${cap(MON[m.mo])} ${m.y}</h2><div class="sub">${age} · ${m.total} arkipäivää (ma–la)</div></div>
+      <button class="icon" data-nav="1" aria-label="Seuraava kuukausi"${nextOK?'':' disabled'}>›</button><button class="icon" data-close aria-label="Sulje">✕</button></div>
+    <div class="dbody">${issues}${q('A')}${q('B')}</div>
+    <div class="dfoot">
+      <div class="preview"><span>Perheen nettotulot tässä kuussa</span><b>${eur(r.fam)} <span class="${d<-1?'neg':d>1?'pos':''}">(${sgnEur(d)} normaaliin)</span></b></div>
+      <div class="row" style="justify-content:space-between">
+        <div class="row"><span class="hint">Toista samat valinnat</span><select id="rep" style="width:auto">${[1,2,3,4,5,6,9,12].map(n=>`<option value="${n}">${n} seuraavaan kuukauteen</option>`).join('')}</select><button class="btn" id="repBtn">Toista</button></div>
+        <button class="btn primary" data-close>Valmis</button></div>
+      <span class="hint" id="repMsg"></span>
+    </div></div>`;
+  ov.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',closeDialog));
+  ov.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>{const j=i+(+b.dataset.nav);if(j>=0&&j<M.months.length){dKey=M.months[j].key;renderDialog()}}));
+  ov.querySelectorAll('input[type=radio]').forEach(rd=>rd.addEventListener('change',()=>{const P=rd.name.slice(1),p=getP(m.key,P);p.s=rd.value;
+    if(p.s==='vv'||p.s==='osit')p.d=vvMax(m,P);else p.d=0;recalc(P,'s')}));
+  ov.querySelectorAll('[data-full]').forEach(b=>b.addEventListener('click',()=>{const P=b.dataset.full;getP(m.key,P).d=vvMax(m,P);recalc(P)}));
+  ov.querySelectorAll('[data-part]').forEach(b=>b.addEventListener('click',()=>{const P=b.dataset.part,av=vvMax(m,P);getP(m.key,P).d=Math.max(1,Math.min(av-1,Math.round(av/2)));recalc(P)}));
+  ov.querySelectorAll('[data-lnone]').forEach(b=>b.addEventListener('click',()=>{getP(m.key,b.dataset.lnone).l=0;recalc(b.dataset.lnone)}));
+  ov.querySelectorAll('[data-lfull]').forEach(b=>b.addEventListener('click',()=>{const P=b.dataset.lfull;getP(m.key,P).l=lomaMaxU(m,P);recalc(P)}));
+  ov.querySelectorAll('[data-lpart]').forEach(b=>b.addEventListener('click',()=>{const P=b.dataset.lpart,lm=lomaMaxU(m,P);getP(m.key,P).l=Math.max(1,Math.min(lm-1,isTP(P)?5:6));recalc(P)}));
+  ov.querySelectorAll('[data-lrange]').forEach(inp=>{inp.addEventListener('input',()=>{const P=inp.dataset.lrange;getP(m.key,P).l=+inp.value;ov.querySelector(`[data-lnum="${P}"]`).value=inp.value;softUpdate()});inp.addEventListener('change',()=>recalc(inp.dataset.lrange))});
+  ov.querySelectorAll('[data-lnum]').forEach(inp=>inp.addEventListener('change',()=>{const P=inp.dataset.lnum;getP(m.key,P).l=Math.round(clampInput(inp));recalc(P)}));
+  ov.querySelectorAll('[data-range]').forEach(inp=>inp.addEventListener('input',()=>{const P=inp.dataset.range;getP(m.key,P).d=+inp.value;
+    ov.querySelector(`[data-num="${P}"]`).value=inp.value;softUpdate()}));
+  ov.querySelectorAll('[data-range]').forEach(inp=>inp.addEventListener('change',()=>recalc(inp.dataset.range)));
+  ov.querySelectorAll('[data-num]').forEach(inp=>inp.addEventListener('change',()=>{const P=inp.dataset.num;getP(m.key,P).d=Math.round(clampInput(inp));recalc(P)}));
+  ov.querySelectorAll('[data-h]').forEach(s=>s.addEventListener('change',()=>{getP(m.key,s.dataset.h).h=+s.value;recalc(s.dataset.h)}));
+  document.getElementById('repBtn').addEventListener('click',()=>{const n=+document.getElementById('rep').value;let done=0,skipped=0;
+    ['A','B'].forEach(P=>{const src=getP(m.key,P),full=src.d>=avail(m,P);
+      for(let j=i+1;j<=Math.min(M.months.length-1,i+n);j++){const mm=M.months[j],t=getP(mm.key,P);
+        if((src.s==='vv'||src.s==='osit')&&avail(mm,P)===0){skipped++;continue}
+        if(src.s==='kht'&&mm.khtElig===0){skipped++;continue}
+        const lfull=(src.l||0)>0&&(src.l||0)>=lomaMaxU(m,P);t.s=src.s;t.h=src.h;t.l=0;
+        t.d=(src.s==='vv'||src.s==='osit')?(full?avail(mm,P):Math.min(src.d,avail(mm,P))):0;
+        t.l=lfull?lomaMaxU(mm,P):Math.min(src.l||0,lomaMaxU(mm,P));done++}});
+    update(false);renderDialog();document.getElementById('repMsg').textContent=`Kopioitu ${n} kuukauteen.${skipped?' Osa valinnoista ohitettiin, koska ne eivät ole mahdollisia niinä kuukausina.':''}`});
+  function recalc(P,what){normLoma();update(false);const pos=ov.querySelector('.dbody').scrollTop;renderDialog();ov.querySelector('.dbody').scrollTop=pos;
+    const el=ov.querySelector(what==='s'?`input[name="s${P}"]:checked`:`[data-num="${P}"]`)||ov.querySelector(`input[name="s${P}"]:checked`);el&&el.focus()}
+  function softUpdate(){update(false);const r2=C.rows[i],d2=r2.fam-r2.base;ov.querySelector('.preview b').innerHTML=`${eur(r2.fam)} <span class="${d2<-1?'neg':d2>1?'pos':''}">(${sgnEur(d2)} normaaliin)</span>`}
+}
+
+/* ================= rail, years ================= */
+function renderRail(){
+  ['A','B'].forEach(P=>{const R=C.R[P],x=C.PD[P];document.getElementById('est'+P).innerHTML=
+    `<span>Vanhempainraha / arkipäivä</span><b>${fmt2.format(R.n)} €</b>
+     <span>Täysi kuukausi Kelalta (brutto)</span><b>${eur(R.n*25)}</b>
+     <span>Korotettu, ${P==='A'?'raskausraha ja ':''}16 ensimmäistä pv</span><b>${fmt2.format(R.k)} €</b>
+     ${x.rr||x.vr?`<span>Palkallisia päiviä</span><b>${x.rr?x.rr+' + ':''}${x.vr} pv</b>`:''}`});
+  document.querySelectorAll('.nA').forEach(e=>e.textContent=nm('A'));document.querySelectorAll('.nB').forEach(e=>e.textContent=nm('B'));
+  const mx=C.own+C.maxTr;
+  const meter=P=>{const u=C.used[P],c=P==='A'?'var(--a)':'var(--b)';const w=Math.min(u,mx)/mx*100,ow=Math.min(u,C.own)/mx*100;
+    return `<div class="meter" style="--c:${c}"><div class="mhead"><strong>${esc(nm(P))}</strong><span class="num">${fd(u)} / ${C.own} pv</span></div>
+      <div class="bar"><i style="width:${ow}%"></i>${u>C.own?`<i class="over" style="left:${ow}%;width:${w-ow}%"></i>`:''}<span class="tick" style="left:${C.own/mx*100}%"></span></div>
+      <span class="hint">${u>C.own?`${fd(u-C.own)} pv toiselta luovutettuna.`:C.left[P]>0.4?`${fd(C.left[P])} pv käyttämättä.`:'Kiintiö käytetty.'}</span></div>`};
+  document.getElementById('meters').innerHTML=meter('A')+meter('B')+
+    `<p class="hint" style="margin-top:10px">Viiva = oma ${C.own} pv. Raidoitettu = toiselta saadut päivät (enintään ${C.maxTr}). Yhteiset päivät vähintään <b class="num">${C.ov}/${C.ovLimit}</b>. Takaraja ${fdate(M.bd2)}.</p>`;
+  const lastM=M.months[M.months.length-1];
+  document.getElementById('vac').innerHTML=['A','B'].map(P=>{const v=C.vac[P],u=uShort(P);
+    const row=(l,val,cls='')=>`<div class="fig" style="border:none;padding:1px 0"><span>${l}</span><b class="${cls}">${val}</b></div>`;
+    return `<div style="display:flex;flex-direction:column;gap:2px;padding:6px 0;border-bottom:1px solid var(--line)"><strong style="color:var(--${P==='A'?'a':'b'});font-size:13.5px">${esc(nm(P))} <span class="hint" style="font-weight:400">(${isTP(P)?'työpäivinä ma–pe':'arkipäivinä ma–la'})</span></strong>
+      ${row('Käytettävissä nyt ('+fdate(C.vref)+')',fmt1.format(v.old)+' '+u)}
+      ${row('Tulee käyttöön '+vacNextLabel(),'+'+fmt1.format(v.firstToNext)+' '+u)}
+      ${row('Merkitty kalenteriin','−'+fmt1.format(v.taken)+' '+u)}
+      ${v.next!=null?row('Käytettävissä, kun oma vapaa on päättynyt ('+MON[v.nextM.mo]+' '+v.nextM.y+')',fmt1.format(v.next)+' '+u,v.next<0?'neg':''):''}</div>`}).join('')+
+    `<p class="hint" style="margin-top:6px">Erittely lomavuosittain kohdassa 3. Merkitse lomat klikkaamalla kuukautta.</p>`;
+  const loss=C.tot.fam-C.tot.base;
+  document.getElementById('money').innerHTML=`
+    <div class="fig"><span>Perhe saa käteen</span><b>${eur(C.tot.fam)}</b></div>
+    <div class="fig"><span>Jos molemmat töissä</span><b>${eur(C.tot.base)}</b></div>
+    <div class="fig"><span>Vapaiden hinta</span><b class="${loss<0?'neg':''}">${sgnEur(loss)}</b></div>
+    <div class="fig"><span>Kelalta yhteensä (brutto)</span><b>${eur(C.tot.kela+C.tot.kht)}</b></div>
+    <p class="hint" style="margin-top:6px">${cap(MON[M.months[0].mo])} ${M.months[0].y} – ${MON[M.months[M.months.length-1].mo]} ${M.months[M.months.length-1].y}, verojen jälkeen.</p>`;
+  document.getElementById('msgs').innerHTML=C.msgs.map(([l,t,k])=>`<div class="msg ${l}" data-tag="${{err:'Virhe',warn:'Huom',info:'Tieto',ok:'OK'}[l]}"><span>${esc(t)}${k?` <button class="btn" style="padding:1px 8px;font-size:12px;margin-left:4px" data-open="${k}">Avaa</button>`:''}</span></div>`).join('');
+  document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openDialog(b.dataset.open)));
+  renderNext();
+}
+function renderNext(){const items=[];
+  if(state.example)items.push(`Syötä omat palkkanne kohtaan 1. Nyt laskelmassa on esimerkkipalkat.`);
+  if(!state.plan||Object.values(state.plan).every(p=>p.A.s==='work'&&p.B.s==='work'))items.push(`Valitse pohja kalenterin yläpuolelta tai klikkaa kuukautta.`);
+  const err=C.msgs.find(x=>x[0]==='err');if(err)items.push(`Korjaa: ${esc(err[1])}${err[2]?` <button data-open="${err[2]}">Avaa kuukausi</button>`:''}`);
+  ['A','B'].forEach(P=>{if(C.left[P]>0.4&&C.used.A+C.used.B>0){const m=M.months.find(m=>avail(m,P)>0&&getP(m.key,P).s==='work'&&m.age>=0);
+    items.push(`${esc(nm(P))}: ${fd(C.left[P])} vapaapäivää käyttämättä. Ne vanhenevat ${fdate(M.bd2)}. ${m?`<button data-open="${m.key}">Sijoita päivät</button>`:''}`)}});
+  ['A','B'].forEach(P=>{const v=C.vac[P];if(v.next!=null&&v.next>=(isTP(P)?10:12))items.push(`${esc(nm(P))}: vapaan päättyessä lomapäiviä on käytettävissä noin ${fmt.format(v.next)} ${uShort(P)}. Niillä voi jatkaa kotona oloa täydellä palkalla. <button data-open="${v.nextM.key}">Merkitse lomaa: ${MON[v.nextM.mo]} ${v.nextM.y}</button>`)});
+  const back=C.rows.find(r=>r.m.age>=1&&['A','B'].every(P=>r.P[P].s==='work'&&r.P[P].vv+r.P[P].os===0&&r.P[P].l<r.m.total*0.8)&&r.m.age<36);
+  if(back){const ap=new Date(back.m.y,back.m.mo-4,1,12);items.push(`Molemmat ovat töissä ${MON[back.m.mo].replace('kuu','kuusta')} ${back.m.y} alkaen (lapsi ${back.m.age} kk). Hakekaa varhaiskasvatuspaikkaa viimeistään ${MON[ap.getMonth()].replace('kuu','kuussa')} ${ap.getFullYear()}.`)}
+  C.years.forEach(Y=>['A','B'].forEach(P=>{const y=Y.P[P];if(!state[P].taxOverride&&y.rateB-y.rate>0.02)items.push(`${esc(nm(P))}: vuoden ${Y.y} veroaste on arviolta ${fmt1.format(y.rate*100)} % (normaalisti ${fmt1.format(y.rateB*100)} %). Harkitse muutosverokorttia.`)}));
+  if(!items.length)items.push('Suunnitelma on valmis. Tarkistakaa vielä työnantajan palkalliset päivät ja tehkää hakemukset OmaKelassa.');
+  const ol=document.getElementById('next');ol.innerHTML=items.slice(0,6).map(t=>`<li>${t}</li>`).join('');
+  ol.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openDialog(b.dataset.open)));
+}
+function renderYears(){
+  let h=`<thead><tr><th>Vuosi</th><th>Perhe netto</th><th>Ilman vapaita</th><th>Ero</th><th class="nA">${esc(nm('A'))}</th><th class="nB">${esc(nm('B'))}</th></tr></thead><tbody>`;
+  C.years.forEach(Y=>{const n=Y.rows.reduce((t,r)=>t+r.fam,0),b=Y.rows.reduce((t,r)=>t+r.base,0);
+    const rt=P=>{const y=Y.P[P];return state[P].taxOverride?`${fmt1.format(+state[P].taxPct)} % (verokortti)`:`vero ${fmt1.format(y.rate*100)} % <span class="hint">(norm. ${fmt1.format(y.rateB*100)} %)</span>`};
+    h+=`<tr><td>${Y.y}${Y.rows.length<12?` <span class="hint">${Y.rows.length} kk</span>`:''}</td><td>${eur(n)}</td><td>${eur(b)}</td><td class="${n-b<-1?'neg':''}">${sgnEur(n-b)}</td><td>${rt('A')}</td><td>${rt('B')}</td></tr>`});
+  document.getElementById('years').innerHTML=h+'</tbody>';
+  const lastLy=M.bd2.getMonth()>=3?M.bd2.getFullYear():M.bd2.getFullYear()-1;
+  let v=`<thead><tr><th>Lomavuosi</th><th>Käytettävissä alussa</th><th>Pidetty</th><th>Jäljellä lopussa</th><th>Kertyy, käyttöön seur. 1.4.</th></tr></thead><tbody>`;
+  ['A','B'].forEach(P=>{const V=C.vac[P],u=uShort(P);
+    v+=`<tr><td colspan="5" style="text-align:left;color:var(--${P==='A'?'a':'b'})">${esc(nm(P))} <span class="hint" style="font-family:var(--f-body);font-weight:400">${isTP(P)?'työpäivinä (ma–pe)':'arkipäivinä (ma–la)'}</span></td></tr>`;
+    V.years.filter(Y=>Y.ly<=lastLy).forEach(Y=>{const lbl=Y.partial?`${fdate(C.vref)}–31.3.${Y.ly+1}`:`1.4.${Y.ly}–31.3.${Y.ly+1}`;
+      const accTxt=Y.partial?`${fmt1.format(Y.toNext)} ${u} <span class="hint">(ansaittu ${fmt1.format(V.earned)} + ${fmt1.format(Y.acc)})</span>`:`${fmt1.format(Y.acc)} ${u}${Y.accL?` <span class="hint">(vapailta ${fmt1.format(Y.accL)})</span>`:''}`;
+      v+=`<tr><td style="font-family:var(--f-body);font-weight:500">${lbl}</td><td>${fmt1.format(Y.start)} ${u}</td><td>${Y.used?'−'+fmt1.format(Y.used)+' '+u:'–'}</td><td class="${Y.end<0?'neg':''}">${fmt1.format(Y.end)} ${u}</td><td>${accTxt}</td></tr>`})});
+  document.getElementById('vacYears').innerHTML=v+'</tbody>';
+}
+
+/* ================= main ================= */
+function update(full=true){C=calc();save();renderRail();renderYears();if(full&&ov.hidden)renderCalendar();
+  document.getElementById('code').value=encode();renderSync()}
+function rebuild(keepPlan){buildModel();if(!state.plan||!keepPlan)preset('even');M.months.forEach(m=>{getP(m.key,'A');getP(m.key,'B')});normLoma();fillVacDates();update()}
+let undo=null;const toast=document.getElementById('toast');
+document.getElementById('presets').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  undo=JSON.stringify(state.plan);preset(b.dataset.p);normLoma();update();
+  toast.innerHTML=`Pohja "${esc(b.querySelector('b').textContent)}" otettu käyttöön. <button id="undoBtn">Kumoa</button>`;toast.hidden=false;
+  document.getElementById('undoBtn').addEventListener('click',()=>{state.plan=JSON.parse(undo);update();toast.hidden=true});
+  clearTimeout(toast._t);toast._t=setTimeout(()=>toast.hidden=true,7000)});
+function encode(){try{return btoa(unescape(encodeURIComponent(JSON.stringify(state))))}catch(e){return ''}}
+document.getElementById('copy').addEventListener('click',()=>{const ta=document.getElementById('code'),msg=document.getElementById('codeMsg');
+  const sel=()=>{ta.select();msg.textContent='Koodi valittu. Kopioi se näppäimillä Ctrl+C tai Cmd+C.'};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(ta.value).then(()=>msg.textContent='Kopioitu leikepöydälle.',sel);else sel()});
+document.getElementById('load').addEventListener('click',()=>{const msg=document.getElementById('codeMsg');
+  try{const s=JSON.parse(decodeURIComponent(escape(atob(document.getElementById('code').value.trim()))));if(!migrate(s))throw 0;
+    state=s;init();msg.textContent='Suunnitelma ladattu.'}catch(e){msg.textContent='Koodia ei voitu lukea. Tarkista, että liitit koko koodin.'}});
+function init(){parentCard('A');parentCard('B');fillCommon();rebuild(!!state.plan)}
+/* ================= shared save (db) ================= */
+const cloud={ref:null,user:null,uid:null,state:'connecting',savedAt:null,savedBy:null,lastSeen:null,synced:null,canWrite:true,saving:false,pending:null};
+try{cloud.synced=localStorage.getItem('vv-synced')}catch(e){}
+const cur=()=>JSON.stringify(state);
+function setSynced(j){cloud.synced=j;try{localStorage.setItem('vv-synced',j)}catch(e){}}
+function fmtTime(iso){const d=new Date(iso);if(isNaN(d))return '';return d.getDate()+'.'+(d.getMonth()+1)+'. klo '+pad(d.getHours())+'.'+pad(d.getMinutes())}
+async function whoName(id){if(!id||!cloud.user)return '';try{const ps=await cloud.user.profiles([id]);return (ps&&ps[id]&&ps[id].name)||''}catch(e){return ''}}
+let syncSeq=0;
+async function renderSync(){const st=document.getElementById('syncStatus'),btn=document.getElementById('saveBtn');if(!st||!btn)return;const seq=++syncSeq;
+  if(cloud.state==='off'){document.getElementById('syncPanel').hidden=true;return}
+  const dirty=cur()!==cloud.synced;let t='';
+  if(cloud.state==='connecting'){btn.disabled=true;st.textContent='Haetaan tallennettua suunnitelmaa…';return}
+  if(cloud.state==='error'){btn.disabled=true;st.textContent='Yhteyttä tallennukseen ei saatu. Suunnitelma on tallessa tässä selaimessa.';return}
+  btn.disabled=!dirty||!cloud.canWrite||cloud.saving;
+  if(cloud.state==='slow')t='Tallennettua suunnitelmaa ei saatu vielä haettua. ';
+  if(cloud.saving)t+='Tallennetaan…';
+  else if(!cloud.canWrite)t+='Sinulla on vain lukuoikeus. Sivun omistaja voi antaa muokkausoikeuden jakovalikosta.';
+  else if(dirty)t+=cloud.savedAt?'Tallentamattomia muutoksia.':'Suunnitelmaa ei ole vielä tallennettu.';
+  else t+='Kaikki muutokset on tallennettu.';
+  if(cloud.savedAt){const n=await whoName(cloud.savedBy);if(seq!==syncSeq)return;t+=` Viimeksi tallennettu ${fmtTime(cloud.savedAt)}${n?' ('+n+')':''}.`}
+  st.textContent=t}
+function hideBanner(){document.getElementById('syncBanner').hidden=true}
+async function showBanner(d){const n=await whoName(d.savedBy);
+  document.getElementById('syncBannerText').textContent=`Sivulle on tallennettu toinen versio${n?' ('+n+')':''} ${fmtTime(d.savedAt)}. Sinulla on tässä selaimessa tallentamattomia muutoksia.`;
+  document.getElementById('syncBanner').hidden=false}
+function applyCloud(d){const s2=migrate(JSON.parse(JSON.stringify(d.state||{})));if(!s2)return;
+  if(!ov.hidden)closeDialog();state=s2;init();setSynced(cur());save();cloud.pending=null;hideBanner();renderSync()}
+async function saveCloud(){if(!cloud.ref||cloud.saving)return;cloud.saving=true;document.getElementById('syncErr').textContent='';renderSync();
+  const j=cur(),savedAt=new Date().toISOString();
+  for(let attempt=0;attempt<2;attempt++){
+    try{await cloud.ref.set({v:1,state:JSON.parse(j),savedAt,savedBy:cloud.uid||null});
+      cloud.lastSeen=savedAt;cloud.savedAt=savedAt;cloud.savedBy=cloud.uid||null;setSynced(j);cloud.pending=null;hideBanner();break}
+    catch(e){const c=e&&e.code;
+      if(c==='unavailable'&&attempt===0){await new Promise(r=>setTimeout(r,600+Math.random()*600));continue}
+      if(c==='invalid_argument')cloud.canWrite=false;
+      else document.getElementById('syncErr').textContent=c==='quota_exceeded'?'Tallennustila on täynnä.':'Tallennus ei onnistunut. Yritä hetken päästä uudelleen.';
+      break}}
+  cloud.saving=false;renderSync()}
+document.getElementById('saveBtn').addEventListener('click',saveCloud);
+document.getElementById('takeCloud').addEventListener('click',()=>{if(cloud.pending)applyCloud(cloud.pending)});
+document.getElementById('keepLocal').addEventListener('click',()=>{hideBanner();renderSync()});
+async function connectCloud(){
+  const api=window.claude;if(!api||typeof api.use!=='function'){cloud.state='off';renderSync();return}
+  let db=null;try{db=await api.use('db')}catch(e){db=null}
+  if(!db){cloud.state='off';renderSync();return}
+  try{cloud.user=await api.use('user')}catch(e){cloud.user=null}
+  if(cloud.user){try{cloud.uid=await cloud.user.id()}catch(e){}try{if(await cloud.user.can('data.write')===false)cloud.canWrite=false}catch(e){}}
+  try{cloud.ref=db.doc('plans/main')}catch(e){cloud.state='off';renderSync();return}
+  const timer=setTimeout(()=>{if(cloud.state==='connecting'){cloud.state='slow';renderSync()}},10000);
+  cloud.ref.onSnapshot(snap=>{
+    if(!snap.metadata.fromCache)clearTimeout(timer);
+    if(snap.metadata.hasPendingWrites)return;
+    if(cloud.state!=='ready'&&!snap.metadata.fromCache)cloud.state='ready';
+    else if(cloud.state==='connecting')cloud.state='ready';
+    if(!snap.exists){renderSync();return}
+    const d=snap.data();cloud.savedAt=d.savedAt||null;cloud.savedBy=d.savedBy||null;
+    if(d.savedAt&&d.savedAt===cloud.lastSeen){renderSync();return}
+    cloud.lastSeen=d.savedAt;
+    const neverSynced=cloud.synced==null;const dirty=neverSynced?hadLocal:cur()!==cloud.synced;
+    if(JSON.stringify(d.state)===cur()){setSynced(cur());renderSync();return}
+    if(!dirty)applyCloud(d);else{cloud.pending=d;showBanner(d);renderSync()}
+  },err=>{clearTimeout(timer);cloud.state=(err&&err.code==='revoked')||(err&&err.code==='not_granted')?'off':'error';renderSync()});
+}
+commonInputs();init();connectCloud();
+})();
+</script>
+</body>
+</html>
